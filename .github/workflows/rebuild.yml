@@ -1,0 +1,57 @@
+name: Rebuild index
+
+on:
+  schedule:
+    # Monday morning, a few hours after the upstream tracker's daily run.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/data.json'
+      - 'README.md'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install
+        run: pip install -e .
+
+      # The encoder is ~120MB and unchanged between runs.
+      - name: Cache model and embeddings
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/huggingface
+            .cache
+          key: nlskill-${{ hashFiles('pyproject.toml') }}
+          restore-keys: nlskill-
+
+      - name: Fetch upstream tracker data
+        run: git clone --depth 1 https://github.com/hoeberigs/ai-job-tracker-nl.git /tmp/tracker
+
+      - name: Rebuild
+        run: python -m nlskill --db /tmp/tracker/data/jobs.db --out docs/data.json
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data.json
+          git diff --staged --quiet || git commit -m "Rebuild index $(date +%Y-%m-%d)"
+          git push

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nl-ai-skill-index"
+version = "0.1.0"
+description = "Detection-corrected survival analysis and semantic clustering of the Dutch AI job market"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Linda Hoeberigs" }]
+keywords = ["job-market", "survival-analysis", "embeddings", "clustering", "netherlands"]
+dependencies = [
+  "numpy>=1.26,<3",
+  "scikit-learn>=1.5",
+  "sentence-transformers>=3.0",
+]
+
+[project.scripts]
+nl-ai-skill-index = "nlskill.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/hoeberigs/nl-ai-skill-index"
+Dashboard = "https://hoeberigs.github.io/nl-ai-skill-index/"
+
+[tool.setuptools.packages.find]
+where = ["src"]
