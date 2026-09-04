@@ -3,381 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The NL AI Skill Index</title>
-<meta name="description" content="What Dutch employers actually ask for in AI, ML and data roles: a monthly demand index built from six months of daily job-board snapshots.">
-<meta property="og:title" content="The NL AI Skill Index">
+<title>NL AI Skill Index</title>
+<meta name="description" content="What Dutch employers actually ask for in AI, ML and data roles: a demand index built from six months of daily job-board snapshots.">
+<meta property="og:title" content="NL AI Skill Index">
 <meta property="og:description" content="Dutch AI adverts are naming fewer tools every month. RAG is the only skill measurably gaining ground.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D9488'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3E%C6%92%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111110'/%3E%3Crect x='4' y='18' width='4' height='10' fill='%23009c8c'/%3E%3Crect x='11' y='12' width='4' height='16' fill='%23009c8c'/%3E%3Crect x='18' y='15' width='4' height='13' fill='%23c2410c'/%3E%3Crect x='25' y='7' width='3' height='21' fill='%23009c8c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
 :root{
   color-scheme:light;
-  --paper:#faf9f6;
-  --paper-2:#f2efe7;
-  --ink:#211d18;
-  --ink-2:#554f46;
-  --ink-3:#8b8378;
-  --rule:#ddd7ca;
-  --rule-2:#c6bfae;
-
-  --rise:#0D9488;
+  --paper:#fbfaf7;
+  --ink:#111110;
+  --ink-2:#4a4844;
+  --ink-3:#8a8781;
+  --hair:#111110;
+  --hair-soft:#d5d1c7;
+  --rise:#009c8c;
   --fall:#c2410c;
-  --flat:#a9a294;
-  --rise-soft:rgba(13,148,136,.13);
-  --fall-soft:rgba(194,65,12,.12);
+  --third:#1d4ed8;
+  --flat:#a8a49a;
+  --wash:#eeebe3;
 
-  --c1:#0D9488; --c2:#eb6834; --c3:#4a3aa7; --c4:#eda100;
-  --c5:#e87ba4; --c6:#2a78d6; --c7:#008300;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:"Bricolage Grotesque","IBM Plex Sans",sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --paper:#16150f;
-    --paper-2:#1e1c15;
-    --ink:#f4f1e8;
-    --ink-2:#b9b2a2;
-    --ink-3:#8b8378;
-    --rule:#332f24;
-    --rule-2:#4b4535;
-    --rise:#12a294; --fall:#d95926; --flat:#7d7768;
-    --rise-soft:rgba(18,162,148,.17); --fall-soft:rgba(217,89,38,.16);
-    --c1:#12a294; --c2:#d95926; --c3:#9085e9; --c4:#c98500;
-    --c5:#d55181; --c6:#3987e5; --c7:#008300;
+    --paper:#0e0e0c;
+    --ink:#f2f0e9;
+    --ink-2:#a8a49a;
+    --ink-3:#767268;
+    --hair:#f2f0e9;
+    --hair-soft:#2e2c26;
+    --rise:#0f9f92;
+    --fall:#d9622e;
+    --third:#4a86d8;
+    --flat:#6d695f;
+    --wash:#1a1916;
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --paper:#16150f; --paper-2:#1e1c15;
-  --ink:#f4f1e8; --ink-2:#b9b2a2; --ink-3:#8b8378;
-  --rule:#332f24; --rule-2:#4b4535;
-  --rise:#12a294; --fall:#d95926; --flat:#7d7768;
-  --rise-soft:rgba(18,162,148,.17); --fall-soft:rgba(217,89,38,.16);
-  --c1:#12a294; --c2:#d95926; --c3:#9085e9; --c4:#c98500;
-  --c5:#d55181; --c6:#3987e5; --c7:#008300;
+  --paper:#0e0e0c; --ink:#f2f0e9; --ink-2:#a8a49a; --ink-3:#767268;
+  --hair:#f2f0e9; --hair-soft:#2e2c26;
+  --rise:#0f9f92; --fall:#d9622e; --third:#4a86d8; --flat:#6d695f; --wash:#1a1916;
 }
 
-body{background:var(--paper);color:var(--ink);
-  font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;
-  font-feature-settings:"kern" 1;}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.frame{max-width:1240px;margin:0 auto;padding:0 24px 0}
 
-.shell{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,44px)}
-.col{max-width:660px}
+/* ============ masthead: a ruled almanac header ============ */
+.masthead{border-bottom:3px solid var(--hair);padding:16px 0 10px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.mast-name{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.mast-meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.tbtn{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  background:none;border:1px solid var(--hair-soft);color:var(--ink-2);padding:3px 9px;cursor:pointer}
+.tbtn:hover{border-color:var(--ink);color:var(--ink)}
 
-/* ---------- masthead ---------- */
-.masthead{padding:34px 0 0;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
-.wordmark{font-family:'Playfair Display',Georgia,serif;font-size:15px;font-weight:700;letter-spacing:.02em}
-.wordmark em{font-style:italic;font-weight:400;color:var(--ink-3)}
-.masthead .right{font-size:12px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;display:flex;gap:16px;align-items:center}
-.tbtn{background:none;border:1px solid var(--rule-2);color:var(--ink-2);border-radius:999px;
-  padding:4px 12px;font:inherit;font-size:11px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
-.tbtn:hover{color:var(--ink);border-color:var(--ink-3)}
+/* ============ grid ============ */
+.grid{display:grid;grid-template-columns:190px minmax(0,1fr);gap:0 42px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.side{grid-column:1}
+.main{grid-column:2}
+@media(max-width:900px){.side,.main{grid-column:1}}
 
-/* ---------- hero ---------- */
-.hero{padding:56px 0 46px;border-bottom:2px solid var(--ink);margin-bottom:0}
-.kicker{font-size:11.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--fall);font-weight:600;margin-bottom:20px}
-h1{font-family:'Playfair Display',Georgia,serif;font-weight:700;
-  font-size:clamp(40px,7.2vw,82px);line-height:1.02;letter-spacing:-.021em;max-width:15ch}
-h1 .hl{position:relative;white-space:nowrap}
-h1 .hl::after{content:"";position:absolute;left:-.04em;right:-.04em;bottom:.07em;height:.28em;
-  background:var(--rise-soft);z-index:-1;border-radius:2px}
-.standfirst{margin-top:26px;font-size:19.5px;line-height:1.55;color:var(--ink-2);max-width:60ch}
-.standfirst strong{color:var(--ink);font-weight:600}
-.byline{margin-top:28px;font-size:12.5px;color:var(--ink-3);display:flex;gap:20px;flex-wrap:wrap}
-.byline a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--rule-2)}
-.byline a:hover{color:var(--rise);border-color:var(--rise)}
+/* ============ hero ============ */
+.hero{border-bottom:1px solid var(--hair);padding:44px 0 34px}
+.hero .grid{align-items:start}
+.hero-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fall);
+  padding-top:14px;line-height:1.7}
+.hero-label span{display:block;white-space:nowrap;letter-spacing:.06em;color:var(--ink-3);margin-top:6px}
+h1{font-family:var(--display);font-weight:800;
+  font-size:clamp(38px,6.6vw,86px);line-height:.94;letter-spacing:-.035em;
+  max-width:16ch;font-variation-settings:"opsz" 96;text-wrap:balance}
+.deck{margin-top:24px;max-width:56ch;font-size:17px;line-height:1.5;color:var(--ink-2)}
+.deck b{color:var(--ink);font-weight:600}
+.deck .num{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums}
 
-/* ---------- findings strip ---------- */
-.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--rule)}
-@media(max-width:760px){.findings{grid-template-columns:1fr}}
-.finding{padding:30px 30px 30px 0;border-right:1px solid var(--rule)}
-.finding:last-child{border-right:none}
-@media(max-width:760px){.finding{border-right:none;border-bottom:1px solid var(--rule);padding-right:0}
-  .finding:last-child{border-bottom:none}}
-.finding .fig{font-family:'Playfair Display',Georgia,serif;font-size:52px;font-weight:700;line-height:.95;letter-spacing:-.02em}
-.finding .fig small{font-size:20px;font-weight:400;color:var(--ink-3);letter-spacing:0}
-.finding .lab{margin-top:12px;font-size:14px;line-height:1.5;color:var(--ink-2);max-width:30ch}
-.finding.up .fig{color:var(--rise)} .finding.down .fig{color:var(--fall)}
+/* ============ key figures: a ruled table, not cards ============ */
+.figures{border-bottom:1px solid var(--hair);padding:0}
+.figrow{display:grid;grid-template-columns:190px repeat(3,minmax(0,1fr));gap:0 42px;align-items:start;
+  padding:28px 0 26px}
+@media(max-width:900px){.figrow{grid-template-columns:1fr;gap:24px}}
+.figlabel{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  padding-top:6px}
+.fg{border-left:1px solid var(--hair-soft);padding-left:18px}
+@media(max-width:900px){.fg{border-left:none;padding-left:0;border-top:1px solid var(--hair-soft);padding-top:16px}}
+.fg .v{font-family:var(--display);font-weight:800;font-size:clamp(38px,4.6vw,60px);line-height:.9;
+  letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.fg .v .u{font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:0;color:var(--ink-3);margin-left:4px}
+.fg .t{margin-top:11px;font-size:13.5px;line-height:1.42;color:var(--ink-2);max-width:32ch}
+.fg.up .v{color:var(--rise)} .fg.down .v{color:var(--fall)}
 
-/* ---------- sections ---------- */
-section{padding:70px 0;border-bottom:1px solid var(--rule)}
-.sec-head{display:grid;grid-template-columns:88px 1fr;gap:26px;align-items:start;margin-bottom:38px}
-@media(max-width:700px){.sec-head{grid-template-columns:1fr;gap:10px}}
-.sec-num{font-family:'Playfair Display',Georgia,serif;font-size:44px;font-weight:400;color:var(--rule-2);line-height:.8}
-h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(27px,3.6vw,37px);font-weight:600;
-  line-height:1.14;letter-spacing:-.012em;max-width:22ch}
-.dek{margin-top:15px;color:var(--ink-2);max-width:62ch;font-size:16.5px}
-.dek + .dek{margin-top:13px}
-.dek strong{color:var(--ink);font-weight:600}
+/* ============ sections ============ */
+section{border-bottom:1px solid var(--hair);padding:52px 0}
+.sec-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  padding-top:9px}
+.sec-label .no{display:block;color:var(--ink);font-weight:600;margin-bottom:7px}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(24px,3.1vw,34px);line-height:1.06;
+  letter-spacing:-.028em;max-width:24ch;font-variation-settings:"opsz" 48}
+.body{margin-top:18px;max-width:58ch}
+.body p{margin-bottom:12px;color:var(--ink-2)}
+.body p:last-child{margin-bottom:0}
+.body b{color:var(--ink);font-weight:600}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500;color:var(--ink)}
 
-/* ---------- figure ---------- */
-figure{margin:38px 0 0}
-.fig-head{display:flex;justify-content:space-between;align-items:baseline;gap:18px;
-  padding-bottom:11px;border-bottom:1px solid var(--ink);margin-bottom:22px;flex-wrap:wrap}
-.fig-title{font-size:13px;font-weight:600;letter-spacing:.09em;text-transform:uppercase}
-.fig-note{font-size:12.5px;color:var(--ink-3);text-align:right}
-figcaption{margin-top:18px;font-size:13px;color:var(--ink-3);max-width:66ch;line-height:1.55}
-.svg-holder{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* ============ figures: full bleed, hairline framed ============ */
+.fig{margin-top:34px}
+.fig-bar{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair-soft);
+  padding:7px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase}
+.fig-bar .r{color:var(--ink-3)}
+.plot{padding:22px 0 4px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 svg{display:block;max-width:100%;height:auto;overflow:visible}
-svg text{font-family:Inter,sans-serif}
+.sidenote{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--ink-3);padding-top:24px}
+.sidenote b{color:var(--ink-2);font-weight:600;display:block;margin-bottom:4px;
+  letter-spacing:.1em;text-transform:uppercase;font-size:10px}
+@media(max-width:900px){.sidenote{padding-top:14px;border-top:1px solid var(--hair-soft);margin-top:14px}}
 
-/* ---------- key ---------- */
-.key{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-size:12.5px;color:var(--ink-2)}
-.key span{display:inline-flex;align-items:center;gap:7px}
-.key i{width:13px;height:3px;border-radius:2px;flex:none}
-.key i.dot{width:9px;height:9px;border-radius:50%}
+/* ============ key ============ */
+.key{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.key span{display:inline-flex;align-items:center;gap:8px}
+.key i{width:16px;height:2px;flex:none}
+.key i.sq{width:9px;height:9px}
 
-/* ---------- tables ---------- */
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px}
-table{width:100%;border-collapse:collapse;font-size:14px;min-width:480px}
-th,td{padding:9px 14px 9px 0;text-align:left;border-bottom:1px solid var(--rule)}
-th{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:600;white-space:nowrap;
-   border-bottom:1px solid var(--ink)}
-td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+/* ============ tables ============ */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:6px}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px;min-width:520px;
+  font-variant-numeric:tabular-nums}
+th{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600;
+  text-align:left;padding:0 16px 7px 0;border-bottom:1px solid var(--hair);white-space:nowrap}
+td{padding:7px 16px 7px 0;border-bottom:1px solid var(--hair-soft);color:var(--ink-2)}
+td:first-child{color:var(--ink)}
+th.n,td.n{text-align:right;padding-right:0}
 tbody tr:last-child td{border-bottom:none}
-.tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
-  padding:2px 8px;border-radius:3px;white-space:nowrap}
-.tag.up{background:var(--rise-soft);color:var(--rise)}
-.tag.down{background:var(--fall-soft);color:var(--fall)}
-.tag.ns{color:var(--ink-3);background:var(--paper-2)}
-details{margin-top:22px}
-summary{cursor:pointer;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--ink-3);list-style:none;font-weight:600}
+tbody tr:hover td{background:var(--wash)}
+.up{color:var(--rise);font-weight:600}
+.down{color:var(--fall);font-weight:600}
+.ns{color:var(--ink-3)}
+details{margin-top:26px}
+summary{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);cursor:pointer;list-style:none;border-top:1px solid var(--hair-soft);padding-top:10px}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"+ ";font-family:monospace}
-details[open] summary::before{content:"− "}
+summary::before{content:"[+] "}
+details[open] summary::before{content:"[−] "}
 summary:hover{color:var(--ink)}
 
-/* ---------- pull ---------- */
-.pull{border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);padding:24px 0;margin:44px 0}
-.pull p{font-family:'Playfair Display',Georgia,serif;font-size:23px;line-height:1.42;max-width:34ch;font-style:italic}
+/* ============ statement ============ */
+.statement{border-top:3px solid var(--hair);border-bottom:1px solid var(--hair);padding:30px 0;margin:44px 0 0}
+.statement p{font-family:var(--display);font-weight:600;font-size:clamp(20px,2.5vw,29px);line-height:1.18;
+  letter-spacing:-.022em;max-width:30ch;font-variation-settings:"opsz" 40}
 
-/* ---------- method ---------- */
-.method{background:var(--paper-2);margin-top:0}
-.method h2{max-width:26ch}
-.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:30px}
-@media(max-width:800px){.method-grid{grid-template-columns:1fr}}
-.method h3{font-size:13px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:12px;color:var(--ink)}
-.method p,.method li{font-size:14.5px;color:var(--ink-2);line-height:1.6}
-.method ol,.method ul{margin-left:17px}
-.method li{margin-bottom:9px}
-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;
-  background:var(--paper);padding:1px 5px;border-radius:3px;border:1px solid var(--rule)}
-footer{padding:44px 0 76px;font-size:13px;color:var(--ink-3)}
+/* ============ method ============ */
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 42px;margin-top:8px}
+@media(max-width:820px){.mgrid{grid-template-columns:1fr;gap:30px}}
+.mgrid h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:12px;color:var(--ink);border-bottom:1px solid var(--hair-soft);padding-bottom:7px}
+.mgrid p,.mgrid li{font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.mgrid ol,.mgrid ul{margin-left:16px}
+.mgrid li{margin-bottom:8px}
+.mgrid li b{color:var(--ink)}
+code{font-family:var(--mono);font-size:.9em;background:var(--wash);padding:1px 4px}
+footer{padding:30px 0 64px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3)}
 footer a{color:var(--ink-2)}
-.err{border-left:3px solid var(--fall);padding:14px 18px;background:var(--fall-soft);margin:30px 0;font-size:14.5px}
+.err{border-left:3px solid var(--fall);padding:14px 18px;background:var(--wash);margin:30px 0;font-size:14px}
 
-.tip{position:fixed;pointer-events:none;z-index:80;background:var(--paper);border:1px solid var(--rule-2);
-  border-radius:7px;padding:8px 11px;font-size:12.5px;line-height:1.45;color:var(--ink);
-  box-shadow:0 6px 22px rgba(0,0,0,.13);opacity:0;transition:opacity .1s;max-width:250px}
+.tip{position:fixed;pointer-events:none;z-index:90;background:var(--paper);border:1px solid var(--ink);
+  padding:8px 11px;font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--ink);
+  opacity:0;transition:opacity .09s;max-width:260px}
 .tip b{font-weight:600}
 .tip .m{color:var(--ink-3)}
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="frame">
 
   <div class="masthead">
-    <div class="wordmark">The NL AI Skill Index <em>— Netherlands</em></div>
-    <div class="right">
-      <span id="mastPeriod"></span>
+    <div class="mast-name">NL AI Skill Index</div>
+    <div class="mast-meta">
+      <span id="mastPeriod"></span><span id="mastN"></span>
       <button class="tbtn" id="themeBtn" type="button">Dark</button>
     </div>
   </div>
 
   <div class="hero">
-    <div class="kicker">Six months of Dutch AI job adverts</div>
-    <h1>Employers are asking for <span class="hl">less</span>, not more</h1>
-    <p class="standfirst" id="standfirst"></p>
-    <div class="byline">
-      <span id="bylineN"></span>
-      <a href="https://github.com/hoeberigs/nl-ai-skill-index">Method &amp; source code</a>
-      <a href="https://github.com/hoeberigs/ai-job-tracker-nl">Underlying tracker</a>
+    <div class="grid">
+      <div class="side hero-label">Netherlands<br>AI · ML · Data<br><span id="heroSpan"></span></div>
+      <div class="main">
+        <h1>Employers are asking for less, not more</h1>
+        <div class="deck" id="deck"></div>
+      </div>
     </div>
   </div>
 
-  <div class="findings" id="findings"></div>
+  <div class="figures">
+    <div class="figrow">
+      <div class="figlabel">Key figures</div>
+      <div class="fg down"><div class="v" id="f1v"></div><div class="t" id="f1t"></div></div>
+      <div class="fg up"><div class="v" id="f2v"></div><div class="t" id="f2t"></div></div>
+      <div class="fg down"><div class="v" id="f3v"></div><div class="t" id="f3t"></div></div>
+    </div>
+  </div>
 
   <section>
-    <div class="sec-head"><div class="sec-num">01</div><div>
-      <h2>The tools employers name, and how they moved</h2>
-      <p class="dek">Every advert is read for the technologies it names. Rank each skill by its share of
-        all mentions in a month, and the movement between April and August is the index.</p>
-      <p class="dek">Ranks rather than raw shares, because adverts have grown steadily vaguer over the
-        period and that drags every share down at once. Rank asks the more useful question:
-        <strong>of the tools employers still bother to name, which ones?</strong></p>
-    </div></div>
-
-    <figure>
-      <div class="fig-head">
-        <div class="fig-title">Skill rank by share of mentions</div>
-        <div class="fig-note" id="bumpNote"></div>
+    <div class="grid">
+      <div class="side sec-label"><span class="no">§ 01</span>Rank movement</div>
+      <div class="main">
+        <h2>The tools employers name, and how they moved</h2>
+        <div class="body">
+          <p>Every advert is read for the technologies it names. Rank each by its share of all mentions in a month, and the movement between April and August is the index.</p>
+          <p>Ranks rather than raw shares, because adverts have grown steadily vaguer and that drags every share down at once. Rank asks the more useful question: <b>of the tools employers still bother to name, which ones?</b></p>
+        </div>
       </div>
-      <div class="svg-holder"><svg id="bump"></svg></div>
+    </div>
+    <div class="fig">
+      <div class="fig-bar"><span>Fig. 1 — Skill rank by share of mentions</span><span class="r" id="bumpNote"></span></div>
+      <div class="grid">
+        <div class="side sidenote"><b>Reading it</b>Each line is one technology. Coloured lines cleared a Cochran-Armitage test for trend across all five months, not a comparison of two endpoints, so a result cannot be produced by picking convenient months. Grey lines moved, but not by more than sampling noise.</div>
+        <div class="main plot"><svg id="bump"></svg></div>
+      </div>
       <div class="key">
-        <span><i style="background:var(--rise)"></i>Statistically significant rise</span>
+        <span><i style="background:var(--rise)"></i>Significant rise</span>
         <span><i style="background:var(--fall)"></i>Significant fall</span>
-        <span><i style="background:var(--flat)"></i>Movement within noise</span>
+        <span><i style="background:var(--flat)"></i>Within noise</span>
       </div>
-      <figcaption>Significance is a Cochran-Armitage test for trend across all five months, not a
-        comparison of the two endpoints, so a result cannot be manufactured by picking convenient
-        months. Grey lines moved, but not by more than sampling noise would produce on its own.</figcaption>
-    </figure>
-
-    <details>
-      <summary>Full table, both measures</summary>
-      <div class="tw"><table id="skillTable"></table></div>
-    </details>
+    </div>
+    <details><summary>Full table, both measures</summary><div class="tw"><table id="skillTable"></table></div></details>
   </section>
 
   <section>
-    <div class="sec-head"><div class="sec-num">02</div><div>
-      <h2>Adverts are naming fewer tools every month</h2>
-      <p class="dek" id="specDek"></p>
-      <p class="dek">This is the single most consistent movement in the data, and it is why the index is
-        built on rank. Read as raw percentages, almost every technology in the market appears to be
-        declining at once, which says more about how adverts are written than about what employers need.</p>
-    </div></div>
-
-    <figure>
-      <div class="fig-head">
-        <div class="fig-title">Named technologies per advert</div>
-        <div class="fig-note">Adverts whose text was retrieved</div>
+    <div class="grid">
+      <div class="side sec-label"><span class="no">§ 02</span>Specificity</div>
+      <div class="main">
+        <h2>Adverts name fewer tools every month</h2>
+        <div class="body">
+          <p id="specDek"></p>
+          <p>This is the most consistent movement in the data, and it is why the index is built on rank. Read as raw percentages, almost every technology appears to decline at once, which says more about how adverts are written than about what employers need.</p>
+        </div>
       </div>
-      <div class="svg-holder"><svg id="spec"></svg></div>
-      <figcaption id="specCap"></figcaption>
-    </figure>
+    </div>
+    <div class="fig">
+      <div class="fig-bar"><span>Fig. 2 — Named technologies per advert</span><span class="r">Adverts whose text was retrieved</span></div>
+      <div class="grid">
+        <div class="side sidenote"><b>Not length</b>Median advert length is unchanged across the period. Adverts are not getting shorter, they are getting less specific about tooling.</div>
+        <div class="main plot"><svg id="spec"></svg></div>
+      </div>
+    </div>
   </section>
 
   <section>
-    <div class="sec-head"><div class="sec-num">03</div><div>
-      <h2>What actually moved</h2>
-      <p class="dek">Each panel is one technology's share of mentions, month by month, with a 95%
-        interval. Only the coloured panels cleared significance. The rest are shown at the same
-        scale so the reader can see how little most of them moved.</p>
-    </div></div>
-
-    <figure>
-      <div class="fig-head">
-        <div class="fig-title">Share of all skill mentions, by month</div>
-        <div class="fig-note">Shaded band: 95% Wilson interval</div>
+    <div class="grid">
+      <div class="side sec-label"><span class="no">§ 03</span>Detail</div>
+      <div class="main">
+        <h2>What actually moved</h2>
+        <div class="body"><p>Each panel is one technology's share of mentions with a 95% interval. Only the coloured panels cleared significance. The rest sit at the same scale so you can see how little most of them moved.</p></div>
       </div>
-      <div class="svg-holder"><svg id="spark"></svg></div>
-      <figcaption>Wilson intervals rather than the textbook normal approximation, which produces
-        impossible negative lower bounds at the small shares most of these skills sit at.</figcaption>
-    </figure>
-
-    <div class="pull"><p id="pullQuote"></p></div>
+    </div>
+    <div class="fig">
+      <div class="fig-bar"><span>Fig. 3 — Share of all skill mentions, by month</span><span class="r">Band: 95% Wilson interval</span></div>
+      <div class="grid">
+        <div class="side sidenote"><b>Why Wilson</b>The textbook normal approximation produces impossible negative lower bounds at the small shares most of these technologies sit at.</div>
+        <div class="main plot"><svg id="spark"></svg></div>
+      </div>
+    </div>
+    <div class="statement"><p id="statement"></p></div>
   </section>
 
   <section>
-    <div class="sec-head"><div class="sec-num">04</div><div>
-      <h2>Which roles employers cannot fill</h2>
-      <p class="dek">Because the same boards were captured every day for six months, each advert can be
-        followed from the day it appears to the day it goes. Roles whose adverts run longest are the
-        ones the market is struggling to close.</p>
-      <p class="dek">Roles here are discovered from the adverts themselves rather than taken from a
-        fixed list: every vacancy is embedded with a multilingual model and clustered, so the
-        groupings reflect how Dutch employers actually write about work.</p>
-    </div></div>
-
-    <figure>
-      <div class="fig-head">
-        <div class="fig-title">Average days advertised within 90 days</div>
-        <div class="fig-note">Kaplan-Meier restricted mean</div>
+    <div class="grid">
+      <div class="side sec-label"><span class="no">§ 04</span>Scarcity</div>
+      <div class="main">
+        <h2>Which roles employers cannot fill</h2>
+        <div class="body">
+          <p>Because the same boards were captured every day for six months, each advert can be followed from the day it appears to the day it goes. Roles whose adverts run longest are the ones the market struggles to close.</p>
+          <p>Roles are discovered from the adverts themselves rather than taken from a fixed list: every vacancy is embedded with a multilingual model and clustered, so the groupings reflect how Dutch employers actually write about work.</p>
+        </div>
       </div>
-      <div class="svg-holder"><svg id="lolli"></svg></div>
-      <figcaption id="lolliCap"></figcaption>
-    </figure>
-
-    <figure>
-      <div class="fig-head">
-        <div class="fig-title">Share of adverts still live, by day</div>
-        <div class="fig-note">Survival curves per role cluster</div>
+    </div>
+    <div class="fig">
+      <div class="fig-bar"><span>Fig. 4 — Average days advertised within 90 days</span><span class="r">Kaplan-Meier restricted mean</span></div>
+      <div class="grid">
+        <div class="side sidenote" id="lolliNote"></div>
+        <div class="main plot"><svg id="lolli"></svg></div>
       </div>
-      <div class="svg-holder"><svg id="km"></svg></div>
+    </div>
+    <div class="fig">
+      <div class="fig-bar"><span>Fig. 5 — Share of adverts still live, by day</span><span class="r">First 60 days · Kaplan-Meier</span></div>
+      <div class="grid">
+        <div class="side sidenote"><b>Censoring</b>Adverts still running on the final day of collection are censored, not dropped: they tell us a vacancy lasted at least this long without pretending to know when it ended.</div>
+        <div class="main plot"><svg id="km"></svg></div>
+      </div>
       <div class="key" id="kmKey"></div>
-      <figcaption>Adverts still running on the final day of collection are censored, not dropped:
-        they tell us a vacancy lasted at least this long without pretending to know when it ended.</figcaption>
-    </figure>
+    </div>
   </section>
 
   <section>
-    <div class="sec-head"><div class="sec-num">05</div><div>
-      <h2>Which technologies travel together</h2>
-      <p class="dek">Lift, not raw counts. Raw co-occurrence just re-ranks the most common skills against
-        one another; lift asks how much more often two technologies appear together than they would
-        if employers picked them independently.</p>
-    </div></div>
-    <figure>
-      <div class="fig-head">
-        <div class="fig-title">Strongest skill pairings</div>
-        <div class="fig-note">Lift over independence</div>
+    <div class="grid">
+      <div class="side sec-label"><span class="no">§ 05</span>Pairings</div>
+      <div class="main">
+        <h2>Which technologies travel together</h2>
+        <div class="body"><p>Lift, not raw counts. Raw co-occurrence just re-ranks the most common skills against one another; lift asks how much more often two appear together than if employers picked them independently.</p></div>
       </div>
-      <div class="svg-holder"><svg id="pairs"></svg></div>
-      <figcaption>A lift of 4 means the pair appears together four times more often than chance would
-        predict. Values near 1 mean the two are effectively unrelated.</figcaption>
-    </figure>
+    </div>
+    <div class="fig">
+      <div class="fig-bar"><span>Fig. 6 — Strongest skill pairings</span><span class="r">Lift over independence</span></div>
+      <div class="grid">
+        <div class="side sidenote"><b>Scale</b>A lift of 4 means the pair appears together four times more often than chance predicts. The dashed rule at 1 is independence: values near it mean the two are unrelated.</div>
+        <div class="main plot"><svg id="pairs"></svg></div>
+      </div>
+    </div>
   </section>
 
   <section>
-    <div class="sec-head"><div class="sec-num">06</div><div>
-      <h2>Who is hiring, and who keeps re-posting</h2>
-      <p class="dek">Advert count alone flatters aggregators and agencies. Median days advertised and
-        repost count together separate genuine hiring from a permanent shop window.</p>
-    </div></div>
-    <div class="tw"><table id="empTable"></table></div>
-    <figcaption style="margin-top:16px">Reposts is the average number of distinct advert URLs merged
-      into one vacancy. A high number means the same role was republished repeatedly rather than
-      running continuously.</figcaption>
+    <div class="grid">
+      <div class="side sec-label"><span class="no">§ 06</span>Employers</div>
+      <div class="main">
+        <h2>Who is hiring, and who keeps re-posting</h2>
+        <div class="body"><p>Advert count alone flatters aggregators and agencies. Median days advertised and repost count together separate genuine hiring from a permanent shop window.</p></div>
+      </div>
+    </div>
+    <div class="fig">
+      <div class="fig-bar"><span>Tab. 1 — Most active employers</span><span class="r">Reposts = distinct URLs merged per vacancy</span></div>
+      <div class="tw"><table id="empTable"></table></div>
+    </div>
   </section>
 
-  <section class="method">
-    <div class="sec-head"><div class="sec-num">07</div><div>
-      <h2>How this was measured, and where it can mislead</h2>
-      <p class="dek">Two corrections do most of the work here. Both are the difference between a number
-        that looks reasonable and one that is right.</p>
-    </div></div>
-
-    <div class="method-grid">
+  <section>
+    <div class="grid">
+      <div class="side sec-label"><span class="no">§ 07</span>Method</div>
+      <div class="main">
+        <h2>How this was measured, and where it can mislead</h2>
+        <div class="body"><p>Two corrections do most of the work. Both are the difference between a number that looks reasonable and one that is right.</p></div>
+      </div>
+    </div>
+    <div class="mgrid" style="margin-top:34px">
       <div>
         <h3>The scraper sees about half of what exists</h3>
-        <p id="m1"></p>
-        <p style="margin-top:12px" id="m2"></p>
+        <p id="m1"></p><p style="margin-top:11px" id="m2"></p>
       </div>
       <div>
         <h3>Which changes how long adverts really run</h3>
-        <p id="m3"></p>
-        <p style="margin-top:12px" id="m4"></p>
+        <p id="m3"></p><p style="margin-top:11px" id="m4"></p>
       </div>
     </div>
-
-    <details open>
-      <summary>The full method</summary>
-      <div class="method-grid" style="margin-top:22px">
+    <details open><summary>Full method and known limits</summary>
+      <div class="mgrid" style="margin-top:22px">
         <div>
           <h3>Pipeline</h3>
           <ol>
             <li>An upstream tracker scrapes Dutch job boards daily and commits its database, giving this analysis a versioned, reproducible input.</li>
-            <li>Rows are one per advert per scrape. They collapse to a vacancy identity on normalised title and employer, merging recruiter repost chains that would otherwise fragment one role into many short spells.</li>
-            <li>Detection probability and its day-to-day persistence are measured on days a vacancy was provably live. The grace period for declaring an advert gone is sized from the persistence parameter.</li>
-            <li>Survival is Kaplan-Meier with log-rank tests. Left-censored spells are dropped, right-censored spells retained.</li>
-            <li>Vacancies are embedded with a multilingual MiniLM encoder, reduced by PCA and clustered with k-means, k chosen by silhouette.</li>
-            <li>Skill trends use a Cochran-Armitage test for trend across months, with Wilson intervals on each point.</li>
+            <li>Rows are one per advert per scrape, collapsed to a vacancy identity on normalised title and employer, merging recruiter repost chains.</li>
+            <li>Detection probability and its day-to-day persistence are measured on days a vacancy was provably live; the grace period is sized from the persistence parameter.</li>
+            <li>Survival is Kaplan-Meier with log-rank tests. Left-censored spells dropped, right-censored retained.</li>
+            <li>Vacancies embedded with a multilingual MiniLM encoder, reduced by PCA, clustered with k-means, k by silhouette.</li>
+            <li>Skill trends use Cochran-Armitage across months with Wilson intervals per point.</li>
           </ol>
         </div>
         <div>
           <h3>Where it can mislead</h3>
           <ul>
-            <li><strong>An advert disappearing is not a hire.</strong> Roles leave a board when filled, withdrawn, expired or defunded, and this data cannot separate those. Everything here measures time advertised, never time to hire.</li>
-            <li><strong>Skills are read from advert text</strong>, and text was retrieved for <span id="covTxt"></span> of vacancies. Every skill figure uses that subset as its denominator, never the full panel.</li>
-            <li><strong>Two boards are not the market.</strong> Roles filled through networks, agencies or internal moves never appear.</li>
-            <li><strong id="relTxt"></strong> These were removed from the demand index by an explicit rule, and kept in the survival analysis where the contrast is informative.</li>
-            <li><strong>Clusters summarise a continuum.</strong> Silhouette scores near 0.15 mean adjacent roles genuinely shade into one another rather than forming discrete types.</li>
+            <li><b>An advert disappearing is not a hire.</b> Roles leave a board when filled, withdrawn, expired or defunded. This measures time advertised, never time to hire.</li>
+            <li><b>Skills are read from advert text</b>, retrieved for <span id="covTxt"></span> of vacancies. Every skill figure uses that subset as its denominator.</li>
+            <li><b>Two boards are not the market.</b> Roles filled through networks or internal moves never appear.</li>
+            <li><b id="relTxt"></b></li>
+            <li><b>Clusters summarise a continuum.</b> Silhouette near 0.15 means adjacent roles shade into one another rather than forming discrete types.</li>
           </ul>
         </div>
       </div>
@@ -390,444 +394,377 @@ footer a{color:var(--ink-2)}
 <script>
 (function(){
 "use strict";
-
-/* ---------------- helpers ---------------- */
-var SVGNS="http://www.w3.org/2000/svg";
-function svgEl(n,a){var e=document.createElementNS(SVGNS,n);for(var k in a){if(a[k]!==null&&a[k]!==undefined)e.setAttribute(k,a[k]);}return e;}
+var NS="http://www.w3.org/2000/svg";
+function E(n,a){var e=document.createElementNS(NS,n);for(var k in a){if(a[k]!==null&&a[k]!==undefined)e.setAttribute(k,a[k]);}return e;}
 function el(id){return document.getElementById(id);}
 function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
 function pct(x,d){return (100*x).toFixed(d===undefined?1:d)+"%";}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
-function monthLabel(m){var n=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return n[parseInt(m.slice(5,7),10)-1];}
-function clear(node){while(node.firstChild)node.removeChild(node.firstChild);}
+function MON(m){return ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"][parseInt(m.slice(5,7),10)-1];}
+function clear(n){while(n.firstChild)n.removeChild(n.firstChild);}
+var MONO='"IBM Plex Mono", monospace';
 
-/* tooltip */
 var tip=el("tip");
-function showTip(e,html){tip.innerHTML=html;tip.style.opacity="1";moveTip(e);}
-function moveTip(e){
-  var pad=14,w=tip.offsetWidth,h=tip.offsetHeight;
-  var x=e.clientX+pad, y=e.clientY+pad;
-  if(x+w>window.innerWidth-8)x=e.clientX-w-pad;
-  if(y+h>window.innerHeight-8)y=e.clientY-h-pad;
-  tip.style.left=x+"px";tip.style.top=y+"px";
-}
-function hideTip(){tip.style.opacity="0";}
+function moveTip(e){var p=12,w=tip.offsetWidth,h=tip.offsetHeight,x=e.clientX+p,y=e.clientY+p;
+  if(x+w>innerWidth-8)x=e.clientX-w-p; if(y+h>innerHeight-8)y=e.clientY-h-p;
+  tip.style.left=x+"px";tip.style.top=y+"px";}
 function hover(node,html){
-  node.addEventListener("mouseenter",function(e){showTip(e,html);});
+  node.addEventListener("mouseenter",function(e){tip.innerHTML=html;tip.style.opacity="1";moveTip(e);});
   node.addEventListener("mousemove",moveTip);
-  node.addEventListener("mouseleave",hideTip);
-  node.style.cursor="default";
-}
+  node.addEventListener("mouseleave",function(){tip.style.opacity="0";});}
 
-/* significance colour: the encoding is the argument of the piece */
-function sigColor(row){
-  if(!row.significant) return css("--flat");
-  return row.trend.slope_pp>0 ? css("--rise") : css("--fall");
-}
+/* label helper: uppercase mono ticks */
+function tick(x,y,txt,anchor,size){
+  var t=E("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":MONO,
+    "font-size":size||10,fill:css("--ink-3"),"letter-spacing":"0.08em"});
+  t.textContent=txt;return t;}
+
+function sigColor(r){return !r.significant?css("--flat"):(r.trend.slope_pp>0?css("--rise"):css("--fall"));}
 
 var D=null;
 
-/* ---------------- 1. bump chart ---------------- */
-function drawBump(){
+/* ---------------- Fig 1: rank movement ---------------- */
+function bump(){
   var s=el("bump");clear(s);
-  var idx=D.skill_index.mentions, rows=idx.skills, months=idx.months;
+  var idx=D.skill_index.mentions,rows=idx.skills,months=idx.months;
   if(!rows.length)return;
-  var byName={};rows.forEach(function(r){byName[r.skill]=r;});
-
-  // rank per month
-  var ranks=months.map(function(m,i){
-    return rows.slice().sort(function(a,b){return b.shares[i]-a.shares[i];})
-               .map(function(r,j){return {skill:r.skill,rank:j+1,share:r.shares[i]};});
-  });
-  var rankOf=months.map(function(_,i){var o={};ranks[i].forEach(function(x){o[x.skill]=x.rank;});return o;});
-
-  var N=rows.length;
-  var W=920,rowH=27,padT=44,padB=26,padL=182,padR=182;
+  var rankOf=months.map(function(_,i){
+    var o={};rows.slice().sort(function(a,b){return b.shares[i]-a.shares[i];})
+      .forEach(function(r,j){o[r.skill]=j+1;});return o;});
+  var N=rows.length,rowH=25,padT=40,padB=14,padL=168,padR=176,W=900;
   var H=padT+padB+(N-1)*rowH;
-  var plotW=W-padL-padR;
-  s.setAttribute("viewBox","0 0 "+W+" "+H);
-  s.setAttribute("width",W);s.setAttribute("height",H);
-  var x=function(i){return padL + (months.length===1?plotW/2:i*plotW/(months.length-1));};
-  var y=function(r){return padT + (r-1)*rowH;};
+  s.setAttribute("viewBox","0 0 "+W+" "+H);s.setAttribute("width",W);s.setAttribute("height",H);
+  var x=function(i){return padL+(months.length===1?0:i*(W-padL-padR)/(months.length-1));};
+  var y=function(r){return padT+(r-1)*rowH;};
+  var hair=css("--hair-soft");
 
-  var ink3=css("--ink-3"),rule=css("--rule");
-
-  // month headers + vertical guides
   months.forEach(function(m,i){
-    s.appendChild(svgEl("line",{x1:x(i),y1:padT-16,x2:x(i),y2:H-padB+4,stroke:rule,"stroke-width":1}));
-    var t=svgEl("text",{x:x(i),y:padT-24,"text-anchor":"middle","font-size":12,"font-weight":600,fill:ink3,"letter-spacing":".06em"});
-    t.textContent=monthLabel(m).toUpperCase();s.appendChild(t);
+    s.appendChild(E("line",{x1:x(i),y1:padT-14,x2:x(i),y2:H-padB+2,stroke:hair,"stroke-width":1}));
+    s.appendChild(tick(x(i),padT-24,MON(m),"middle",10));
   });
 
   rows.forEach(function(r){
-    var col=sigColor(r);
-    var sig=r.significant;
-    var pts=months.map(function(m,i){return [x(i),y(rankOf[i][r.skill])];});
-    var d="M"+pts.map(function(p){return p[0]+","+p[1];}).join("L");
-    var path=svgEl("path",{d:d,fill:"none",stroke:col,"stroke-width":sig?2.6:1.4,
-      "stroke-opacity":sig?1:.5,"stroke-linecap":"round","stroke-linejoin":"round"});
-    s.appendChild(path);
-
+    var col=sigColor(r),sig=r.significant;
+    var pts=months.map(function(_,i){return [x(i),y(rankOf[i][r.skill])];});
+    s.appendChild(E("path",{d:"M"+pts.map(function(p){return p[0]+","+p[1];}).join("L"),
+      fill:"none",stroke:col,"stroke-width":sig?2.4:1,"stroke-opacity":sig?1:.55,
+      "stroke-linecap":"butt","stroke-linejoin":"miter"}));
     pts.forEach(function(p,i){
-      var c=svgEl("circle",{cx:p[0],cy:p[1],r:sig?4:3,fill:col,"fill-opacity":sig?1:.55,
-        stroke:css("--paper"),"stroke-width":1.5});
-      hover(c,"<b>"+esc(r.skill)+"</b><br>"+monthLabel(months[i])+": rank "+rankOf[i][r.skill]+
+      var c=E("rect",{x:p[0]-2.5,y:p[1]-2.5,width:5,height:5,fill:col,"fill-opacity":sig?1:.55});
+      hover(c,"<b>"+esc(r.skill)+"</b><br>"+MON(months[i])+" · rank "+rankOf[i][r.skill]+
         "<br><span class='m'>"+pct(r.shares[i])+" of mentions</span>");
       s.appendChild(c);
     });
-
-    // direct labels at both ends, no legend box needed
-    var lz=svgEl("text",{x:padL-13,y:y(rankOf[0][r.skill])+4,"text-anchor":"end","font-size":12.5,
-      fill:sig?col:css("--ink-2"),"font-weight":sig?600:400});
+    var lz=E("text",{x:padL-14,y:y(rankOf[0][r.skill])+3.5,"text-anchor":"end","font-family":MONO,
+      "font-size":11.5,fill:sig?col:css("--ink-2"),"font-weight":sig?600:400});
     lz.textContent=r.skill;s.appendChild(lz);
-
     var rr=rankOf[months.length-1][r.skill];
-    var g=svgEl("g",{});
-    var lr=svgEl("text",{x:W-padR+13,y:y(rr)+4,"font-size":12.5,fill:sig?col:css("--ink-2"),"font-weight":sig?600:400});
-    lr.textContent=r.skill;g.appendChild(lr);
-    if(sig){
-      var arrow=svgEl("text",{x:W-padR+13+r.skill.length*6.9+9,y:y(rr)+4,"font-size":12,fill:col,"font-weight":700});
-      arrow.textContent=r.trend.slope_pp>0?"▲":"▼";g.appendChild(arrow);
-    }
-    s.appendChild(g);
+    var lr=E("text",{x:W-padR+14,y:y(rr)+3.5,"font-family":MONO,"font-size":11.5,
+      fill:sig?col:css("--ink-2"),"font-weight":sig?600:400});
+    lr.textContent=(sig?(r.trend.slope_pp>0?"▲ ":"▼ "):"")+r.skill;s.appendChild(lr);
   });
   el("bumpNote").textContent=months.length+" months · "+rows.length+" technologies";
 }
 
-/* ---------------- 2. specificity ---------------- */
-function drawSpec(){
+/* ---------------- Fig 2: specificity ---------------- */
+function spec(){
   var s=el("spec");clear(s);
-  var sp=D.skill_index.specificity, months=sp.months, v=sp.mean_skills;
+  var sp=D.skill_index.specificity,months=sp.months,v=sp.mean_skills;
   if(!months.length)return;
-  var W=920,H=250,padL=58,padR=150,padT=26,padB=40;
+  var W=900,H=230,padL=44,padR=142,padT=20,padB=34;
   s.setAttribute("viewBox","0 0 "+W+" "+H);s.setAttribute("width",W);s.setAttribute("height",H);
-  var maxV=Math.max.apply(null,v)*1.14, minV=0;
+  var maxV=Math.max.apply(null,v)*1.15;
   var x=function(i){return padL+i*(W-padL-padR)/(months.length-1);};
-  var y=function(val){return H-padB-(val-minV)/(maxV-minV)*(H-padT-padB);};
-  var ink3=css("--ink-3"),rule=css("--rule"),fall=css("--fall");
+  var y=function(val){return H-padB-val/maxV*(H-padT-padB);};
+  var fall=css("--fall"),hair=css("--hair-soft");
 
-  [0,1,2].forEach(function(t){
-    var val=maxV*t/2;
-    s.appendChild(svgEl("line",{x1:padL,y1:y(val),x2:W-padR,y2:y(val),stroke:rule,"stroke-width":1}));
-    var tx=svgEl("text",{x:padL-11,y:y(val)+4,"text-anchor":"end","font-size":11.5,fill:ink3});
-    tx.textContent=val.toFixed(1);s.appendChild(tx);
-  });
+  [0,1,2].forEach(function(t){var val=maxV*t/2;
+    s.appendChild(E("line",{x1:padL,y1:y(val),x2:W-padR,y2:y(val),stroke:hair,"stroke-width":1}));
+    s.appendChild(tick(padL-9,y(val)+3.5,val.toFixed(1),"end",10));});
 
-  var area="M"+x(0)+","+y(0)+"L"+v.map(function(val,i){return x(i)+","+y(val);}).join("L")+"L"+x(months.length-1)+","+y(0)+"Z";
-  s.appendChild(svgEl("path",{d:area,fill:fall,"fill-opacity":.11}));
-  s.appendChild(svgEl("path",{d:"M"+v.map(function(val,i){return x(i)+","+y(val);}).join("L"),
-    fill:"none",stroke:fall,"stroke-width":2.6,"stroke-linejoin":"round","stroke-linecap":"round"}));
-
+  // columns rather than a smoothed area: this is a discrete monthly measure
+  var bw=Math.min(46,(W-padL-padR)/months.length*0.46);
   months.forEach(function(m,i){
-    var c=svgEl("circle",{cx:x(i),cy:y(v[i]),r:4.5,fill:fall,stroke:css("--paper"),"stroke-width":2});
-    hover(c,"<b>"+monthLabel(m)+"</b><br>"+v[i].toFixed(2)+" tools per advert<br><span class='m'>"+
+    var h=H-padB-y(v[i]);
+    var r=E("rect",{x:x(i)-bw/2,y:y(v[i]),width:bw,height:h,fill:fall,"fill-opacity":.16});
+    s.appendChild(r);
+    hover(r,"<b>"+MON(m)+"</b><br>"+v[i].toFixed(2)+" tools per advert<br><span class='m'>"+
       sp.n[i]+" adverts · "+pct(sp.share_naming_none[i],0)+" name none</span>");
-    s.appendChild(c);
-    var tx=svgEl("text",{x:x(i),y:H-padB+21,"text-anchor":"middle","font-size":11.5,fill:ink3});
-    tx.textContent=monthLabel(m);s.appendChild(tx);
   });
+  s.appendChild(E("path",{d:"M"+v.map(function(val,i){return x(i)+","+y(val);}).join("L"),
+    fill:"none",stroke:fall,"stroke-width":2.4,"stroke-linecap":"butt","stroke-linejoin":"miter"}));
+  months.forEach(function(m,i){
+    s.appendChild(E("rect",{x:x(i)-3,y:y(v[i])-3,width:6,height:6,fill:fall}));
+    s.appendChild(tick(x(i),H-padB+18,MON(m),"middle",10));
+  });
+  s.appendChild(E("line",{x1:padL,y1:H-padB,x2:W-padR,y2:H-padB,stroke:css("--hair"),"stroke-width":1}));
 
-  // direct end label instead of a legend
   var last=months.length-1;
-  var lab=svgEl("text",{x:x(last)+14,y:y(v[last])-4,"font-size":13,"font-weight":600,fill:fall});
-  lab.textContent=v[last].toFixed(2)+" tools";s.appendChild(lab);
-  var lab2=svgEl("text",{x:x(last)+14,y:y(v[last])+13,"font-size":11.5,fill:ink3});
-  lab2.textContent="down from "+v[0].toFixed(2);s.appendChild(lab2);
+  var a=E("text",{x:x(last)+16,y:y(v[last])-2,"font-family":MONO,"font-size":15,"font-weight":600,fill:fall});
+  a.textContent=v[last].toFixed(2);s.appendChild(a);
+  var b=E("text",{x:x(last)+16,y:y(v[last])+14,"font-family":MONO,"font-size":10,fill:css("--ink-3"),"letter-spacing":".08em"});
+  b.textContent="FROM "+v[0].toFixed(2);s.appendChild(b);
 
-  var drop=(v[0]-v[last])/v[0];
-  el("specDek").innerHTML="In April the average Dutch AI advert named <strong>"+v[0].toFixed(2)+
-    "</strong> specific technologies. By August that had fallen to <strong>"+v[last].toFixed(2)+
-    "</strong>, a drop of "+pct(drop,0)+", while the share of adverts naming no technology at all rose from "+
-    pct(sp.share_naming_none[0],0)+" to <strong>"+pct(sp.share_naming_none[last],0)+"</strong>.";
-  el("specCap").textContent="Advert length is unchanged across the period, so this is not adverts getting shorter. "+
-    "They are getting less specific about tooling.";
+  el("specDek").innerHTML="In April the average Dutch AI advert named <b class='mono'>"+v[0].toFixed(2)+
+    "</b> specific technologies. By August that had fallen to <b class='mono'>"+v[last].toFixed(2)+
+    "</b>, a drop of <b class='mono'>"+pct((v[0]-v[last])/v[0],0)+"</b>, while adverts naming no technology at all rose from "+
+    pct(sp.share_naming_none[0],0)+" to <b class='mono'>"+pct(sp.share_naming_none[last],0)+"</b>.";
 }
 
-/* ---------------- 3. sparkline grid ---------------- */
-function drawSpark(){
+/* ---------------- Fig 3: small multiples ---------------- */
+function spark(){
   var s=el("spark");clear(s);
   var idx=D.skill_index.mentions,rows=idx.skills,months=idx.months;
-  var cols=4,cw=228,ch=112,gapY=18;
-  var n=rows.length,rowsN=Math.ceil(n/cols);
-  var W=cols*cw,H=rowsN*(ch+gapY);
+  var cols=4,cw=225,ch=104,gy=14,n=rows.length,rn=Math.ceil(n/cols);
+  var W=cols*cw,H=rn*(ch+gy);
   s.setAttribute("viewBox","0 0 "+W+" "+H);s.setAttribute("width",W);s.setAttribute("height",H);
-
-  var maxShare=0;rows.forEach(function(r){r.hi.forEach(function(h){if(h>maxShare)maxShare=h;});});
-  var ink=css("--ink"),ink3=css("--ink-3"),rule=css("--rule");
+  var maxS=0;rows.forEach(function(r){r.hi.forEach(function(h){if(h>maxS)maxS=h;});});
+  var hair=css("--hair-soft");
 
   rows.forEach(function(r,k){
-    var cx=(k%cols)*cw, cy=Math.floor(k/cols)*(ch+gapY);
-    var pl=10,pr=18,pt=34,pb=16;
+    var cx=(k%cols)*cw,cy=Math.floor(k/cols)*(ch+gy),pl=0,pr=26,pt=32,pb=12;
     var x=function(i){return cx+pl+i*(cw-pl-pr)/(months.length-1);};
-    var y=function(v){return cy+ch-pb-(v/maxShare)*(ch-pt-pb);};
-    var col=sigColor(r);
-    var sig=r.significant;
-
-    var g=svgEl("g",{});
-    g.appendChild(svgEl("line",{x1:cx+pl,y1:cy+ch-pb,x2:cx+cw-pr,y2:cy+ch-pb,stroke:rule,"stroke-width":1}));
-
-    // CI ribbon
+    var y=function(v){return cy+ch-pb-(v/maxS)*(ch-pt-pb);};
+    var col=sigColor(r),sig=r.significant;
+    var g=E("g",{});
+    g.appendChild(E("line",{x1:cx,y1:cy+ch-pb,x2:cx+cw-pr,y2:cy+ch-pb,stroke:hair,"stroke-width":1}));
     var up=months.map(function(_,i){return x(i)+","+y(r.hi[i]);});
     var dn=months.map(function(_,i){return x(i)+","+y(r.lo[i]);}).reverse();
-    g.appendChild(svgEl("path",{d:"M"+up.join("L")+"L"+dn.join("L")+"Z",fill:col,"fill-opacity":sig?.16:.09}));
-    g.appendChild(svgEl("path",{d:"M"+months.map(function(_,i){return x(i)+","+y(r.shares[i]);}).join("L"),
-      fill:"none",stroke:col,"stroke-width":sig?2.4:1.5,"stroke-opacity":sig?1:.6,"stroke-linejoin":"round"}));
-
-    var name=svgEl("text",{x:cx+pl,y:cy+15,"font-size":12.5,"font-weight":600,fill:sig?col:ink});
-    name.textContent=r.skill;g.appendChild(name);
-
-    var sub=svgEl("text",{x:cx+pl,y:cy+29,"font-size":11,fill:ink3});
-    var arrow=r.trend.slope_pp>0?"▲":"▼";
-    sub.textContent=(sig?arrow+" ":"")+pct(r.shares[0],1)+" → "+pct(r.shares[r.shares.length-1],1)+
-      (sig?"  p="+r.trend.p:"  n.s.");
+    g.appendChild(E("path",{d:"M"+up.join("L")+"L"+dn.join("L")+"Z",fill:col,"fill-opacity":sig?.17:.08}));
+    g.appendChild(E("path",{d:"M"+months.map(function(_,i){return x(i)+","+y(r.shares[i]);}).join("L"),
+      fill:"none",stroke:col,"stroke-width":sig?2.2:1.2,"stroke-opacity":sig?1:.6,
+      "stroke-linecap":"butt","stroke-linejoin":"miter"}));
+    var nm=E("text",{x:cx,y:cy+13,"font-family":MONO,"font-size":11.5,"font-weight":600,fill:sig?col:css("--ink")});
+    nm.textContent=(sig?(r.trend.slope_pp>0?"▲ ":"▼ "):"")+r.skill;g.appendChild(nm);
+    var sub=E("text",{x:cx,y:cy+26,"font-family":MONO,"font-size":10,fill:css("--ink-3"),"letter-spacing":".05em"});
+    sub.textContent=pct(r.shares[0],1)+" → "+pct(r.shares[r.shares.length-1],1)+(sig?"  p="+r.trend.p:"  n.s.");
     g.appendChild(sub);
-
-    var hit=svgEl("rect",{x:cx,y:cy,width:cw,height:ch,fill:"transparent"});
+    var hit=E("rect",{x:cx,y:cy,width:cw,height:ch,fill:"transparent"});
     hover(hit,"<b>"+esc(r.skill)+"</b><br>"+pct(r.shares[0],1)+" → "+pct(r.shares[r.shares.length-1],1)+
-      " of mentions<br><span class='m'>"+r.total_mentions+" mentions · trend p="+r.trend.p+
-      (sig?" (significant)":" (not significant)")+"</span>");
-    g.appendChild(hit);
-    s.appendChild(g);
+      "<br><span class='m'>"+r.total_mentions+" mentions · p="+r.trend.p+(sig?" (significant)":" (n.s.)")+"</span>");
+    g.appendChild(hit);s.appendChild(g);
   });
 }
 
-/* ---------------- 4a. lollipop ---------------- */
-function drawLolli(){
+/* ---------------- Fig 4: scarcity ---------------- */
+function lolli(){
   var s=el("lolli");clear(s);
   var cs=D.survival_by_cluster.slice().sort(function(a,b){return b.rmst_90-a.rmst_90;});
   if(!cs.length)return;
-  var W=920,rowH=42,padT=14,padB=34,padL=250,padR=90;
+  var W=900,rowH=38,padT=10,padB=30,padL=232,padR=76;
   var H=padT+padB+cs.length*rowH;
   s.setAttribute("viewBox","0 0 "+W+" "+H);s.setAttribute("width",W);s.setAttribute("height",H);
-  var maxV=Math.max.apply(null,cs.map(function(c){return c.rmst_90;}))*1.1;
+  var maxV=Math.max.apply(null,cs.map(function(c){return c.rmst_90;}))*1.12;
   var x=function(v){return padL+v/maxV*(W-padL-padR);};
-  var ink=css("--ink"),ink3=css("--ink-3"),rule=css("--rule"),rise=css("--rise"),fall=css("--fall"),flat=css("--flat");
-
-  [0,10,20,30].forEach(function(v){
-    if(v>maxV)return;
-    s.appendChild(svgEl("line",{x1:x(v),y1:padT,x2:x(v),y2:H-padB,stroke:rule,"stroke-width":1}));
-    var t=svgEl("text",{x:x(v),y:H-padB+20,"text-anchor":"middle","font-size":11.5,fill:ink3});
-    t.textContent=v+"d";s.appendChild(t);
-  });
-
+  var hair=css("--hair-soft"),rise=css("--rise"),fall=css("--fall"),flat=css("--flat");
   var med=cs.map(function(c){return c.rmst_90;}).sort(function(a,b){return a-b;});
   var mid=med[Math.floor(med.length/2)];
 
+  [0,10,20,30].forEach(function(v){if(v>maxV)return;
+    s.appendChild(E("line",{x1:x(v),y1:padT,x2:x(v),y2:H-padB,stroke:hair,"stroke-width":1}));
+    s.appendChild(tick(x(v),H-padB+18,v+"d","middle",10));});
+
   cs.forEach(function(c,i){
-    var yy=padT+i*rowH+rowH/2;
-    var strong=c.logrank_vs_rest.p<0.05;
+    var yy=padT+i*rowH+rowH/2,strong=c.logrank_vs_rest.p<0.05;
     var col=!strong?flat:(c.rmst_90>=mid?rise:fall);
-    s.appendChild(svgEl("line",{x1:padL,y1:yy,x2:x(c.rmst_90),y2:yy,stroke:col,"stroke-width":strong?3:2,"stroke-opacity":strong?.85:.45,"stroke-linecap":"round"}));
-    var dot=svgEl("circle",{cx:x(c.rmst_90),cy:yy,r:strong?7:5.5,fill:col,"fill-opacity":strong?1:.6,stroke:css("--paper"),"stroke-width":2});
-    hover(dot,"<b>"+esc(c.name)+"</b><br>"+c.rmst_90.toFixed(1)+" days advertised on average<br>"+
+    s.appendChild(E("rect",{x:padL,y:yy-4,width:Math.max(x(c.rmst_90)-padL,1),height:8,
+      fill:col,"fill-opacity":strong?.9:.4}));
+    var hit=E("rect",{x:padL,y:yy-rowH/2,width:W-padL-padR,height:rowH,fill:"transparent"});
+    hover(hit,"<b>"+esc(c.name)+"</b><br>"+c.rmst_90.toFixed(1)+" days advertised on average<br>"+
       "<span class='m'>"+c.n+" vacancies · median "+(c.median===null?"n/a":c.median+"d")+
       "<br>log-rank p="+c.logrank_vs_rest.p+"</span>");
-    s.appendChild(dot);
-
-    var lab=svgEl("text",{x:padL-16,y:yy+4,"text-anchor":"end","font-size":13,fill:ink,"font-weight":strong?600:400});
+    s.appendChild(hit);
+    var lab=E("text",{x:padL-16,y:yy+4,"text-anchor":"end","font-family":MONO,"font-size":11.5,
+      fill:css("--ink"),"font-weight":strong?600:400});
     lab.textContent=c.name;s.appendChild(lab);
-    var val=svgEl("text",{x:x(c.rmst_90)+15,y:yy+4,"font-size":12.5,"font-weight":600,fill:col});
-    val.textContent=c.rmst_90.toFixed(1)+"d";s.appendChild(val);
+    var val=E("text",{x:x(c.rmst_90)+12,y:yy+4,"font-family":MONO,"font-size":12,"font-weight":600,fill:col});
+    val.textContent=c.rmst_90.toFixed(1);s.appendChild(val);
   });
-
   var top=cs[0],bot=cs[cs.length-1];
-  el("lolliCap").textContent="Strong colour marks clusters whose survival differs from the rest at p<0.05. "+
-    top.name+" adverts run "+(top.rmst_90/Math.max(bot.rmst_90,.1)).toFixed(1)+
-    "× longer than "+bot.name+" adverts, which mostly come from staffing agencies cycling the same listings.";
+  el("lolliNote").innerHTML="<b>Reading it</b>Solid bars mark clusters whose survival differs from the rest at p&lt;0.05. "+
+    esc(top.name)+" adverts run "+(top.rmst_90/Math.max(bot.rmst_90,.1)).toFixed(1)+
+    "× longer than "+esc(bot.name)+" adverts, which mostly come from staffing agencies cycling the same listings.";
 }
 
-/* ---------------- 4b. KM curves ---------------- */
-function drawKM(){
+/* ---------------- Fig 5: survival ---------------- */
+function km(){
   var s=el("km");clear(s);
   var cs=D.survival_by_cluster;if(!cs.length)return;
-  var W=920,H=350,padL=52,padR=176,padT=18,padB=42,maxT=90;
+  // 60 days, not 90: every cluster is between 7% and 13% by day 60, so a
+  // 90-day axis spends a third of its width on a flat tail and squeezes the
+  // separation that matters into the left edge.
+  var W=900,H=320,padL=40,padR=168,padT=14,padB=34,maxT=60;
   s.setAttribute("viewBox","0 0 "+W+" "+H);s.setAttribute("width",W);s.setAttribute("height",H);
   var x=function(t){return padL+t/maxT*(W-padL-padR);};
   var y=function(v){return padT+(1-v)*(H-padT-padB);};
-  var ink3=css("--ink-3"),rule=css("--rule");
-  var pal=[css("--c1"),css("--c2"),css("--c3"),css("--c4"),css("--c5"),css("--c6"),css("--c7")];
+  var hair=css("--hair-soft"),rise=css("--rise"),fall=css("--fall"),flat=css("--flat");
+  var med=cs.map(function(c){return c.rmst_90;}).sort(function(a,b){return a-b;});
+  var mid=med[Math.floor(med.length/2)];
 
   [0,.25,.5,.75,1].forEach(function(v){
-    s.appendChild(svgEl("line",{x1:padL,y1:y(v),x2:W-padR,y2:y(v),stroke:rule,"stroke-width":1}));
-    var t=svgEl("text",{x:padL-10,y:y(v)+4,"text-anchor":"end","font-size":11.5,fill:ink3});
-    t.textContent=pct(v,0);s.appendChild(t);
-  });
-  [0,30,60,90].forEach(function(t){
-    var tx=svgEl("text",{x:x(t),y:H-padB+21,"text-anchor":"middle","font-size":11.5,fill:ink3});
-    tx.textContent=t+" days";s.appendChild(tx);
+    s.appendChild(E("line",{x1:padL,y1:y(v),x2:W-padR,y2:y(v),stroke:hair,"stroke-width":1}));
+    s.appendChild(tick(padL-9,y(v)+3.5,(v*100).toFixed(0)+"%","end",10));});
+  [0,15,30,45,60].forEach(function(t){
+    s.appendChild(E("line",{x1:x(t),y1:padT,x2:x(t),y2:H-padB,stroke:hair,"stroke-width":1,"stroke-opacity":.6}));
+    s.appendChild(tick(x(t),H-padB+18,t+"d","middle",10));});
+
+  var items=[];
+  // Colour encodes the finding (significantly long / short), not series identity.
+  cs.forEach(function(c){
+    var strong=c.logrank_vs_rest.p<0.05;
+    var col=!strong?flat:(c.rmst_90>=mid?rise:fall);
+    var d="M"+x(0)+","+y(1),last=1;
+    for(var j=0;j<c.times.length;j++){if(c.times[j]>maxT)break;
+      d+="L"+x(c.times[j])+","+y(last)+"L"+x(c.times[j])+","+y(c.survival[j]);last=c.survival[j];}
+    d+="L"+x(maxT)+","+y(last);
+    s.appendChild(E("path",{d:d,fill:"none",stroke:col,"stroke-width":strong?2.2:1.1,
+      "stroke-opacity":strong?1:.55,"stroke-linecap":"butt","stroke-linejoin":"miter"}));
+    items.push({y:y(last),trueY:y(last),col:col,strong:strong,
+      name:c.name.length>24?c.name.slice(0,23)+"\u2026":c.name});
   });
 
-  var keyItems=[];
-  cs.forEach(function(c,i){
-    var col=pal[i%pal.length];
-    var d="M"+x(0)+","+y(1);
-    var lastY=1;
-    for(var j=0;j<c.times.length;j++){
-      if(c.times[j]>maxT)break;
-      d+="L"+x(c.times[j])+","+y(lastY)+"L"+x(c.times[j])+","+y(c.survival[j]);
-      lastY=c.survival[j];
+  // De-collide the end labels. Several clusters converge to within a couple of
+  // percent by day 60, so their labels land on top of one another; nudge them
+  // apart and draw a leader line back to the true endpoint.
+  var GAP=12.5;
+  items.sort(function(a,b){return a.y-b.y;});
+  for(var i=1;i<items.length;i++){
+    if(items[i].y-items[i-1].y<GAP) items[i].y=items[i-1].y+GAP;
+  }
+  var overflow=items.length?items[items.length-1].y-(H-padB):0;
+  if(overflow>0) items.forEach(function(it){it.y-=overflow;});
+  items.forEach(function(it){
+    if(Math.abs(it.y-it.trueY)>1.5){
+      s.appendChild(E("path",{d:"M"+(W-padR+2)+","+it.trueY+"L"+(W-padR+9)+","+it.y,
+        fill:"none",stroke:it.col,"stroke-width":1,"stroke-opacity":.55}));
     }
-    d+="L"+x(maxT)+","+y(lastY);
-    s.appendChild(svgEl("path",{d:d,fill:"none",stroke:col,"stroke-width":2,"stroke-linejoin":"round"}));
-    var lab=svgEl("text",{x:W-padR+11,y:y(lastY)+4,"font-size":12,fill:col,"font-weight":600});
-    lab.textContent=c.name.length>22?c.name.slice(0,21)+"…":c.name;
-    s.appendChild(lab);
-    keyItems.push({label:c.name,color:col});
+    var lab=E("text",{x:W-padR+14,y:it.y+3.5,"font-family":MONO,"font-size":10.5,
+      fill:it.col,"font-weight":it.strong?600:400});
+    lab.textContent=it.name;s.appendChild(lab);
   });
-
-  el("kmKey").innerHTML=keyItems.map(function(k){
-    return '<span><i class="dot" style="background:'+k.color+'"></i>'+esc(k.label)+"</span>";}).join("");
+  el("kmKey").innerHTML=
+    '<span><i style="background:'+rise+'"></i>Significantly slower to fill</span>'+
+    '<span><i style="background:'+fall+'"></i>Significantly faster</span>'+
+    '<span><i style="background:'+flat+'"></i>Not distinguishable</span>';
 }
 
-/* ---------------- 5. pairs ---------------- */
-function drawPairs(){
+/* ---------------- Fig 6: pairings ---------------- */
+function pairs(){
   var s=el("pairs");clear(s);
   var ps=D.cooccurrence.pairs.slice(0,12);if(!ps.length)return;
-  var W=920,rowH=34,padT=10,padB=32,padL=268,padR=80;
+  var W=900,rowH=30,padT=8,padB=28,padL=250,padR=66;
   var H=padT+padB+ps.length*rowH;
   s.setAttribute("viewBox","0 0 "+W+" "+H);s.setAttribute("width",W);s.setAttribute("height",H);
   var maxL=Math.max.apply(null,ps.map(function(p){return p.lift;}));
-  var x=function(v){return padL+v/(maxL*1.08)*(W-padL-padR);};
-  var ink=css("--ink"),ink3=css("--ink-3"),rule=css("--rule"),rise=css("--rise");
+  var x=function(v){return padL+v/(maxL*1.06)*(W-padL-padR);};
+  var hair=css("--hair-soft"),third=css("--third"),ink=css("--ink");
 
-  [1,2,4,6].forEach(function(v){
-    if(v>maxL*1.08)return;
-    s.appendChild(svgEl("line",{x1:x(v),y1:padT,x2:x(v),y2:H-padB,stroke:rule,"stroke-width":v===1?1.6:1,
-      "stroke-dasharray":v===1?"":"3 4"}));
-    var t=svgEl("text",{x:x(v),y:H-padB+19,"text-anchor":"middle","font-size":11.5,fill:ink3});
-    t.textContent=v+"×";s.appendChild(t);
-  });
+  [1,2,4,6].forEach(function(v){if(v>maxL*1.06)return;
+    s.appendChild(E("line",{x1:x(v),y1:padT,x2:x(v),y2:H-padB,
+      stroke:v===1?ink:hair,"stroke-width":1,"stroke-dasharray":v===1?"2 3":""}));
+    s.appendChild(tick(x(v),H-padB+18,v+"×","middle",10));});
 
   ps.forEach(function(p,i){
     var yy=padT+i*rowH+rowH/2;
-    var w=x(p.lift)-x(0);
-    var r=svgEl("rect",{x:x(0),y:yy-8,width:Math.max(w,1),height:16,rx:3,fill:rise,"fill-opacity":.28+.5*(p.lift/maxL)});
+    var r=E("rect",{x:padL,y:yy-7,width:Math.max(x(p.lift)-padL,1),height:14,
+      fill:third,"fill-opacity":.22+.55*(p.lift/maxL)});
     hover(r,"<b>"+esc(p.a)+" + "+esc(p.b)+"</b><br>"+p.lift+"× more often than chance<br>"+
       "<span class='m'>"+p.both+" adverts name both · "+pct(p.given_a,0)+" of "+esc(p.a)+" adverts</span>");
     s.appendChild(r);
-    var lab=svgEl("text",{x:padL-16,y:yy+4,"text-anchor":"end","font-size":13,fill:ink});
-    lab.textContent=p.a+"  +  "+p.b;s.appendChild(lab);
-    var val=svgEl("text",{x:x(p.lift)+11,y:yy+4,"font-size":12.5,"font-weight":600,fill:rise});
+    var lab=E("text",{x:padL-16,y:yy+4,"text-anchor":"end","font-family":MONO,"font-size":11.5,fill:ink});
+    lab.textContent=p.a+" + "+p.b;s.appendChild(lab);
+    var val=E("text",{x:x(p.lift)+11,y:yy+4,"font-family":MONO,"font-size":11.5,"font-weight":600,fill:third});
     val.textContent=p.lift+"×";s.appendChild(val);
   });
 }
 
-/* ---------------- text blocks ---------------- */
-function drawText(){
+/* ---------------- text ---------------- */
+function text(){
   var p=D.panel,det=D.detection,cal=D.calibration,idx=D.skill_index.mentions,sp=D.skill_index.specificity;
-  var risers=idx.skills.filter(function(r){return r.significant&&r.trend.slope_pp>0;});
-  var fallers=idx.skills.filter(function(r){return r.significant&&r.trend.slope_pp<0;});
+  var ris=idx.skills.filter(function(r){return r.significant&&r.trend.slope_pp>0;});
+  var fal=idx.skills.filter(function(r){return r.significant&&r.trend.slope_pp<0;});
   var v0=sp.mean_skills[0],v1=sp.mean_skills[sp.mean_skills.length-1];
+  var naive=(D.grace_sensitivity.filter(function(r){return r.grace_days===1;})[0]||{}).median;
 
-  el("mastPeriod").textContent=idx.months[0]+" – "+idx.months[idx.months.length-1];
-  el("bylineN").textContent=p.n_identities.toLocaleString()+" vacancies · "+p.n_runs+" daily snapshots · "+p.first_run+" to "+p.last_run;
+  el("mastPeriod").textContent=idx.months[0]+" — "+idx.months[idx.months.length-1];
+  el("mastN").textContent=p.n_identities.toLocaleString()+" vacancies";
+  el("heroSpan").textContent=p.first_run+" → "+p.last_run;
 
-  var riserTxt=risers.length?risers.map(function(r){return r.skill;}).join(" and "):"nothing";
-  el("standfirst").innerHTML=
-    "Six months of daily snapshots of the Dutch AI job market show adverts steadily naming <strong>fewer</strong> "+
-    "specific technologies, down from "+v0.toFixed(2)+" to "+v1.toFixed(2)+" per advert. Against that backdrop only "+
-    "<strong>"+esc(riserTxt)+"</strong> measurably gained ground, while "+
-    "<strong>"+fallers.map(function(r){return esc(r.skill);}).join(" and ")+"</strong> measurably lost it. "+
-    "Everything else moved no more than noise.";
+  el("deck").innerHTML="Six months of daily snapshots show Dutch AI adverts naming <b>fewer</b> specific "+
+    "technologies every month, from <span class='num'>"+v0.toFixed(2)+"</span> to <span class='num'>"+v1.toFixed(2)+
+    "</span> per advert. Against that backdrop <b>"+(ris.length?ris.map(function(r){return esc(r.skill);}).join(" and "):"nothing")+
+    "</b> measurably gained ground and <b>"+fal.map(function(r){return esc(r.skill);}).join(" and ")+
+    "</b> measurably lost it. Everything else moved no more than noise.";
 
-  var findings=[
-    {cls:"down",fig:pct((v0-v1)/v0,0),lab:"fewer technologies named per advert between April and August, the clearest trend in the data"},
-    {cls:"up",fig:risers.length?"+"+risers[0].trend.slope_pp.toFixed(1)+"<small>pp</small>":"—",
-      lab:risers.length?esc(risers[0].skill)+" gained share of all skill mentions each month, the only technology to do so significantly":"No technology gained share significantly"},
-    {cls:"down",fig:fallers.length?fallers[0].trend.slope_pp.toFixed(1)+"<small>pp</small>":"—",
-      lab:fallers.length?esc(fallers[0].skill)+" lost the most ground, as employers reach for newer vocabulary for the same work":"No significant fallers"}
-  ];
-  el("findings").innerHTML=findings.map(function(f){
-    return '<div class="finding '+f.cls+'"><div class="fig">'+f.fig+'</div><div class="lab">'+f.lab+"</div></div>";}).join("");
+  el("f1v").innerHTML=pct((v0-v1)/v0,0);
+  el("f1t").textContent="fewer technologies named per advert between April and August, the clearest trend in the data";
+  el("f2v").innerHTML=ris.length?"+"+ris[0].trend.slope_pp.toFixed(1)+"<span class='u'>pp/mo</span>":"—";
+  el("f2t").textContent=ris.length?ris[0].skill+" gained share of all skill mentions each month, the only technology to do so significantly":"No technology gained share significantly";
+  el("f3v").innerHTML=fal.length?fal[0].trend.slope_pp.toFixed(1)+"<span class='u'>pp/mo</span>":"—";
+  el("f3t").textContent=fal.length?fal[0].skill+" lost the most ground, as employers reach for newer vocabulary for the same work":"No significant fallers";
 
   var nlp=idx.skills.filter(function(r){return r.skill==="NLP";})[0];
   var llm=idx.skills.filter(function(r){return r.skill==="LLM";})[0];
-  if(nlp&&llm){
-    el("pullQuote").textContent="“NLP” is being retired as a job-advert word. Its share of mentions fell from "+
-      pct(nlp.shares[0],1)+" to "+pct(nlp.shares[nlp.shares.length-1],1)+" while LLM held steady near "+
-      pct(llm.shares[llm.shares.length-1],0)+". The work did not disappear; the vocabulary changed.";
-  } else {
-    el("pullQuote").textContent="Most of what looks like movement in job-advert data is the writing changing, not the market.";
-  }
+  el("statement").textContent = (nlp&&llm)
+    ? "“NLP” is being retired as a job-advert word. Its share of mentions fell from "+pct(nlp.shares[0],1)+
+      " to "+pct(nlp.shares[nlp.shares.length-1],1)+" while LLM held steady near "+pct(llm.shares[llm.shares.length-1],0)+
+      ". The work did not disappear; the vocabulary changed."
+    : "Most of what looks like movement in job-advert data is the writing changing, not the market.";
 
-  // method
-  el("m1").innerHTML="Between any two sightings of the same advert it was necessarily live throughout, so every day "+
-    "in between is a test the scraper either passed or failed. It passes about <strong>"+pct(det.marginal,0)+
-    "</strong> of the time, and less as an advert ages and slides down the board's recency ranking.";
-  el("m2").innerHTML="Crucially, misses are not independent. An advert seen today has an "+pct(det.markov.p_stay_visible,0)+
+  el("m1").innerHTML="Between any two sightings of the same advert it was necessarily live throughout, so every day in "+
+    "between is a test the scraper either passed or failed. It passes about <b>"+pct(det.marginal,0)+
+    "</b> of the time, and less as an advert ages and slides down the board's recency ranking.";
+  el("m2").innerHTML="Misses are not independent. An advert seen today has a "+pct(det.markov.p_stay_visible,0)+
     " chance of being seen tomorrow; one missed today has only "+pct(det.markov.p_become_visible,0)+
     ". Adverts sit visible in runs and buried in runs, an odds ratio of "+det.markov.odds_ratio.toFixed(1)+".";
   el("m3").innerHTML="That persistence decides how long a silence must run before an advert counts as gone. Assuming "+
     "independence, 14 days looks risk-free; under the measured behaviour it wrongly buries a live advert 3% of the time. "+
-    "This index uses <strong>"+det.grace_chosen+" days</strong>.";
-  el("m4").innerHTML="Correcting for all of it, the median Dutch AI advert really runs about <strong>"+
-    cal.median_true_days+" days</strong>, against the "+
-    (D.grace_sensitivity.filter(function(r){return r.grace_days===1;})[0]||{}).median+
-    " days a naive last-seen reading of the same data would report.";
+    "This index uses <b>"+det.grace_chosen+" days</b>.";
+  el("m4").innerHTML="Corrected for all of it, the median Dutch AI advert really runs about <b>"+cal.median_true_days+
+    " days</b>, against the "+naive+" days a naive last-seen reading of the same data reports.";
 
   el("covTxt").textContent=pct(idx.n_universe/Math.max(idx.n_all,1),0);
-  var rf=D.relevance_filter;
-  el("relTxt").textContent=pct(rf.dropped_share,0)+" of what an AI job scraper collects is not AI work — "+
-    "mostly staffing-agency production and operator adverts sitting near the search terms.";
-  el("foot").innerHTML="Generated "+esc(D.generated_at)+" from "+p.n_identities+" vacancies. "+
-    'Code and data: <a href="https://github.com/hoeberigs/nl-ai-skill-index">nl-ai-skill-index</a>. '+
-    "Rebuilt weekly.";
+  el("relTxt").textContent=pct(D.relevance_filter.dropped_share,0)+
+    " of what an AI job scraper collects is not AI work, mostly staffing-agency production and operator adverts sitting near the search terms. Removed from the demand index, kept in the survival analysis.";
+  el("foot").innerHTML="Generated "+esc(D.generated_at)+" · "+p.n_identities+" vacancies · "+p.n_runs+
+    ' snapshots · <a href="https://github.com/hoeberigs/nl-ai-skill-index">source</a> · <a href="https://github.com/hoeberigs/ai-job-tracker-nl">tracker</a> · rebuilt weekly';
 }
 
-/* ---------------- tables ---------------- */
-function drawTables(){
-  var adv=D.skill_index.adverts,men=D.skill_index.mentions;
-  var advBy={};adv.skills.forEach(function(r){advBy[r.skill]=r;});
-  el("skillTable").innerHTML=
-    "<thead><tr><th>Technology</th><th class='n'>Share of adverts</th><th class='n'>Share of mentions</th>"+
-    "<th class='n'>Change</th><th class='n'>Trend p</th><th>Verdict</th></tr></thead><tbody>"+
+function tables(){
+  var adv=D.skill_index.adverts,men=D.skill_index.mentions,by={};
+  adv.skills.forEach(function(r){by[r.skill]=r;});
+  el("skillTable").innerHTML="<thead><tr><th>Technology</th><th class='n'>Of adverts</th><th class='n'>Of mentions</th>"+
+    "<th class='n'>Change</th><th class='n'>p</th><th class='n'>Verdict</th></tr></thead><tbody>"+
     men.skills.map(function(r){
-      var a=advBy[r.skill];
-      var cls=r.significant?(r.trend.slope_pp>0?"up":"down"):"ns";
-      var txt=r.significant?(r.trend.slope_pp>0?"rising":"falling"):"no change";
-      return "<tr><td>"+esc(r.skill)+"</td>"+
-        "<td class='n'>"+(a?pct(a.shares[a.shares.length-1],1):"—")+"</td>"+
-        "<td class='n'>"+pct(r.shares[r.shares.length-1],1)+"</td>"+
-        "<td class='n'>"+(r.change_pp>0?"+":"")+r.change_pp.toFixed(1)+"pp</td>"+
-        "<td class='n'>"+r.trend.p+"</td>"+
-        "<td><span class='tag "+cls+"'>"+txt+"</span></td></tr>";
-    }).join("")+"</tbody>";
+      var a=by[r.skill],cls=r.significant?(r.trend.slope_pp>0?"up":"down"):"ns";
+      var txt=r.significant?(r.trend.slope_pp>0?"RISING":"FALLING"):"—";
+      return "<tr><td>"+esc(r.skill)+"</td><td class='n'>"+(a?pct(a.shares[a.shares.length-1],1):"—")+
+        "</td><td class='n'>"+pct(r.shares[r.shares.length-1],1)+"</td><td class='n'>"+
+        (r.change_pp>0?"+":"")+r.change_pp.toFixed(1)+"pp</td><td class='n'>"+r.trend.p+
+        "</td><td class='n "+cls+"'>"+txt+"</td></tr>";}).join("")+"</tbody>";
 
-  el("empTable").innerHTML=
-    "<thead><tr><th>Employer</th><th class='n'>Vacancies</th><th class='n'>Median days advertised</th><th class='n'>Reposts per vacancy</th></tr></thead><tbody>"+
-    D.employers.map(function(e){
-      return "<tr><td>"+esc(e.company)+"</td><td class='n'>"+e.vacancies+"</td><td class='n'>"+
-        e.median_days+"</td><td class='n'>"+e.reposts.toFixed(1)+"</td></tr>";
-    }).join("")+"</tbody>";
+  el("empTable").innerHTML="<thead><tr><th>Employer</th><th class='n'>Vacancies</th><th class='n'>Median days</th>"+
+    "<th class='n'>Reposts</th></tr></thead><tbody>"+
+    D.employers.map(function(e){return "<tr><td>"+esc(e.company)+"</td><td class='n'>"+e.vacancies+
+      "</td><td class='n'>"+e.median_days+"</td><td class='n'>"+e.reposts.toFixed(1)+"</td></tr>";}).join("")+"</tbody>";
 }
 
-/* ---------------- boot ---------------- */
-function renderAll(){
-  if(!D)return;
-  drawText();drawBump();drawSpec();drawSpark();drawLolli();drawKM();drawPairs();drawTables();
-}
+function render(){if(!D)return;text();bump();spec();spark();lolli();km();pairs();tables();}
 
 var btn=el("themeBtn");
 function isDark(){var t=document.documentElement.getAttribute("data-theme");
-  if(t)return t==="dark";return window.matchMedia("(prefers-color-scheme: dark)").matches;}
-function syncBtn(){btn.textContent=isDark()?"Light":"Dark";}
-btn.addEventListener("click",function(){
-  document.documentElement.setAttribute("data-theme",isDark()?"light":"dark");syncBtn();renderAll();});
-syncBtn();
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){
-  if(!document.documentElement.getAttribute("data-theme")){syncBtn();renderAll();}});
+  return t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches;}
+function sync(){btn.textContent=isDark()?"Light":"Dark";}
+btn.addEventListener("click",function(){document.documentElement.setAttribute("data-theme",isDark()?"light":"dark");sync();render();});
+sync();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){
+  if(!document.documentElement.getAttribute("data-theme")){sync();render();}});
+var rt;addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(render,180);});
 
-var resizeT;
-window.addEventListener("resize",function(){clearTimeout(resizeT);resizeT=setTimeout(renderAll,180);});
-
-fetch("data.json",{cache:"no-store"})
-  .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
-  .then(function(j){D=j;renderAll();})
-  .catch(function(e){
-    document.querySelector(".shell").insertAdjacentHTML("beforeend",
-      '<div class="err"><strong>Could not load data.json.</strong> '+esc(e.message)+
-      ". Run <code>python -m nlskill</code> to regenerate it.</div>");
-  });
+fetch("data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+  .then(function(j){D=j;render();})
+  .catch(function(e){document.querySelector(".frame").insertAdjacentHTML("beforeend",
+    '<div class="err"><b>Could not load data.json.</b> '+esc(e.message)+". Run <code>python -m nlskill</code>.</div>");});
 })();
 </script>
 </body>
