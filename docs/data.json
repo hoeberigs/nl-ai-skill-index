@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-04T18:54:56Z",
+ "generated_at": "2026-09-04T19:04:50Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -569,44 +569,48 @@
  ],
  "calibration": {
   "seeds": [
-   42
+   1,
+   7,
+   42,
+   99,
+   2026
   ],
-  "median_true_days": 13.5,
+  "median_true_days": 14.9,
   "median_true_range": [
    13.5,
-   13.5
+   14.9
   ],
-  "mean_true_days": 27.7,
+  "mean_true_days": 27.2,
   "mean_true_range": [
-   27.7,
+   24.7,
    27.7
   ],
-  "ephemeral_share": 0.36,
+  "ephemeral_share": 0.4,
   "ephemeral_share_range": [
    0.36,
-   0.36
+   0.4
   ],
   "best_fit": {
-   "mu": 2.6,
-   "sigma": 1.2,
-   "ephemeral_share": 0.36,
-   "median_true": 13.4637,
-   "mean_true": 27.6604,
-   "p90_true": 62.6723,
+   "mu": 2.7,
+   "sigma": 1.1,
+   "ephemeral_share": 0.4,
+   "median_true": 14.8797,
+   "mean_true": 27.2485,
+   "p90_true": 60.9321,
    "observed_targets": {
     "single_share": 0.33089579524680074,
     "median_span": 6.0,
     "p90_span": 38.0
    },
    "simulated_targets": {
-    "single_share": 0.3259,
+    "single_share": 0.3338,
     "median_span": 6.0,
-    "p90_span": 36.0
+    "p90_span": 38.0
    },
-   "loss": 0.0024,
-   "inflation_factor": 2.244
+   "loss": 0.0002,
+   "inflation_factor": 2.48
   },
-  "worst_loss": 0.0024,
+  "worst_loss": 0.00432,
   "observed": {
    "single_share": 0.3309,
    "median_span": 6.0,
@@ -684,10 +688,10 @@
     "uitzendbureau",
     "engineer",
     "medewerker",
-    "synsel techniek",
+    "synsel",
     "manager",
     "worker",
-    "speaking"
+    "techniek"
    ],
    "5": [
     "data",
@@ -721,17 +725,17 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.5676,
-  "accuracy": 0.6323,
+  "macro_f1": 0.5595,
+  "accuracy": 0.6299,
   "n_train": 1667,
   "n_other": 480,
-  "n_rescued": 89,
-  "rescue_rate": 0.1854,
+  "n_rescued": 91,
+  "rescue_rate": 0.1896,
   "threshold": 0.6,
   "rescued_breakdown": {
    "data-general": 34,
+   "ai-general": 17,
    "ai-manager": 16,
-   "ai-general": 15,
    "ai-product": 13,
    "ai-researcher": 6,
    "ml-engineer": 3,
@@ -740,64 +744,64 @@
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.6156,
-    "recall": 0.6117,
-    "f1-score": 0.6136,
-    "support": 309.0
+    "precision": 0.6258,
+    "recall": 0.6097,
+    "f1-score": 0.6176,
+    "support": 310.0
    },
    "ai-general": {
-    "precision": 0.682,
-    "recall": 0.6468,
-    "f1-score": 0.664,
-    "support": 252.0
+    "precision": 0.6555,
+    "recall": 0.6215,
+    "f1-score": 0.638,
+    "support": 251.0
    },
    "ai-manager": {
-    "precision": 0.32,
-    "recall": 0.5333,
-    "f1-score": 0.4,
+    "precision": 0.3,
+    "recall": 0.5,
+    "f1-score": 0.375,
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.287,
-    "recall": 0.4783,
-    "f1-score": 0.3587,
+    "precision": 0.2564,
+    "recall": 0.4348,
+    "f1-score": 0.3226,
     "support": 69.0
    },
    "ai-researcher": {
-    "precision": 0.5379,
-    "recall": 0.65,
-    "f1-score": 0.5887,
+    "precision": 0.5208,
+    "recall": 0.625,
+    "f1-score": 0.5682,
     "support": 120.0
    },
    "cv-engineer": {
-    "precision": 0.5976,
-    "recall": 0.8448,
-    "f1-score": 0.7,
-    "support": 58.0
+    "precision": 0.593,
+    "recall": 0.8947,
+    "f1-score": 0.7133,
+    "support": 57.0
    },
    "data-engineer": {
-    "precision": 0.5385,
-    "recall": 0.6731,
-    "f1-score": 0.5983,
+    "precision": 0.5763,
+    "recall": 0.6538,
+    "f1-score": 0.6126,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.3077,
+    "precision": 0.2667,
     "recall": 0.4444,
-    "f1-score": 0.3636,
+    "f1-score": 0.3333,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.6986,
-    "recall": 0.6602,
-    "f1-score": 0.6789,
-    "support": 309.0
+    "precision": 0.7197,
+    "recall": 0.6688,
+    "f1-score": 0.6933,
+    "support": 311.0
    },
    "ml-engineer": {
-    "precision": 0.8258,
-    "recall": 0.6236,
-    "f1-score": 0.7106,
-    "support": 441.0
+    "precision": 0.8309,
+    "recall": 0.6364,
+    "f1-score": 0.7207,
+    "support": 440.0
    }
   }
  },
@@ -5145,7 +5149,7 @@
   },
   {
    "x": 0.1807,
-   "y": -0.3371,
+   "y": -0.337,
    "c": 1,
    "t": "Machine learning Engineer",
    "co": "Sia",
@@ -8753,7 +8757,7 @@
   },
   {
    "x": 0.5714,
-   "y": 0.1409,
+   "y": 0.141,
    "c": 2,
    "t": "Artificial Intelligence Ingenieur",
    "co": "227 Data",
@@ -10248,7 +10252,7 @@
    "d": 12
   },
   {
-   "x": -0.7809,
+   "x": -0.7808,
    "y": 0.2879,
    "c": 4,
    "t": "Production operator cnc",
@@ -10553,7 +10557,7 @@
   },
   {
    "x": -0.4082,
-   "y": -0.0724,
+   "y": -0.0723,
    "c": 1,
    "t": "Compliance Manager",
    "co": "Lloyds Bank NL",
@@ -12881,7 +12885,7 @@
   },
   {
    "x": -0.4202,
-   "y": -0.4134,
+   "y": -0.4135,
    "c": 5,
    "t": "Assistant Professor in Systems & Data",
    "co": "Karlstad University",
@@ -13096,7 +13100,7 @@
    "d": 8
   },
   {
-   "x": -0.1128,
+   "x": -0.1129,
    "y": -0.8153,
    "c": 5,
    "t": "Data Scientist Specialist (Lending)",
@@ -13441,7 +13445,7 @@
   },
   {
    "x": 0.6217,
-   "y": 0.1722,
+   "y": 0.1723,
    "c": 2,
    "t": "AI Consultant",
    "co": "227 Data",
@@ -15985,7 +15989,7 @@
   },
   {
    "x": 0.1317,
-   "y": -0.1807,
+   "y": -0.1806,
    "c": 3,
    "t": "AI & Data Science Traineeship",
    "co": "Veneficus",
@@ -17169,7 +17173,7 @@
   },
   {
    "x": 0.293,
-   "y": 0.1954,
+   "y": 0.1955,
    "c": 0,
    "t": "AI / Machine Learning Engineer (Azure & Generative AI)(10563081)",
    "co": "ITproposal",
@@ -22755,5 +22759,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 24.0
+ "runtime_seconds": 361.6
 }
