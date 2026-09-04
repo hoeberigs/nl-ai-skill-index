@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-04T19:04:50Z",
+ "generated_at": "2026-09-04T19:26:50Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -688,10 +688,10 @@
     "uitzendbureau",
     "engineer",
     "medewerker",
-    "synsel",
+    "synsel techniek",
     "manager",
     "worker",
-    "techniek"
+    "speaking"
    ],
    "5": [
     "data",
@@ -725,17 +725,17 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.5595,
-  "accuracy": 0.6299,
+  "macro_f1": 0.5676,
+  "accuracy": 0.6323,
   "n_train": 1667,
   "n_other": 480,
-  "n_rescued": 91,
-  "rescue_rate": 0.1896,
+  "n_rescued": 89,
+  "rescue_rate": 0.1854,
   "threshold": 0.6,
   "rescued_breakdown": {
    "data-general": 34,
-   "ai-general": 17,
    "ai-manager": 16,
+   "ai-general": 15,
    "ai-product": 13,
    "ai-researcher": 6,
    "ml-engineer": 3,
@@ -744,64 +744,64 @@
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.6258,
-    "recall": 0.6097,
-    "f1-score": 0.6176,
-    "support": 310.0
+    "precision": 0.6156,
+    "recall": 0.6117,
+    "f1-score": 0.6136,
+    "support": 309.0
    },
    "ai-general": {
-    "precision": 0.6555,
-    "recall": 0.6215,
-    "f1-score": 0.638,
-    "support": 251.0
+    "precision": 0.682,
+    "recall": 0.6468,
+    "f1-score": 0.664,
+    "support": 252.0
    },
    "ai-manager": {
-    "precision": 0.3,
-    "recall": 0.5,
-    "f1-score": 0.375,
+    "precision": 0.32,
+    "recall": 0.5333,
+    "f1-score": 0.4,
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.2564,
-    "recall": 0.4348,
-    "f1-score": 0.3226,
+    "precision": 0.287,
+    "recall": 0.4783,
+    "f1-score": 0.3587,
     "support": 69.0
    },
    "ai-researcher": {
-    "precision": 0.5208,
-    "recall": 0.625,
-    "f1-score": 0.5682,
+    "precision": 0.5379,
+    "recall": 0.65,
+    "f1-score": 0.5887,
     "support": 120.0
    },
    "cv-engineer": {
-    "precision": 0.593,
-    "recall": 0.8947,
-    "f1-score": 0.7133,
-    "support": 57.0
+    "precision": 0.5976,
+    "recall": 0.8448,
+    "f1-score": 0.7,
+    "support": 58.0
    },
    "data-engineer": {
-    "precision": 0.5763,
-    "recall": 0.6538,
-    "f1-score": 0.6126,
+    "precision": 0.5385,
+    "recall": 0.6731,
+    "f1-score": 0.5983,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.2667,
+    "precision": 0.3077,
     "recall": 0.4444,
-    "f1-score": 0.3333,
+    "f1-score": 0.3636,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.7197,
-    "recall": 0.6688,
-    "f1-score": 0.6933,
-    "support": 311.0
+    "precision": 0.6986,
+    "recall": 0.6602,
+    "f1-score": 0.6789,
+    "support": 309.0
    },
    "ml-engineer": {
-    "precision": 0.8309,
-    "recall": 0.6364,
-    "f1-score": 0.7207,
-    "support": 440.0
+    "precision": 0.8258,
+    "recall": 0.6236,
+    "f1-score": 0.7106,
+    "support": 441.0
    }
   }
  },
@@ -7757,7 +7757,7 @@
   },
   {
    "x": -0.6189,
-   "y": 0.4757,
+   "y": 0.4756,
    "c": 4,
    "t": "Warehouse Employee",
    "co": "Luba",
@@ -10557,7 +10557,7 @@
   },
   {
    "x": -0.4082,
-   "y": -0.0723,
+   "y": -0.0724,
    "c": 1,
    "t": "Compliance Manager",
    "co": "Lloyds Bank NL",
@@ -12885,7 +12885,7 @@
   },
   {
    "x": -0.4202,
-   "y": -0.4135,
+   "y": -0.4134,
    "c": 5,
    "t": "Assistant Professor in Systems & Data",
    "co": "Karlstad University",
@@ -13445,7 +13445,7 @@
   },
   {
    "x": 0.6217,
-   "y": 0.1723,
+   "y": 0.1722,
    "c": 2,
    "t": "AI Consultant",
    "co": "227 Data",
@@ -16189,7 +16189,7 @@
   },
   {
    "x": 0.1856,
-   "y": -0.48,
+   "y": -0.4799,
    "c": 1,
    "t": "Platform Engineer Data & ML",
    "co": "BridgeFund",
@@ -16221,7 +16221,7 @@
   },
   {
    "x": 0.7863,
-   "y": 0.355,
+   "y": 0.3549,
    "c": 2,
    "t": "AI Engineer",
    "co": "Levy Professionals",
@@ -17173,7 +17173,7 @@
   },
   {
    "x": 0.293,
-   "y": 0.1955,
+   "y": 0.1954,
    "c": 0,
    "t": "AI / Machine Learning Engineer (Azure & Generative AI)(10563081)",
    "co": "ITproposal",
@@ -19973,7 +19973,7 @@
   },
   {
    "x": -0.5146,
-   "y": -0.3079,
+   "y": -0.3078,
    "c": 5,
    "t": "Medior Data Scientist/Engineer",
    "co": "KBenP",
@@ -22759,5 +22759,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 361.6
+ "runtime_seconds": 405.6
 }
