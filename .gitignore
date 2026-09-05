@@ -7,3 +7,6 @@ build/
 dist/
 .DS_Store
 data/*.db
+
+# impeccable working state (comps, diffs, captures, phase state)
+.impeccable/
