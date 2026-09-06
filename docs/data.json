@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-06T12:26:41Z",
+ "generated_at": "2026-09-06T12:33:51Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -636,7 +636,7 @@
    "6": 0.1661,
    "7": 0.1626,
    "8": 0.1622,
-   "9": 0.1469,
+   "9": 0.1556,
    "10": 0.151,
    "11": 0.1439,
    "12": 0.1447,
@@ -679,10 +679,10 @@
     "engineer",
     "data",
     "senior",
-    "software",
     "intelligence",
-    "artificial",
-    "science"
+    "software",
+    "science",
+    "artificial"
    ],
    "3": [
     "learning",
@@ -710,7 +710,7 @@
     "uitzendbureau",
     "medewerker",
     "manager",
-    "synsel techniek",
+    "synsel",
     "product",
     "speaking"
    ]
@@ -725,18 +725,18 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.5598,
-  "accuracy": 0.6279,
+  "macro_f1": 0.5556,
+  "accuracy": 0.6243,
   "n_train": 1677,
   "n_other": 480,
-  "n_rescued": 87,
-  "rescue_rate": 0.1812,
+  "n_rescued": 86,
+  "rescue_rate": 0.1792,
   "threshold": 0.6,
   "rescued_breakdown": {
    "data-general": 33,
    "ai-manager": 16,
-   "ai-general": 14,
    "ai-product": 13,
+   "ai-general": 13,
    "ai-researcher": 5,
    "ml-engineer": 3,
    "data-engineer": 1,
@@ -745,16 +745,16 @@
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.6218,
-    "recall": 0.6139,
-    "f1-score": 0.6178,
-    "support": 316.0
+    "precision": 0.6076,
+    "recall": 0.6095,
+    "f1-score": 0.6086,
+    "support": 315.0
    },
    "ai-general": {
-    "precision": 0.6639,
-    "recall": 0.6324,
-    "f1-score": 0.6478,
-    "support": 253.0
+    "precision": 0.6638,
+    "recall": 0.6142,
+    "f1-score": 0.638,
+    "support": 254.0
    },
    "ai-manager": {
     "precision": 0.3191,
@@ -763,45 +763,45 @@
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.2677,
-    "recall": 0.4857,
-    "f1-score": 0.3452,
+    "precision": 0.2619,
+    "recall": 0.4714,
+    "f1-score": 0.3367,
     "support": 70.0
    },
    "ai-researcher": {
-    "precision": 0.5211,
-    "recall": 0.6066,
-    "f1-score": 0.5606,
+    "precision": 0.5177,
+    "recall": 0.5984,
+    "f1-score": 0.5551,
     "support": 122.0
    },
    "cv-engineer": {
-    "precision": 0.6125,
+    "precision": 0.6049,
     "recall": 0.8448,
-    "f1-score": 0.7101,
+    "f1-score": 0.705,
     "support": 58.0
    },
    "data-engineer": {
-    "precision": 0.5455,
+    "precision": 0.5373,
     "recall": 0.6923,
-    "f1-score": 0.6102,
+    "f1-score": 0.605,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.2619,
+    "precision": 0.2558,
     "recall": 0.4074,
-    "f1-score": 0.3188,
+    "f1-score": 0.3143,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.7123,
-    "recall": 0.6548,
-    "f1-score": 0.6824,
+    "precision": 0.7118,
+    "recall": 0.6613,
+    "f1-score": 0.6856,
     "support": 310.0
    },
    "ml-engineer": {
-    "precision": 0.8269,
+    "precision": 0.8318,
     "recall": 0.631,
-    "f1-score": 0.7158,
+    "f1-score": 0.7176,
     "support": 439.0
    }
   }
@@ -5636,7 +5636,7 @@
   },
   {
    "x": 0.0477,
-   "y": 0.4156,
+   "y": 0.4155,
    "c": 2,
    "t": "MLOps Engineer - AI Trainer - Freelance - 8-20hrs/week - Remote",
    "co": "10x.Team",
@@ -6300,7 +6300,7 @@
   },
   {
    "x": 0.1,
-   "y": 0.499,
+   "y": 0.4989,
    "c": 2,
    "t": "Meewerkstage AI Prototyping & Business Value",
    "co": "PostNL Hoofdkantoor",
@@ -7924,7 +7924,7 @@
   },
   {
    "x": -0.6466,
-   "y": -0.3367,
+   "y": -0.3368,
    "c": 4,
    "t": "Data Engineer - Barendrecht",
    "co": "The Greenery B.V.",
@@ -8179,7 +8179,7 @@
    "d": 5
   },
   {
-   "x": -0.6701,
+   "x": -0.6702,
    "y": 0.5957,
    "c": 5,
    "t": "Production operator - 5 shifts",
@@ -8452,7 +8452,7 @@
   },
   {
    "x": -0.4496,
-   "y": -0.6971,
+   "y": -0.697,
    "c": 4,
    "t": "Data Engineer Senior Data Scientist Data Management Specialist",
    "co": "Huxley",
@@ -9379,7 +9379,7 @@
    "d": 68
   },
   {
-   "x": -0.0628,
+   "x": -0.0629,
    "y": 0.5984,
    "c": 2,
    "t": "Applied AI Engineer - LLM & NLP",
@@ -9619,7 +9619,7 @@
    "d": 52
   },
   {
-   "x": -0.4794,
+   "x": -0.4795,
    "y": 0.3317,
    "c": 5,
    "t": "Payroll Manager",
@@ -10564,7 +10564,7 @@
   },
   {
    "x": -0.5207,
-   "y": 0.033,
+   "y": 0.0331,
    "c": 5,
    "t": "Technisch Specialist Militaire Bovenwater Sensoren",
    "co": "Ministerie van Defensie",
@@ -12891,7 +12891,7 @@
    "d": 4
   },
   {
-   "x": 0.1547,
+   "x": 0.1548,
    "y": 0.4201,
    "c": 2,
    "t": "AI & Deep Learning Intern",
@@ -13411,7 +13411,7 @@
    "d": 3
   },
   {
-   "x": 0.3937,
+   "x": 0.3936,
    "y": 0.1596,
    "c": 0,
    "t": "Remote Private Equity Associate ($100/hr) - 75405",
@@ -14691,7 +14691,7 @@
    "d": 1
   },
   {
-   "x": -0.3712,
+   "x": -0.3711,
    "y": -0.1562,
    "c": 1,
    "t": "Consultant | GenAI Engineer | Technology & Innovation",
@@ -15803,7 +15803,7 @@
    "d": 10
   },
   {
-   "x": 0.2746,
+   "x": 0.2747,
    "y": -0.5534,
    "c": 3,
    "t": "Machine Learning Engineer",
@@ -16868,7 +16868,7 @@
   },
   {
    "x": 0.3492,
-   "y": 0.6748,
+   "y": 0.6747,
    "c": 2,
    "t": "Architect focus op AI",
    "co": "EIFFEL",
@@ -17307,7 +17307,7 @@
    "d": 17
   },
   {
-   "x": 0.1808,
+   "x": 0.1809,
    "y": -0.2001,
    "c": 2,
    "t": "AI & Data Science Traineeship",
@@ -18828,7 +18828,7 @@
   },
   {
    "x": 0.3911,
-   "y": -0.0929,
+   "y": -0.0928,
    "c": 0,
    "t": "Data Platform Engineer",
    "co": "kaiko.ai",
@@ -20419,7 +20419,7 @@
    "d": 11
   },
   {
-   "x": 0.023,
+   "x": 0.0231,
    "y": 0.3206,
    "c": 2,
    "t": "Internship - AI & Market Signals",
@@ -20996,7 +20996,7 @@
   },
   {
    "x": 0.4658,
-   "y": 0.6456,
+   "y": 0.6457,
    "c": 2,
    "t": "Microsoft AI Engineer",
    "co": "Arrow Electronics, Inc.",
@@ -21195,7 +21195,7 @@
    "d": 1
   },
   {
-   "x": 0.1457,
+   "x": 0.1458,
    "y": 0.3735,
    "c": 2,
    "t": "AI Research Intern (Neuroscience)",
@@ -23150,5 +23150,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 184.8
+ "runtime_seconds": 470.8
 }
