@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NL AI Skill Index — wat Nederlandse werkgevers vragen</title>
 <meta name="description" content="Zes maanden dagelijkse metingen van Nederlandse vacaturesites: welke AI-technologieën werkgevers noemen, wat er echt veranderde, en welke rollen het langst openstaan.">
-<meta property="og:title" content="Nederlandse AI-vacatures vragen om minder, niet meer">
-<meta property="og:description" content="Van twintig gemeten technologieën bewoog er één omhoog en twee omlaag. De rest bewoog niet meer dan ruis.">
+<meta property="og:title" content="Nederlandse AI-vacatures ruilen de oude stack in voor agents">
+<meta property="og:description" content="Agents en fine-tuning stijgen, NLP, SQL en Kubernetes dalen. De rest bewoog niet meer dan ruis.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101214'/%3E%3Crect x='5' y='7' width='22' height='4' rx='1' fill='%233ddc97'/%3E%3Crect x='5' y='14' width='14' height='4' rx='1' fill='%23b9b5a6'/%3E%3Crect x='5' y='21' width='8' height='4' rx='1' fill='%23ff8a5b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -239,29 +239,33 @@ function opening(){
   var m0=maand(idx.months[0]),m1=maand(idx.months[idx.months.length-1]);
 
   el("topMeta").textContent=p.n_identities.toLocaleString("nl-NL")+" vacatures · "+p.n_runs+" dagelijkse metingen";
-  el("kop").textContent="Nederlandse AI-vacatures vragen om minder, niet meer";
+  el("kop").textContent="Nederlandse AI-vacatures ruilen de oude stack in voor agents";
 
-  var namen=function(a){return a.map(function(r){return r.skill;}).join(" en ");};
+  var namen=function(a){return a.map(function(r){return r.skill;}).join(", ").replace(/, ([^,]*)$/," en $1");};
+  var W2=["nul","één","twee","drie","vier","vijf","zes","zeven","acht","negen","tien"];
+  var num2=function(n){return W2[n]||String(n);};
+  var rest=idx.skills.length-ris.length-fal.length;
   el("standfirst").innerHTML=
-    "Zes maanden lang zijn Nederlandse vacaturesites elke dag vastgelegd. In die tijd noemden werkgevers "+
-    "steeds <b>minder</b> concrete technologieën per vacature: van "+num(v0,2)+" in "+m0+" naar <b>"+num(v1,2)+
-    "</b> in "+m1+". Van de "+idx.skills.length+" gemeten technologieën ging er één omhoog ("+
-    "<b>"+esc(namen(ris))+"</b>) en gingen er twee omlaag (<b>"+esc(namen(fal))+"</b>). "+
-    "De overige "+(idx.skills.length-ris.length-fal.length)+" bewogen niet meer dan ruis.";
+    "Zes maanden lang zijn Nederlandse vacaturesites elke dag vastgelegd. Van de "+idx.skills.length+
+    " gemeten technologieën wonnen er "+(ris.length===1?"één":num2(ris.length))+" aantoonbaar terrein (<b>"+
+    esc(namen(ris))+"</b>) en verloren er "+(fal.length===1?"één":num2(fal.length))+" het (<b>"+
+    esc(namen(fal))+"</b>). De overige "+rest+" bewogen niet meer dan ruis. "+
+    "Tegelijk noemt een vacature gemiddeld minder concrete technologieën dan in "+m0+
+    ": van "+num(v0,2)+" naar <b>"+num(v1,2)+"</b>.";
 
   el("byline").innerHTML=p.first_run+" t/m "+p.last_run+" · "+
     '<a href="https://github.com/hoeberigs/nl-ai-skill-index">methode en broncode</a> · '+
     '<a href="https://github.com/hoeberigs/ai-job-tracker-nl">onderliggende meting</a>';
 
-  var pts=[{cls:"down",h:"Minder gereedschap genoemd",
-     t:"<b>"+nl((v0-v1)/v0,0)+" minder</b> technologieën per vacature tussen "+m0+" en "+m1+
-       ". De duidelijkste beweging in de hele reeks."}];
+  var pts=[];
   ris.forEach(function(r){pts.push({cls:"up",h:r.skill+" wint terrein",
      t:"Van "+nl(r.shares[0])+" naar <b>"+nl(r.shares[r.shares.length-1])+
        "</b> van alle technologievermeldingen (p = "+num(r.trend.p,3)+")."});});
   if(fal.length)pts.push({cls:"down",h:fal[0].skill+" verliest het meest",
      t:"Van "+nl(fal[0].shares[0])+" naar <b>"+nl(fal[0].shares[fal[0].shares.length-1])+
        "</b> (p = "+num(fal[0].trend.p,3)+"). Werkgevers gebruiken nieuwere woorden voor hetzelfde werk."});
+  pts.push({cls:"down",h:"Minder gereedschap genoemd",
+     t:"<b>"+nl((v0-v1)/v0,0)+" minder</b> concrete technologieën per vacature tussen "+m0+" en "+m1+"."});
   el("points").innerHTML=pts.slice(0,3).map(function(x){
     return '<div class="point '+x.cls+'"><div class="h">'+esc(x.h)+'</div><p>'+x.t+'</p></div>';}).join("");
 }
@@ -290,8 +294,8 @@ function chartVager(){
   var v0=sp.mean_skills[0],v1=sp.mean_skills[sp.mean_skills.length-1];
   el("introVager").innerHTML="In "+maand(sp.months[0])+" noemde een Nederlandse AI-vacature gemiddeld <b>"+num(v0,2)+
     "</b> concrete technologieën. In "+maand(sp.months[sp.months.length-1])+" was dat <b>"+num(v1,2)+
-    "</b>, een daling van <b>"+nl((v0-v1)/v0,0)+"</b>. Het aandeel vacatures dat helemaal géén technologie noemt steeg van "+
-    nl(sp.share_naming_none[0],0)+" naar <b>"+nl(sp.share_naming_none[sp.share_naming_none.length-1],0)+"</b>.";
+    "</b>, een daling van <b>"+nl((v0-v1)/v0,0)+"</b>. Het aandeel vacatures dat helemaal géén technologie noemt bleef ondertussen vlak, rond <b>"+
+    nl(sp.share_naming_none[sp.share_naming_none.length-1],0)+"</b>.";
 }
 
 function chartSchaarste(){
