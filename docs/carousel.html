@@ -29,10 +29,10 @@ h2{font-size:50px;font-weight:800;line-height:1.06;letter-spacing:-.025em;margin
 .big .t{font-size:26px;color:var(--ink2);margin-top:12px;max-width:34ch;line-height:1.35}
 .big .t b{color:var(--ink)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
-.mv{background:var(--bg2);border-left:5px solid var(--hair);padding:20px 22px 18px}
+.mv{background:var(--bg2);border-left:5px solid var(--hair);padding:16px 20px 14px}
 .mv.up{border-color:var(--rise)} .mv.down{border-color:var(--fall)} .mv.nt{border-color:var(--neutral)}
 .mv .kk{font-size:17px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
-.mv .nn{margin-top:6px;font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.mv .nn{margin-top:5px;font-size:36px;font-weight:800;letter-spacing:-.02em;line-height:1}
 .mv.up .nn{color:var(--rise)} .mv.down .nn{color:var(--fall)} .mv.nt .nn{color:var(--neutral)}
 .mv .nn small{font-size:22px;color:var(--ink2);font-weight:500;letter-spacing:0}
 .mv .tt{margin-top:7px;font-size:18px;color:var(--ink2);line-height:1.3}
@@ -76,23 +76,35 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
   var top=function(){return '<div class="top"><span><b>NL AI Skill Index</b></span><span>'+
     p.n_identities.toLocaleString("nl-NL")+' vacatures · '+p.n_runs+' dagelijkse metingen</span></div>';};
   var foot=function(n,N){return '<div class="foot"><span><b>hoeberigs.github.io/nl-ai-skill-index</b> · open data · open code</span><span class="pg">'+n+' / '+N+'</span></div>';};
+  var ris=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp>0;});
+  var fal=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp<0;});
+  var nom=idx.skills.filter(function(r){return r.significant&&!r.robust;});
+  var W=["nul","één","twee","drie","vier","vijf","zes"], w=function(n){return W[n]||String(n);};
+  var namen=function(a){return a.map(function(r){return r.skill;}).join(", ").replace(/, ([^,]*)$/," en $1");};
   var N=5, S=[];
 
   // 1 — hook
   S.push(top()+'<div class="k">Zes maanden, elke dag gemeten</div>'+
     '<h1>Nederlandse AI-vacatures ruilen de oude stack in voor agents</h1>'+
-    '<p class="sub">Van '+idx.skills.length+' technologieën bewogen er maar <b>twee</b> aantoonbaar. De rest bewoog niet meer dan ruis. Swipe →</p>'+
+    '<p class="sub">Van '+idx.skills.length+' technologieën bewogen er maar <b>'+w(ris.length+fal.length)+'</b> aantoonbaar: '+namen(ris)+' omhoog, '+namen(fal)+' omlaag. De rest bewoog niet meer dan ruis. Swipe →</p>'+
     '<div class="big"><div class="n up">'+nl(last(ag),0)+'</div><div class="t">van de Nederlandse AI-vacatures noemt nu <b>agents</b>. In '+m0+' was dat '+nl(first(ag),0)+'.</div></div>'+foot(1,N));
 
-  // 2 — the two robust movers + two that did not survive
-  S.push(top()+'<div class="k">Wat er echt bewoog</div><h2>Twee bewegingen overleven de statistiek. Drie niet.</h2>'+
-    '<p class="sub">Trendtoets over alle vijf maanden, gecorrigeerd voor '+idx.skills.length+' toetsen tegelijk. Wat die correctie niet doorstaat, is ruis.</p>'+
-    '<div class="grid2">'+
-    '<div class="mv up"><div class="kk">AI Agents · stijgt</div><div class="nn">'+nl(first(ag),0)+' <small>→</small> '+nl(last(ag),0)+'</div><div class="tt">van de vacatures, '+m0+' → '+m1+'. p &lt; 0,001.</div></div>'+
-    '<div class="mv down"><div class="kk">NLP · daalt</div><div class="nn">'+nl(first(nlp),0)+' <small>→</small> '+nl(last(nlp),0)+'</div><div class="tt">Werkgevers gebruiken nieuwere woorden voor hetzelfde werk.</div></div>'+
-    '<div class="mv"><div class="kk">Fine-tuning · nominaal</div><div class="nn">'+nl(first(ft),0)+' <small>→</small> '+nl(last(ft),0)+'</div><div class="tt">Lijkt te stijgen, maar niet meer dan je bij 25 toetsen door toeval verwacht.</div></div>'+
-    '<div class="mv"><div class="kk">Python · let op</div><div class="nn">'+nl(first(py),0)+' <small>→</small> '+nl(last(py),0)+'</div><div class="tt">Minder vacatures noemen het expliciet. Dat is vager schrijven, niet minder Python.</div></div>'+
-    '</div>'+foot(2,N));
+  // 2 — movers: every robust one, then the nominal ones, all from the data
+  var why={"AI Agents":"p &lt; 0,001. De duidelijkste beweging in de hele reeks.",
+           "NLP":"Werkgevers gebruiken nieuwere woorden voor hetzelfde werk.",
+           "Kubernetes":"Minder vacatures noemen de infrastructuur expliciet.",
+           "Python":"Minder vacatures noemen het expliciet. Dat is vager schrijven, niet minder Python.",
+           "SQL":"Zelfde patroon als Python: het wordt minder vaak opgeschreven.",
+           "Fine-tuning":"Lijkt te stijgen, maar niet meer dan je bij zoveel toetsen door toeval verwacht."};
+  var card=function(r,kind){var up=r.trend.slope_pp>0;
+    var cls=kind==="robust"?(up?"up":"down"):"";
+    var lab=kind==="robust"?(up?"stijgt":"daalt"):"nominaal";
+    return '<div class="mv '+cls+'"><div class="kk">'+esc(r.skill)+' · '+lab+'</div><div class="nn">'+nl(first(r),0)+' <small>→</small> '+nl(last(r),0)+
+      '</div><div class="tt">'+(why[r.skill]||"")+'</div></div>';};
+  var cards2=ris.concat(fal).map(function(r){return card(r,"robust");}).concat(nom.slice(0,6-ris.length-fal.length).map(function(r){return card(r,"nominal");}));
+  S.push(top()+'<div class="k">Wat er echt bewoog</div><h2>'+w(ris.length+fal.length).replace(/^./,function(c){return c.toUpperCase();})+' bewegingen overleven de statistiek. '+w(nom.length).replace(/^./,function(c){return c.toUpperCase();})+' niet.</h2>'+
+    '<p class="sub">Trendtoets over alle vijf maanden, gecorrigeerd voor '+idx.skills.length+' toetsen tegelijk. Aandeel van de vacatures dat het noemt, '+m0+' → '+m1+'. Wat de correctie niet doorstaat, heet hier nominaal.</p>'+
+    '<div class="grid2">'+cards2.join("")+'</div>'+foot(2,N));
 
   // 3 — how long roles stay open
   var cal=D.calibration, naive=D.grace_sensitivity.filter(function(r){return r.grace_days===1;})[0].median;
@@ -110,6 +122,8 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
     '<div class="grid2">'+
     '<div class="mv up"><div class="kk">Senior-vacatures</div><div class="nn">'+nl(sen[0],0)+' <small>→</small> '+nl(sen[sen.length-1],0)+'</div><div class="tt">van alle AI-vacatures, '+m0+' → '+m1+'.</div></div>'+
     '<div class="mv down"><div class="kk">Junior-vacatures</div><div class="nn">'+nl(jun[0],0)+' <small>→</small> '+nl(jun[jun.length-1],0)+'</div><div class="tt">Instroom wordt smaller.</div></div>'+
+    '<div class="mv down"><div class="kk">Tools per vacature</div><div class="nn">'+num(sp.mean_skills[0],2)+' <small>→</small> '+num(sp.mean_skills[sp.mean_skills.length-1],2)+'</div><div class="tt">Vacatures worden vager over tooling, niet korter.</div></div>'+
+    '<div class="mv nt"><div class="kk">Eenmalige vermeldingen</div><div class="nn">'+nl(D.calibration.ephemeral_share,0)+'</div><div class="tt">van de vacatures verschijnt één dag en nooit meer: reposts en aggregators, geen echte openstaande functie.</div></div>'+
     '</div>'+
     '<div class="rows"><div class="cap"><span>Welke leverancier wordt genoemd</span><span>aandeel vacatures, '+m1+'</span></div>'+prov+'</div>'+
     '<div class="rows"><div class="cap"><span>Wat samen gevraagd wordt</span><span>× vaker dan toeval</span></div>'+pairs+'</div>'+foot(4,N));
