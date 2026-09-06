@@ -68,7 +68,7 @@ function num(x,d){return Number(x).toFixed(d).replace(".",",");}
 var M=["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
 function mon(m){return M[parseInt(m.slice(5,7),10)-1];}
 fetch("data.json").then(function(r){return r.json();}).then(function(D){
-  var p=D.panel,idx=D.skill_index.mentions,sp=D.skill_index.specificity;
+  var p=D.panel,idx=D.skill_index.adverts,sp=D.skill_index.specificity;
   var m0=mon(idx.months[0]),m1=mon(idx.months[idx.months.length-1]);
   el("meta").textContent=p.n_identities.toLocaleString("nl-NL")+" vacatures · "+p.n_runs+" dagelijkse metingen";
   el("kop").textContent="Nederlandse AI-vacatures ruilen de oude stack in voor agents";
@@ -82,7 +82,7 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
   var cards=[];
   ris.slice(0,1).forEach(function(r){cards.push({cls:"up",k:r.skill+" · stijgt",
     n:nl(r.shares[0],1)+' <small>→</small> '+nl(r.shares[r.shares.length-1],1),
-    t:"van alle technologievermeldingen, "+m0+" → "+m1+". Robuust na correctie voor "+idx.skills.length+" toetsen."});});
+    t:"van de vacatures noemt agents, "+m0+" → "+m1+". Robuust na correctie voor "+idx.skills.length+" toetsen."});});
   fal.slice(0,1).forEach(function(r){cards.push({cls:"down",k:r.skill+" · daalt",
     n:nl(r.shares[0],1)+' <small>→</small> '+nl(r.shares[r.shares.length-1],1),
     t:"Werkgevers gebruiken nieuwere woorden voor hetzelfde werk."});});
@@ -95,7 +95,7 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
     '</div><div class="n">'+c.n+'</div><div class="t">'+c.t+'</div></div>';}).join("");
 
   var top=idx.skills.slice(0,8),max=top[0].shares[top[0].shares.length-1];
-  el("capL").textContent="Aandeel van alle technologievermeldingen · "+m1;
+  el("capL").textContent="Aandeel van de vacatures dat het noemt · "+m1;
   el("capR").textContent="top "+top.length+" van "+idx.skills.length;
   el("rows").innerHTML=top.map(function(r){
     var v=r.shares[r.shares.length-1],cls=r.robust?(r.trend.slope_pp>0?"up":"down"):"";
