@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-06T18:16:37Z",
+ "generated_at": "2026-09-06T18:43:34Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -636,7 +636,7 @@
    "6": 0.1661,
    "7": 0.1626,
    "8": 0.1622,
-   "9": 0.1469,
+   "9": 0.1556,
    "10": 0.151,
    "11": 0.1439,
    "12": 0.1447,
@@ -679,10 +679,10 @@
     "engineer",
     "data",
     "senior",
-    "software",
     "intelligence",
-    "artificial",
-    "science"
+    "software",
+    "science",
+    "artificial"
    ],
    "3": [
     "learning",
@@ -710,7 +710,7 @@
     "uitzendbureau",
     "medewerker",
     "manager",
-    "synsel techniek",
+    "synsel",
     "product",
     "speaking"
    ]
@@ -725,83 +725,84 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.5536,
-  "accuracy": 0.6202,
+  "macro_f1": 0.567,
+  "accuracy": 0.6351,
   "n_train": 1677,
   "n_other": 480,
-  "n_rescued": 85,
-  "rescue_rate": 0.1771,
+  "n_rescued": 87,
+  "rescue_rate": 0.1812,
   "threshold": 0.6,
   "rescued_breakdown": {
    "data-general": 33,
    "ai-manager": 16,
+   "ai-general": 14,
    "ai-product": 13,
-   "ai-general": 13,
    "ai-researcher": 5,
    "ml-engineer": 3,
    "data-engineer": 1,
-   "data-scientist": 1
+   "data-scientist": 1,
+   "ai-engineer": 1
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.604,
-    "recall": 0.5865,
-    "f1-score": 0.5951,
-    "support": 312.0
+    "precision": 0.627,
+    "recall": 0.6171,
+    "f1-score": 0.622,
+    "support": 316.0
    },
    "ai-general": {
-    "precision": 0.6695,
-    "recall": 0.622,
-    "f1-score": 0.6449,
-    "support": 254.0
+    "precision": 0.6639,
+    "recall": 0.6324,
+    "f1-score": 0.6478,
+    "support": 253.0
    },
    "ai-manager": {
-    "precision": 0.3125,
+    "precision": 0.3261,
     "recall": 0.5,
-    "f1-score": 0.3846,
+    "f1-score": 0.3947,
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.252,
-    "recall": 0.4571,
-    "f1-score": 0.3249,
+    "precision": 0.2869,
+    "recall": 0.5,
+    "f1-score": 0.3646,
     "support": 70.0
    },
    "ai-researcher": {
-    "precision": 0.5172,
+    "precision": 0.5137,
     "recall": 0.6148,
-    "f1-score": 0.5618,
+    "f1-score": 0.5597,
     "support": 122.0
    },
    "cv-engineer": {
-    "precision": 0.6049,
-    "recall": 0.8448,
-    "f1-score": 0.705,
-    "support": 58.0
+    "precision": 0.5814,
+    "recall": 0.8772,
+    "f1-score": 0.6993,
+    "support": 57.0
    },
    "data-engineer": {
-    "precision": 0.5625,
+    "precision": 0.5806,
     "recall": 0.6923,
-    "f1-score": 0.6207,
+    "f1-score": 0.6316,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.25,
+    "precision": 0.2821,
     "recall": 0.4074,
-    "f1-score": 0.3099,
+    "f1-score": 0.3333,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.7049,
-    "recall": 0.6548,
-    "f1-score": 0.6789,
-    "support": 310.0
+    "precision": 0.7247,
+    "recall": 0.6667,
+    "f1-score": 0.6945,
+    "support": 312.0
    },
    "ml-engineer": {
-    "precision": 0.8152,
-    "recall": 0.629,
-    "f1-score": 0.7101,
-    "support": 442.0
+    "precision": 0.8309,
+    "recall": 0.6393,
+    "f1-score": 0.7226,
+    "support": 438.0
    }
   }
  },
@@ -5789,7 +5790,7 @@
   },
   {
    "x": 0.0477,
-   "y": 0.4156,
+   "y": 0.4155,
    "c": 2,
    "t": "MLOps Engineer - AI Trainer - Freelance - 8-20hrs/week - Remote",
    "co": "10x.Team",
@@ -6453,7 +6454,7 @@
   },
   {
    "x": 0.1,
-   "y": 0.499,
+   "y": 0.4989,
    "c": 2,
    "t": "Meewerkstage AI Prototyping & Business Value",
    "co": "PostNL Hoofdkantoor",
@@ -8077,7 +8078,7 @@
   },
   {
    "x": -0.6466,
-   "y": -0.3367,
+   "y": -0.3368,
    "c": 4,
    "t": "Data Engineer - Barendrecht",
    "co": "The Greenery B.V.",
@@ -8332,7 +8333,7 @@
    "d": 5
   },
   {
-   "x": -0.6701,
+   "x": -0.6702,
    "y": 0.5957,
    "c": 5,
    "t": "Production operator - 5 shifts",
@@ -8605,7 +8606,7 @@
   },
   {
    "x": -0.4496,
-   "y": -0.6971,
+   "y": -0.697,
    "c": 4,
    "t": "Data Engineer Senior Data Scientist Data Management Specialist",
    "co": "Huxley",
@@ -9532,7 +9533,7 @@
    "d": 68
   },
   {
-   "x": -0.0628,
+   "x": -0.0629,
    "y": 0.5984,
    "c": 2,
    "t": "Applied AI Engineer - LLM & NLP",
@@ -9772,7 +9773,7 @@
    "d": 52
   },
   {
-   "x": -0.4794,
+   "x": -0.4795,
    "y": 0.3317,
    "c": 5,
    "t": "Payroll Manager",
@@ -10717,7 +10718,7 @@
   },
   {
    "x": -0.5207,
-   "y": 0.033,
+   "y": 0.0331,
    "c": 5,
    "t": "Technisch Specialist Militaire Bovenwater Sensoren",
    "co": "Ministerie van Defensie",
@@ -13044,7 +13045,7 @@
    "d": 4
   },
   {
-   "x": 0.1547,
+   "x": 0.1548,
    "y": 0.4201,
    "c": 2,
    "t": "AI & Deep Learning Intern",
@@ -13564,7 +13565,7 @@
    "d": 3
   },
   {
-   "x": 0.3937,
+   "x": 0.3936,
    "y": 0.1596,
    "c": 0,
    "t": "Remote Private Equity Associate ($100/hr) - 75405",
@@ -14844,7 +14845,7 @@
    "d": 1
   },
   {
-   "x": -0.3712,
+   "x": -0.3711,
    "y": -0.1562,
    "c": 1,
    "t": "Consultant | GenAI Engineer | Technology & Innovation",
@@ -15956,7 +15957,7 @@
    "d": 10
   },
   {
-   "x": 0.2746,
+   "x": 0.2747,
    "y": -0.5534,
    "c": 3,
    "t": "Machine Learning Engineer",
@@ -17021,7 +17022,7 @@
   },
   {
    "x": 0.3492,
-   "y": 0.6748,
+   "y": 0.6747,
    "c": 2,
    "t": "Architect focus op AI",
    "co": "EIFFEL",
@@ -17460,7 +17461,7 @@
    "d": 17
   },
   {
-   "x": 0.1808,
+   "x": 0.1809,
    "y": -0.2001,
    "c": 2,
    "t": "AI & Data Science Traineeship",
@@ -18981,7 +18982,7 @@
   },
   {
    "x": 0.3911,
-   "y": -0.0929,
+   "y": -0.0928,
    "c": 0,
    "t": "Data Platform Engineer",
    "co": "kaiko.ai",
@@ -20572,7 +20573,7 @@
    "d": 11
   },
   {
-   "x": 0.023,
+   "x": 0.0231,
    "y": 0.3206,
    "c": 2,
    "t": "Internship - AI & Market Signals",
@@ -21149,7 +21150,7 @@
   },
   {
    "x": 0.4658,
-   "y": 0.6456,
+   "y": 0.6457,
    "c": 2,
    "t": "Microsoft AI Engineer",
    "co": "Arrow Electronics, Inc.",
@@ -21348,7 +21349,7 @@
    "d": 1
   },
   {
-   "x": 0.1457,
+   "x": 0.1458,
    "y": 0.3735,
    "c": 2,
    "t": "AI Research Intern (Neuroscience)",
@@ -23303,5 +23304,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 165.8
+ "runtime_seconds": 476.8
 }
