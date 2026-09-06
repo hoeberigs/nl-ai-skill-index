@@ -72,10 +72,11 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
   var first=function(r){return r.shares[0];},last=function(r){return r.shares[r.shares.length-1];};
   var ag=A["AI Agents"],nlp=A["NLP"],ft=A["Fine-tuning"],py=A["Python"];
   var cs=D.survival_by_cluster.slice().sort(function(a,b){return b.rmst_90-a.rmst_90;});
-  var comp=D.composition.seniority.series, sen=comp.senior||[], jun=comp.junior||[];
+  var comp=D.composition.seniority.series, sen=comp.senior||[], lead=comp.lead||[];
+  var SRC="Bronnen: LinkedIn en Jobbird (NL), dagelijks gescraped";
   var top=function(){return '<div class="top"><span><b>NL AI Skill Index</b></span><span>'+
     p.n_identities.toLocaleString("nl-NL")+' vacatures · '+p.n_runs+' dagelijkse metingen</span></div>';};
-  var foot=function(n,N){return '<div class="foot"><span><b>hoeberigs.github.io/nl-ai-skill-index</b> · open data · open code</span><span class="pg">'+n+' / '+N+'</span></div>';};
+  var foot=function(n,N){return '<div class="foot"><span><b>hoeberigs.github.io/nl-ai-skill-index</b> · '+SRC+'</span><span class="pg">'+n+' / '+N+'</span></div>';};
   var ris=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp>0;});
   var fal=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp<0;});
   var nom=idx.skills.filter(function(r){return r.significant&&!r.robust;});
@@ -118,10 +119,10 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
   // 4 — who is hiring, what pairs, seniority
   var pairs=D.cooccurrence.pairs.slice(0,4).map(function(q){return '<div class="row"><div class="nm">'+esc(q.a+' + '+q.b)+'</div><div class="bar"><i class="nt" style="width:'+(100*q.lift/D.cooccurrence.pairs[0].lift)+'%"></i></div><div class="vl">'+num(q.lift,1)+'×</div></div>';}).join("");
   var prov=["OpenAI","Anthropic","Google AI","Microsoft Copilot"].filter(function(k){return A[k];}).map(function(k){return '<div class="row"><div class="nm">'+k+'</div><div class="bar"><i style="width:'+(100*last(A[k])/last(A["OpenAI"]))+'%"></i></div><div class="vl">'+nl(last(A[k]),1)+'</div></div>';}).join("");
-  S.push(top()+'<div class="k">De randen van het beeld</div><h2>Senior schuift op, junior schuift weg</h2>'+
+  S.push(top()+'<div class="k">De randen van het beeld</div><h2>Senior schuift op, lead schuift terug</h2>'+
     '<div class="grid2">'+
     '<div class="mv up"><div class="kk">Senior-vacatures</div><div class="nn">'+nl(sen[0],0)+' <small>→</small> '+nl(sen[sen.length-1],0)+'</div><div class="tt">van alle AI-vacatures, '+m0+' → '+m1+'.</div></div>'+
-    '<div class="mv down"><div class="kk">Junior-vacatures</div><div class="nn">'+nl(jun[0],0)+' <small>→</small> '+nl(jun[jun.length-1],0)+'</div><div class="tt">Instroom wordt smaller.</div></div>'+
+    '<div class="mv down"><div class="kk">Lead-vacatures</div><div class="nn">'+nl(lead[0],0)+' <small>→</small> '+nl(lead[lead.length-1],0)+'</div><div class="tt">Junior en mid bewogen niet aantoonbaar.</div></div>'+
     '<div class="mv down"><div class="kk">Tools per vacature</div><div class="nn">'+num(sp.mean_skills[0],2)+' <small>→</small> '+num(sp.mean_skills[sp.mean_skills.length-1],2)+'</div><div class="tt">Vacatures worden vager over tooling, niet korter.</div></div>'+
     '<div class="mv nt"><div class="kk">Eenmalige vermeldingen</div><div class="nn">'+nl(D.calibration.ephemeral_share,0)+'</div><div class="tt">van de vacatures verschijnt één dag en nooit meer: reposts en aggregators, geen echte openstaande functie.</div></div>'+
     '</div>'+
