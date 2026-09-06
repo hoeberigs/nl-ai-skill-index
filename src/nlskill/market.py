@@ -167,6 +167,7 @@ class SkillRow:
             "trend": self.trend,
             "total_mentions": self.total_mentions,
             "significant": self.trend["p"] < 0.05,
+            "robust": bool(self.trend.get("fdr_robust", False)),
         }
 
 
@@ -237,8 +238,27 @@ def skill_index(panel: Panel, spells: list[Spell], basis: str = "adverts") -> di
         )
 
     rows.sort(key=lambda r: -r.last_share)
+
+    # Twenty-odd technologies each get a trend test, so at p<0.05 about one
+    # false positive is expected by chance alone. Benjamini-Hochberg controls
+    # the false discovery rate at 5% across the family; a technology is only
+    # called a robust mover if it clears that, and the nominal result is kept
+    # separately so the reader can see which claims would not survive it.
+    m = len(rows)
+    ranked = sorted(rows, key=lambda r: r.trend["p"])
+    cutoff = 0
+    for i, r in enumerate(ranked, 1):
+        if r.trend["p"] <= 0.05 * i / m:
+            cutoff = i
+    robust = {id(r) for r in ranked[:cutoff]}
+    for r in rows:
+        r.trend["fdr_robust"] = id(r) in robust
+        r.trend["bonferroni_robust"] = r.trend["p"] < 0.05 / m
+
     return {
         "basis": basis,
+        "n_tests": m,
+        "fdr_method": "Benjamini-Hochberg, FDR 5%",
         "months": months,
         "month_totals": totals,
         "excluded_months": excluded,

@@ -6,7 +6,7 @@
 <title>NL AI Skill Index — wat Nederlandse werkgevers vragen</title>
 <meta name="description" content="Zes maanden dagelijkse metingen van Nederlandse vacaturesites: welke AI-technologieën werkgevers noemen, wat er echt veranderde, en welke rollen het langst openstaan.">
 <meta property="og:title" content="Nederlandse AI-vacatures ruilen de oude stack in voor agents">
-<meta property="og:description" content="Agents en fine-tuning stijgen, NLP, SQL en Kubernetes dalen. De rest bewoog niet meer dan ruis.">
+<meta property="og:description" content="AI Agents stijgt, NLP daalt — robuust na correctie voor 25 toetsen. De rest bewoog niet meer dan ruis.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101214'/%3E%3Crect x='5' y='7' width='22' height='4' rx='1' fill='%233ddc97'/%3E%3Crect x='5' y='14' width='14' height='4' rx='1' fill='%23b9b5a6'/%3E%3Crect x='5' y='21' width='8' height='4' rx='1' fill='%23ff8a5b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,6 +91,7 @@ h2 .n{display:block;font-size:14px;font-weight:600;letter-spacing:.16em;
   margin-left:8px;padding:1px 6px;border-radius:2px}
 .tag.up{background:rgba(61,220,151,.16);color:var(--rise)}
 .tag.down{background:rgba(255,138,91,.16);color:var(--fall)}
+.tag.nom{background:rgba(139,135,121,.14);color:var(--ink-3)}
 .tr{height:14px;background:var(--bg-2);position:relative;border-radius:2px;min-width:40px}
 .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--ink-3);border-radius:2px;display:block}
 .tr i.up{background:var(--rise)} .tr i.down{background:var(--fall)}
@@ -233,8 +234,11 @@ var D=null;
 
 function opening(){
   var idx=D.skill_index.mentions,sp=D.skill_index.specificity,p=D.panel;
-  var ris=idx.skills.filter(function(r){return r.significant&&r.trend.slope_pp>0;});
-  var fal=idx.skills.filter(function(r){return r.significant&&r.trend.slope_pp<0;});
+  // Headline claims use only movers that survive Benjamini-Hochberg across
+  // all technologies tested; the nominal-only ones are named as suggestive.
+  var ris=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp>0;});
+  var fal=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp<0;});
+  var nom=idx.skills.filter(function(r){return r.significant&&!r.robust;});
   var v0=sp.mean_skills[0],v1=sp.mean_skills[sp.mean_skills.length-1];
   var m0=maand(idx.months[0]),m1=maand(idx.months[idx.months.length-1]);
 
@@ -249,7 +253,10 @@ function opening(){
     "Zes maanden lang zijn Nederlandse vacaturesites elke dag vastgelegd. Van de "+idx.skills.length+
     " gemeten technologieën wonnen er "+(ris.length===1?"één":num2(ris.length))+" aantoonbaar terrein (<b>"+
     esc(namen(ris))+"</b>) en verloren er "+(fal.length===1?"één":num2(fal.length))+" het (<b>"+
-    esc(namen(fal))+"</b>). De overige "+rest+" bewogen niet meer dan ruis. "+
+    esc(namen(fal))+"</b>). "+
+    (nom.length?("Nog "+num2(nom.length)+" ("+esc(namen(nom))+") bewogen op het oog, maar niet meer dan je bij "+
+      idx.skills.length+" toetsen door toeval verwacht. "):"")+
+    "De overige "+(rest-nom.length)+" bewogen niet meer dan ruis. "+
     "Tegelijk noemt een vacature gemiddeld minder concrete technologieën dan in "+m0+
     ": van "+num(v0,2)+" naar <b>"+num(v1,2)+"</b>.";
 
@@ -273,15 +280,16 @@ function opening(){
 function chartWat(){
   var idx=D.skill_index.mentions;
   var rows=idx.skills.map(function(r){
-    var last=r.shares[r.shares.length-1],sig=r.significant,up=r.trend.slope_pp>0;
-    return {name:r.skill,v:last,cls:sig?(up?"up":"down"):"",
-      tag:sig?(up?"stijgt":"daalt"):"",
+    var last=r.shares[r.shares.length-1],sig=r.robust,nom=r.significant&&!r.robust,up=r.trend.slope_pp>0;
+    return {name:r.skill,v:last,cls: sig?(up?"up":"down"):(nom?"nom":""),
+      tag: sig?(up?"stijgt":"daalt"):(nom?"nominaal":""),
       label:nl(last),sub:sig?"p "+num(r.trend.p,3):""};
   });
   bars(el("chartWat"),rows,{left:"Aandeel van alle technologievermeldingen · "+maand(idx.months[idx.months.length-1]),
     right:"<b>"+idx.skills.length+" technologieën</b>"});
   el("noteWat").textContent="De trendtoets kijkt naar alle vijf maanden samen, niet naar het verschil tussen de eerste en de laatste. "+
-    "Zo kan een uitkomst niet ontstaan door twee gunstige maanden te kiezen.";
+    "Omdat "+idx.skills.length+" technologieën tegelijk getoetst worden, is gecorrigeerd voor meervoudig toetsen (Benjamini-Hochberg, 5% FDR): "+
+    "alleen wat die correctie doorstaat krijgt een stijgt/daalt-label; ‘nominaal’ betekent p<0,05 maar niet meer dan je bij zoveel toetsen door toeval verwacht.";
 }
 
 function chartVager(){
@@ -332,8 +340,10 @@ function tabellen(){
     "<thead><tr><th>Technologie</th><th class='n'>Van alle vacatures</th><th class='n'>Van alle vermeldingen</th>"+
     "<th class='n'>Verschil</th><th class='n'>p</th><th class='n'>Uitkomst</th></tr></thead><tbody>"+
     men.skills.map(function(r){
-      var a=by[r.skill],cls=r.significant?(r.trend.slope_pp>0?"up-t":"down-t"):"";
-      var v=r.significant?(r.trend.slope_pp>0?"stijgt":"daalt"):"geen verandering";
+      var a=by[r.skill];
+      var cls=r.robust?(r.trend.slope_pp>0?"up-t":"down-t"):"";
+      var v=r.robust?(r.trend.slope_pp>0?"stijgt":"daalt")
+            :(r.significant?"nominaal (p<0,05, valt weg na correctie)":"geen verandering");
       return "<tr><td>"+esc(r.skill)+"</td><td class='n'>"+(a?nl(a.shares[a.shares.length-1]):"—")+
         "</td><td class='n'>"+nl(r.shares[r.shares.length-1])+"</td><td class='n'>"+
         (r.change_pp>0?"+":"−")+num(Math.abs(r.change_pp),1)+" pp</td><td class='n'>"+

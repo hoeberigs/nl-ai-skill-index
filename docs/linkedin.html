@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>NL AI Skill Index — LinkedIn one-pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#101214;--bg2:#171a1d;--hair:#2a2f34;--ink:#eceadf;--ink2:#b9b5a6;--ink3:#8b8779;
+      --rise:#3ddc97;--fall:#ff8a5b;--neutral:#7ab8ff}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--bg)}
+body{font-family:'Anybody',sans-serif;color:var(--ink);font-variant-numeric:tabular-nums;
+     -webkit-font-smoothing:antialiased;padding:64px 68px;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:baseline;font-size:19px;
+     letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);padding-bottom:18px;
+     border-bottom:2px solid var(--ink)}
+.top b{color:var(--ink);font-weight:700}
+h1{font-size:74px;font-weight:800;line-height:1.02;letter-spacing:-.028em;margin-top:38px;max-width:16ch}
+.sub{margin-top:22px;font-size:26px;line-height:1.4;color:var(--ink2);max-width:36ch}
+.sub b{color:var(--ink);font-weight:600}
+
+.movers{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.mv{background:var(--bg2);border-left:5px solid var(--hair);padding:22px 24px 20px}
+.mv.up{border-color:var(--rise)} .mv.down{border-color:var(--fall)}
+.mv .k{font-size:18px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.mv .n{margin-top:8px;font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.mv.up .n{color:var(--rise)} .mv.down .n{color:var(--fall)}
+.mv .n small{font-size:22px;color:var(--ink2);font-weight:500;letter-spacing:0}
+.mv .t{margin-top:8px;font-size:19px;color:var(--ink2);line-height:1.35}
+
+.rank{margin-top:34px;flex:1}
+.cap{display:flex;justify-content:space-between;font-size:18px;letter-spacing:.12em;
+     text-transform:uppercase;color:var(--ink3);padding-bottom:10px;border-bottom:1px solid var(--hair)}
+.row{display:grid;grid-template-columns:230px 1fr 92px;gap:16px;align-items:center;padding:9px 0;
+     border-bottom:1px solid var(--hair);font-size:22px}
+.row .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-left:9px;padding:2px 7px;border-radius:2px}
+.tag.up{background:rgba(61,220,151,.16);color:var(--rise)} .tag.down{background:rgba(255,138,91,.16);color:var(--fall)}
+.bar{height:18px;background:var(--bg2);border-radius:2px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--ink3);border-radius:2px;display:block}
+.bar i.up{background:var(--rise)} .bar i.down{background:var(--fall)}
+.vl{text-align:right;font-weight:700}
+
+.foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:26px;padding-top:18px;
+      border-top:2px solid var(--ink);font-size:19px;color:var(--ink3);letter-spacing:.06em}
+.foot b{color:var(--ink);font-weight:600;letter-spacing:0;font-size:22px}
+.foot .r{text-align:right;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="top"><span><b>NL AI Skill Index</b></span><span id="meta">…</span></div>
+<h1 id="kop">…</h1>
+<p class="sub" id="sub">…</p>
+<div class="movers" id="movers"></div>
+<div class="rank">
+  <div class="cap"><span id="capL">…</span><span id="capR">…</span></div>
+  <div id="rows"></div>
+</div>
+<div class="foot">
+  <div><b>hoeberigs.github.io/nl-ai-skill-index</b><br>open data · open code · wekelijks ververst</div>
+  <div class="r" id="footR">…</div>
+</div>
+<script>
+(function(){
+function el(i){return document.getElementById(i);}
+function nl(x,d){return (100*x).toFixed(d==null?1:d).replace(".",",")+"%";}
+function num(x,d){return Number(x).toFixed(d).replace(".",",");}
+var M=["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
+function mon(m){return M[parseInt(m.slice(5,7),10)-1];}
+fetch("data.json").then(function(r){return r.json();}).then(function(D){
+  var p=D.panel,idx=D.skill_index.mentions,sp=D.skill_index.specificity;
+  var m0=mon(idx.months[0]),m1=mon(idx.months[idx.months.length-1]);
+  el("meta").textContent=p.n_identities.toLocaleString("nl-NL")+" vacatures · "+p.n_runs+" dagelijkse metingen";
+  el("kop").textContent="Nederlandse AI-vacatures ruilen de oude stack in voor agents";
+  var ris=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp>0;});
+  var fal=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp<0;});
+  var v0=sp.mean_skills[0],v1=sp.mean_skills[sp.mean_skills.length-1];
+  el("sub").innerHTML="Zes maanden lang elke dag de Nederlandse vacaturesites gemeten. "+
+    "Van "+idx.skills.length+" technologieën bewogen er <b>"+["nul","één","twee","drie","vier","vijf"][ris.length+fal.length]+"</b> aantoonbaar; de rest bewoog niet meer dan ruis. "+
+    "Tegelijk noemt een vacature <b>minder</b> concrete tools dan in "+m0+".";
+
+  var cards=[];
+  ris.slice(0,1).forEach(function(r){cards.push({cls:"up",k:r.skill+" · stijgt",
+    n:nl(r.shares[0],1)+' <small>→</small> '+nl(r.shares[r.shares.length-1],1),
+    t:"van alle technologievermeldingen, "+m0+" → "+m1+". Robuust na correctie voor "+idx.skills.length+" toetsen."});});
+  fal.slice(0,1).forEach(function(r){cards.push({cls:"down",k:r.skill+" · daalt",
+    n:nl(r.shares[0],1)+' <small>→</small> '+nl(r.shares[r.shares.length-1],1),
+    t:"Werkgevers gebruiken nieuwere woorden voor hetzelfde werk."});});
+  cards.push({cls:"down",k:"tools per vacature",n:num(v0,2)+' <small>→</small> '+num(v1,2),
+    t:"Vacatures worden vager over tooling, niet korter."});
+  var cs=D.survival_by_cluster.slice().sort(function(a,b){return b.rmst_90-a.rmst_90;});
+  cards.push({cls:"up",k:"langst open",n:num(cs[0].rmst_90,0)+' <small>dagen</small>',
+    t:cs[0].name+"-vacatures staan het langst open; uitzendwerk sluit in "+num(cs[cs.length-1].rmst_90,0)+"."});
+  el("movers").innerHTML=cards.map(function(c){return '<div class="mv '+c.cls+'"><div class="k">'+c.k+
+    '</div><div class="n">'+c.n+'</div><div class="t">'+c.t+'</div></div>';}).join("");
+
+  var top=idx.skills.slice(0,9),max=top[0].shares[top[0].shares.length-1];
+  el("capL").textContent="Aandeel van alle technologievermeldingen · "+m1;
+  el("capR").textContent="top "+top.length+" van "+idx.skills.length;
+  el("rows").innerHTML=top.map(function(r){
+    var v=r.shares[r.shares.length-1],cls=r.robust?(r.trend.slope_pp>0?"up":"down"):"";
+    var tag=r.robust?'<span class="tag '+cls+'">'+(r.trend.slope_pp>0?"stijgt":"daalt")+'</span>':"";
+    return '<div class="row"><div class="nm">'+r.skill+tag+'</div><div class="bar"><i class="'+cls+'" style="width:'+(100*v/max)+'%"></i></div><div class="vl">'+nl(v,1)+'</div></div>';
+  }).join("");
+  el("footR").innerHTML=p.first_run.slice(0,7)+" t/m "+p.last_run.slice(0,7)+"<br>"+
+    "trendtoets over alle maanden · FDR-gecorrigeerd";
+});
+})();
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-06T12:33:51Z",
+ "generated_at": "2026-09-06T18:16:37Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -636,7 +636,7 @@
    "6": 0.1661,
    "7": 0.1626,
    "8": 0.1622,
-   "9": 0.1556,
+   "9": 0.1469,
    "10": 0.151,
    "11": 0.1439,
    "12": 0.1447,
@@ -679,10 +679,10 @@
     "engineer",
     "data",
     "senior",
-    "intelligence",
     "software",
-    "science",
-    "artificial"
+    "intelligence",
+    "artificial",
+    "science"
    ],
    "3": [
     "learning",
@@ -710,7 +710,7 @@
     "uitzendbureau",
     "medewerker",
     "manager",
-    "synsel",
+    "synsel techniek",
     "product",
     "speaking"
    ]
@@ -725,12 +725,12 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.5556,
-  "accuracy": 0.6243,
+  "macro_f1": 0.5536,
+  "accuracy": 0.6202,
   "n_train": 1677,
   "n_other": 480,
-  "n_rescued": 86,
-  "rescue_rate": 0.1792,
+  "n_rescued": 85,
+  "rescue_rate": 0.1771,
   "threshold": 0.6,
   "rescued_breakdown": {
    "data-general": 33,
@@ -740,38 +740,37 @@
    "ai-researcher": 5,
    "ml-engineer": 3,
    "data-engineer": 1,
-   "data-scientist": 1,
-   "ai-engineer": 1
+   "data-scientist": 1
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.6076,
-    "recall": 0.6095,
-    "f1-score": 0.6086,
-    "support": 315.0
+    "precision": 0.604,
+    "recall": 0.5865,
+    "f1-score": 0.5951,
+    "support": 312.0
    },
    "ai-general": {
-    "precision": 0.6638,
-    "recall": 0.6142,
-    "f1-score": 0.638,
+    "precision": 0.6695,
+    "recall": 0.622,
+    "f1-score": 0.6449,
     "support": 254.0
    },
    "ai-manager": {
-    "precision": 0.3191,
+    "precision": 0.3125,
     "recall": 0.5,
-    "f1-score": 0.3896,
+    "f1-score": 0.3846,
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.2619,
-    "recall": 0.4714,
-    "f1-score": 0.3367,
+    "precision": 0.252,
+    "recall": 0.4571,
+    "f1-score": 0.3249,
     "support": 70.0
    },
    "ai-researcher": {
-    "precision": 0.5177,
-    "recall": 0.5984,
-    "f1-score": 0.5551,
+    "precision": 0.5172,
+    "recall": 0.6148,
+    "f1-score": 0.5618,
     "support": 122.0
    },
    "cv-engineer": {
@@ -781,28 +780,28 @@
     "support": 58.0
    },
    "data-engineer": {
-    "precision": 0.5373,
+    "precision": 0.5625,
     "recall": 0.6923,
-    "f1-score": 0.605,
+    "f1-score": 0.6207,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.2558,
+    "precision": 0.25,
     "recall": 0.4074,
-    "f1-score": 0.3143,
+    "f1-score": 0.3099,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.7118,
-    "recall": 0.6613,
-    "f1-score": 0.6856,
+    "precision": 0.7049,
+    "recall": 0.6548,
+    "f1-score": 0.6789,
     "support": 310.0
    },
    "ml-engineer": {
-    "precision": 0.8318,
-    "recall": 0.631,
-    "f1-score": 0.7176,
-    "support": 439.0
+    "precision": 0.8152,
+    "recall": 0.629,
+    "f1-score": 0.7101,
+    "support": 442.0
    }
   }
  },
@@ -1669,6 +1668,8 @@
  "skill_index": {
   "adverts": {
    "basis": "adverts",
+   "n_tests": 25,
+   "fdr_method": "Benjamini-Hochberg, FDR 5%",
    "months": [
     "2026-04",
     "2026-05",
@@ -1727,10 +1728,13 @@
      "trend": {
       "z": 4.339,
       "p": 1e-05,
-      "slope_pp": 3.39
+      "slope_pp": 3.39,
+      "fdr_robust": true,
+      "bonferroni_robust": true
      },
      "total_mentions": 274,
-     "significant": true
+     "significant": true,
+     "robust": true
     },
     {
      "skill": "LLM",
@@ -1768,10 +1772,13 @@
      "trend": {
       "z": -0.084,
       "p": 0.93301,
-      "slope_pp": -0.14
+      "slope_pp": -0.14,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 330,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Python",
@@ -1809,10 +1816,13 @@
      "trend": {
       "z": -2.607,
       "p": 0.00912,
-      "slope_pp": -2.4
+      "slope_pp": -2.4,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 384,
-     "significant": true
+     "significant": true,
+     "robust": false
     },
     {
      "skill": "Azure",
@@ -1850,10 +1860,13 @@
      "trend": {
       "z": 0.276,
       "p": 0.78285,
-      "slope_pp": 0.23
+      "slope_pp": 0.23,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 188,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "RAG",
@@ -1891,10 +1904,13 @@
      "trend": {
       "z": 0.942,
       "p": 0.34634,
-      "slope_pp": 0.67
+      "slope_pp": 0.67,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 159,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Fine-tuning",
@@ -1932,10 +1948,13 @@
      "trend": {
       "z": 1.769,
       "p": 0.07684,
-      "slope_pp": 0.91
+      "slope_pp": 0.91,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 89,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Deep Learning",
@@ -1973,10 +1992,13 @@
      "trend": {
       "z": -0.366,
       "p": 0.71448,
-      "slope_pp": -0.21
+      "slope_pp": -0.21,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 116,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Computer Vision",
@@ -2014,10 +2036,13 @@
      "trend": {
       "z": -0.842,
       "p": 0.39959,
-      "slope_pp": -0.45
+      "slope_pp": -0.45,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 120,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "CI/CD",
@@ -2055,10 +2080,13 @@
      "trend": {
       "z": -1.31,
       "p": 0.19017,
-      "slope_pp": -0.67
+      "slope_pp": -0.67,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 138,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "AWS",
@@ -2096,10 +2124,13 @@
      "trend": {
       "z": -0.781,
       "p": 0.43498,
-      "slope_pp": -0.36
+      "slope_pp": -0.36,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 108,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Embeddings",
@@ -2137,10 +2168,13 @@
      "trend": {
       "z": 0.464,
       "p": 0.64253,
-      "slope_pp": 0.26
+      "slope_pp": 0.26,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 84,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Databricks",
@@ -2178,10 +2212,13 @@
      "trend": {
       "z": -0.268,
       "p": 0.78858,
-      "slope_pp": -0.03
+      "slope_pp": -0.03,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 96,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "OpenAI",
@@ -2219,10 +2256,13 @@
      "trend": {
       "z": -0.006,
       "p": 0.99483,
-      "slope_pp": -0.03
+      "slope_pp": -0.03,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 89,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "PyTorch",
@@ -2260,10 +2300,13 @@
      "trend": {
       "z": -0.998,
       "p": 0.31834,
-      "slope_pp": -0.52
+      "slope_pp": -0.52,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 86,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "GCP",
@@ -2301,10 +2344,13 @@
      "trend": {
       "z": 0.818,
       "p": 0.41318,
-      "slope_pp": 0.36
+      "slope_pp": 0.36,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 74,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Anthropic",
@@ -2342,10 +2388,13 @@
      "trend": {
       "z": 0.656,
       "p": 0.5118,
-      "slope_pp": 0.29
+      "slope_pp": 0.29,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 49,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "NLP",
@@ -2383,10 +2432,13 @@
      "trend": {
       "z": -3.526,
       "p": 0.00042,
-      "slope_pp": -1.94
+      "slope_pp": -1.94,
+      "fdr_robust": true,
+      "bonferroni_robust": true
      },
      "total_mentions": 106,
-     "significant": true
+     "significant": true,
+     "robust": true
     },
     {
      "skill": "Prompt Engineering",
@@ -2424,10 +2476,13 @@
      "trend": {
       "z": -0.718,
       "p": 0.47258,
-      "slope_pp": -0.43
+      "slope_pp": -0.43,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 92,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Agile",
@@ -2465,10 +2520,13 @@
      "trend": {
       "z": -1.83,
       "p": 0.06729,
-      "slope_pp": -0.74
+      "slope_pp": -0.74,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 67,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "SQL",
@@ -2506,10 +2564,13 @@
      "trend": {
       "z": -2.496,
       "p": 0.01257,
-      "slope_pp": -1.36
+      "slope_pp": -1.36,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 91,
-     "significant": true
+     "significant": true,
+     "robust": false
     },
     {
      "skill": "LangChain",
@@ -2547,10 +2608,13 @@
      "trend": {
       "z": -1.011,
       "p": 0.31217,
-      "slope_pp": -0.52
+      "slope_pp": -0.52,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 68,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Spark",
@@ -2588,10 +2652,13 @@
      "trend": {
       "z": -1.507,
       "p": 0.13178,
-      "slope_pp": -0.7
+      "slope_pp": -0.7,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 63,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Git",
@@ -2629,10 +2696,13 @@
      "trend": {
       "z": -0.42,
       "p": 0.67417,
-      "slope_pp": -0.19
+      "slope_pp": -0.19,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 43,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Docker",
@@ -2670,10 +2740,13 @@
      "trend": {
       "z": -1.416,
       "p": 0.15682,
-      "slope_pp": -0.65
+      "slope_pp": -0.65,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 60,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Kubernetes",
@@ -2711,15 +2784,20 @@
      "trend": {
       "z": -2.908,
       "p": 0.00363,
-      "slope_pp": -1.39
+      "slope_pp": -1.39,
+      "fdr_robust": true,
+      "bonferroni_robust": false
      },
      "total_mentions": 71,
-     "significant": true
+     "significant": true,
+     "robust": true
     }
    ]
   },
   "mentions": {
    "basis": "mentions",
+   "n_tests": 25,
+   "fdr_method": "Benjamini-Hochberg, FDR 5%",
    "months": [
     "2026-04",
     "2026-05",
@@ -2778,10 +2856,13 @@
      "trend": {
       "z": 4.845,
       "p": 0.0,
-      "slope_pp": 1.55
+      "slope_pp": 1.55,
+      "fdr_robust": true,
+      "bonferroni_robust": true
      },
      "total_mentions": 274,
-     "significant": true
+     "significant": true,
+     "robust": true
     },
     {
      "skill": "LLM",
@@ -2819,10 +2900,13 @@
      "trend": {
       "z": 0.847,
       "p": 0.39727,
-      "slope_pp": 0.28
+      "slope_pp": 0.28,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 330,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Python",
@@ -2860,10 +2944,13 @@
      "trend": {
       "z": -1.306,
       "p": 0.19153,
-      "slope_pp": -0.52
+      "slope_pp": -0.52,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 384,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Azure",
@@ -2901,10 +2988,13 @@
      "trend": {
       "z": 0.943,
       "p": 0.34593,
-      "slope_pp": 0.28
+      "slope_pp": 0.28,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 188,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "RAG",
@@ -2942,10 +3032,13 @@
      "trend": {
       "z": 1.527,
       "p": 0.12672,
-      "slope_pp": 0.42
+      "slope_pp": 0.42,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 159,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Fine-tuning",
@@ -2983,10 +3076,13 @@
      "trend": {
       "z": 2.196,
       "p": 0.02813,
-      "slope_pp": 0.44
+      "slope_pp": 0.44,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 89,
-     "significant": true
+     "significant": true,
+     "robust": false
     },
     {
      "skill": "Deep Learning",
@@ -3024,10 +3120,13 @@
      "trend": {
       "z": 0.172,
       "p": 0.86332,
-      "slope_pp": 0.04
+      "slope_pp": 0.04,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 116,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Computer Vision",
@@ -3065,10 +3164,13 @@
      "trend": {
       "z": -0.281,
       "p": 0.77859,
-      "slope_pp": -0.04
+      "slope_pp": -0.04,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 120,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "CI/CD",
@@ -3106,10 +3208,13 @@
      "trend": {
       "z": -0.688,
       "p": 0.49121,
-      "slope_pp": -0.1
+      "slope_pp": -0.1,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 138,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "AWS",
@@ -3147,10 +3252,13 @@
      "trend": {
       "z": -0.252,
       "p": 0.8007,
-      "slope_pp": -0.01
+      "slope_pp": -0.01,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 108,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Embeddings",
@@ -3188,10 +3296,13 @@
      "trend": {
       "z": 0.903,
       "p": 0.36657,
-      "slope_pp": 0.19
+      "slope_pp": 0.19,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 84,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Databricks",
@@ -3229,10 +3340,13 @@
      "trend": {
       "z": 0.217,
       "p": 0.82859,
-      "slope_pp": 0.1
+      "slope_pp": 0.1,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 96,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "OpenAI",
@@ -3270,10 +3384,13 @@
      "trend": {
       "z": 0.454,
       "p": 0.64963,
-      "slope_pp": 0.08
+      "slope_pp": 0.08,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 89,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "PyTorch",
@@ -3311,10 +3428,13 @@
      "trend": {
       "z": -0.527,
       "p": 0.59841,
-      "slope_pp": -0.11
+      "slope_pp": -0.11,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 86,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "GCP",
@@ -3352,10 +3472,13 @@
      "trend": {
       "z": 1.225,
       "p": 0.22065,
-      "slope_pp": 0.21
+      "slope_pp": 0.21,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 74,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Anthropic",
@@ -3393,10 +3516,13 @@
      "trend": {
       "z": 0.99,
       "p": 0.32215,
-      "slope_pp": 0.17
+      "slope_pp": 0.17,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 49,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "NLP",
@@ -3434,10 +3560,13 @@
      "trend": {
       "z": -2.937,
       "p": 0.00331,
-      "slope_pp": -0.63
+      "slope_pp": -0.63,
+      "fdr_robust": true,
+      "bonferroni_robust": false
      },
      "total_mentions": 106,
-     "significant": true
+     "significant": true,
+     "robust": true
     },
     {
      "skill": "Prompt Engineering",
@@ -3475,10 +3604,13 @@
      "trend": {
       "z": -0.235,
       "p": 0.81409,
-      "slope_pp": -0.08
+      "slope_pp": -0.08,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 92,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Agile",
@@ -3516,10 +3648,13 @@
      "trend": {
       "z": -1.407,
       "p": 0.15947,
-      "slope_pp": -0.21
+      "slope_pp": -0.21,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 67,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "SQL",
@@ -3557,10 +3692,13 @@
      "trend": {
       "z": -1.98,
       "p": 0.04771,
-      "slope_pp": -0.44
+      "slope_pp": -0.44,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 91,
-     "significant": true
+     "significant": true,
+     "robust": false
     },
     {
      "skill": "LangChain",
@@ -3598,10 +3736,13 @@
      "trend": {
       "z": -0.596,
       "p": 0.55151,
-      "slope_pp": -0.14
+      "slope_pp": -0.14,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 68,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Spark",
@@ -3639,10 +3780,13 @@
      "trend": {
       "z": -1.103,
       "p": 0.27023,
-      "slope_pp": -0.21
+      "slope_pp": -0.21,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 63,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Git",
@@ -3680,10 +3824,13 @@
      "trend": {
       "z": -0.1,
       "p": 0.92066,
-      "slope_pp": -0.03
+      "slope_pp": -0.03,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 43,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Docker",
@@ -3721,10 +3868,13 @@
      "trend": {
       "z": -1.023,
       "p": 0.3063,
-      "slope_pp": -0.19
+      "slope_pp": -0.19,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 60,
-     "significant": false
+     "significant": false,
+     "robust": false
     },
     {
      "skill": "Kubernetes",
@@ -3762,10 +3912,13 @@
      "trend": {
       "z": -2.456,
       "p": 0.01406,
-      "slope_pp": -0.47
+      "slope_pp": -0.47,
+      "fdr_robust": false,
+      "bonferroni_robust": false
      },
      "total_mentions": 71,
-     "significant": true
+     "significant": true,
+     "robust": false
     }
    ]
   },
@@ -5636,7 +5789,7 @@
   },
   {
    "x": 0.0477,
-   "y": 0.4155,
+   "y": 0.4156,
    "c": 2,
    "t": "MLOps Engineer - AI Trainer - Freelance - 8-20hrs/week - Remote",
    "co": "10x.Team",
@@ -6300,7 +6453,7 @@
   },
   {
    "x": 0.1,
-   "y": 0.4989,
+   "y": 0.499,
    "c": 2,
    "t": "Meewerkstage AI Prototyping & Business Value",
    "co": "PostNL Hoofdkantoor",
@@ -7924,7 +8077,7 @@
   },
   {
    "x": -0.6466,
-   "y": -0.3368,
+   "y": -0.3367,
    "c": 4,
    "t": "Data Engineer - Barendrecht",
    "co": "The Greenery B.V.",
@@ -8179,7 +8332,7 @@
    "d": 5
   },
   {
-   "x": -0.6702,
+   "x": -0.6701,
    "y": 0.5957,
    "c": 5,
    "t": "Production operator - 5 shifts",
@@ -8452,7 +8605,7 @@
   },
   {
    "x": -0.4496,
-   "y": -0.697,
+   "y": -0.6971,
    "c": 4,
    "t": "Data Engineer Senior Data Scientist Data Management Specialist",
    "co": "Huxley",
@@ -9379,7 +9532,7 @@
    "d": 68
   },
   {
-   "x": -0.0629,
+   "x": -0.0628,
    "y": 0.5984,
    "c": 2,
    "t": "Applied AI Engineer - LLM & NLP",
@@ -9619,7 +9772,7 @@
    "d": 52
   },
   {
-   "x": -0.4795,
+   "x": -0.4794,
    "y": 0.3317,
    "c": 5,
    "t": "Payroll Manager",
@@ -10564,7 +10717,7 @@
   },
   {
    "x": -0.5207,
-   "y": 0.0331,
+   "y": 0.033,
    "c": 5,
    "t": "Technisch Specialist Militaire Bovenwater Sensoren",
    "co": "Ministerie van Defensie",
@@ -12891,7 +13044,7 @@
    "d": 4
   },
   {
-   "x": 0.1548,
+   "x": 0.1547,
    "y": 0.4201,
    "c": 2,
    "t": "AI & Deep Learning Intern",
@@ -13411,7 +13564,7 @@
    "d": 3
   },
   {
-   "x": 0.3936,
+   "x": 0.3937,
    "y": 0.1596,
    "c": 0,
    "t": "Remote Private Equity Associate ($100/hr) - 75405",
@@ -14691,7 +14844,7 @@
    "d": 1
   },
   {
-   "x": -0.3711,
+   "x": -0.3712,
    "y": -0.1562,
    "c": 1,
    "t": "Consultant | GenAI Engineer | Technology & Innovation",
@@ -15803,7 +15956,7 @@
    "d": 10
   },
   {
-   "x": 0.2747,
+   "x": 0.2746,
    "y": -0.5534,
    "c": 3,
    "t": "Machine Learning Engineer",
@@ -16868,7 +17021,7 @@
   },
   {
    "x": 0.3492,
-   "y": 0.6747,
+   "y": 0.6748,
    "c": 2,
    "t": "Architect focus op AI",
    "co": "EIFFEL",
@@ -17307,7 +17460,7 @@
    "d": 17
   },
   {
-   "x": 0.1809,
+   "x": 0.1808,
    "y": -0.2001,
    "c": 2,
    "t": "AI & Data Science Traineeship",
@@ -18828,7 +18981,7 @@
   },
   {
    "x": 0.3911,
-   "y": -0.0928,
+   "y": -0.0929,
    "c": 0,
    "t": "Data Platform Engineer",
    "co": "kaiko.ai",
@@ -20419,7 +20572,7 @@
    "d": 11
   },
   {
-   "x": 0.0231,
+   "x": 0.023,
    "y": 0.3206,
    "c": 2,
    "t": "Internship - AI & Market Signals",
@@ -20996,7 +21149,7 @@
   },
   {
    "x": 0.4658,
-   "y": 0.6457,
+   "y": 0.6456,
    "c": 2,
    "t": "Microsoft AI Engineer",
    "co": "Arrow Electronics, Inc.",
@@ -21195,7 +21348,7 @@
    "d": 1
   },
   {
-   "x": 0.1458,
+   "x": 0.1457,
    "y": 0.3735,
    "c": 2,
    "t": "AI Research Intern (Neuroscience)",
@@ -23150,5 +23303,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 470.8
+ "runtime_seconds": 165.8
 }
