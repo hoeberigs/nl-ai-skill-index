@@ -415,3 +415,39 @@ def specificity(panel: Panel, spells: list[Spell]) -> dict:
         ],
         "n": [len(per[m]) for m in months],
     }
+
+
+PROVIDER_GROUPS = ["OpenAI", "Anthropic", "Google AI", "Microsoft Copilot",
+                   "AWS Bedrock", "Meta Llama", "Mistral", "Other frontier"]
+
+
+def provider_shares(panel: Panel, spells: list[Spell]) -> dict:
+    """Share of described vacancies naming each model provider, first and last month.
+
+    Separate from the skill index on purpose: providers are a fixed, named set
+    the reader will ask about, so none of them should vanish behind the
+    minimum-count threshold that keeps the trend tests honest. No trend claim
+    is made here, only the current share and where it started.
+    """
+    uni = described(spells)
+    months = sorted({month_of(panel, s.start_idx) for s in uni})
+    tot = {m: 0 for m in months}
+    cnt: dict[str, dict[str, int]] = {g: {m: 0 for m in months} for g in PROVIDER_GROUPS}
+    for s in uni:
+        m = month_of(panel, s.start_idx)
+        tot[m] += 1
+        for g in _skills_of(s) & set(PROVIDER_GROUPS):
+            cnt[g][m] += 1
+    use = [m for m in months if tot[m] >= MIN_MONTH_SAMPLE]
+    if not use:
+        return {"months": [], "groups": []}
+    out = []
+    for g in PROVIDER_GROUPS:
+        first, last = cnt[g][use[0]], cnt[g][use[-1]]
+        total = sum(cnt[g][m] for m in use)
+        if total == 0:
+            continue
+        out.append({"provider": g, "first_share": round(first / tot[use[0]], 4),
+                    "last_share": round(last / tot[use[-1]], 4), "vacancies": total})
+    out.sort(key=lambda d: -d["last_share"])
+    return {"months": [use[0], use[-1]], "groups": out}

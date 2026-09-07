@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-07T09:39:13Z",
+ "generated_at": "2026-09-07T10:01:33Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -710,7 +710,7 @@
     "uitzendbureau",
     "medewerker",
     "manager",
-    "synsel",
+    "synsel techniek",
     "product",
     "speaking"
    ]
@@ -725,8 +725,8 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.5631,
-  "accuracy": 0.6315,
+  "macro_f1": 0.552,
+  "accuracy": 0.6172,
   "n_train": 1677,
   "n_other": 480,
   "n_rescued": 89,
@@ -735,74 +735,73 @@
   "rescued_breakdown": {
    "data-general": 36,
    "ai-manager": 16,
-   "ai-product": 14,
-   "ai-general": 12,
+   "ai-general": 14,
+   "ai-product": 13,
    "ai-researcher": 5,
    "ml-engineer": 3,
    "data-engineer": 1,
-   "data-scientist": 1,
-   "ai-engineer": 1
+   "data-scientist": 1
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.6246,
-    "recall": 0.6266,
-    "f1-score": 0.6256,
-    "support": 316.0
+    "precision": 0.5867,
+    "recall": 0.5623,
+    "f1-score": 0.5742,
+    "support": 313.0
    },
    "ai-general": {
-    "precision": 0.6695,
-    "recall": 0.6324,
-    "f1-score": 0.6504,
+    "precision": 0.6653,
+    "recall": 0.6364,
+    "f1-score": 0.6505,
     "support": 253.0
    },
    "ai-manager": {
-    "precision": 0.3261,
+    "precision": 0.2941,
     "recall": 0.5,
-    "f1-score": 0.3947,
+    "f1-score": 0.3704,
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.2742,
+    "precision": 0.2595,
     "recall": 0.4857,
-    "f1-score": 0.3505,
+    "f1-score": 0.3383,
     "support": 70.0
    },
    "ai-researcher": {
-    "precision": 0.5137,
+    "precision": 0.5208,
     "recall": 0.6148,
-    "f1-score": 0.5597,
+    "f1-score": 0.5639,
     "support": 122.0
    },
    "cv-engineer": {
-    "precision": 0.5976,
+    "precision": 0.6125,
     "recall": 0.8448,
-    "f1-score": 0.7,
+    "f1-score": 0.7101,
     "support": 58.0
    },
    "data-engineer": {
-    "precision": 0.5714,
+    "precision": 0.5902,
     "recall": 0.6923,
-    "f1-score": 0.6261,
+    "f1-score": 0.6372,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.2619,
-    "recall": 0.4074,
-    "f1-score": 0.3188,
+    "precision": 0.2381,
+    "recall": 0.3704,
+    "f1-score": 0.2899,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.7295,
-    "recall": 0.6592,
-    "f1-score": 0.6926,
-    "support": 311.0
+    "precision": 0.7003,
+    "recall": 0.6484,
+    "f1-score": 0.6734,
+    "support": 310.0
    },
    "ml-engineer": {
-    "precision": 0.819,
-    "recall": 0.6301,
-    "f1-score": 0.7123,
-    "support": 438.0
+    "precision": 0.8201,
+    "recall": 0.629,
+    "f1-score": 0.7119,
+    "support": 442.0
    }
   }
  },
@@ -4599,6 +4598,62 @@
    "reposts": 1.0
   }
  ],
+ "providers": {
+  "months": [
+   "2026-04",
+   "2026-08"
+  ],
+  "groups": [
+   {
+    "provider": "OpenAI",
+    "first_share": 0.0726,
+    "last_share": 0.0697,
+    "vacancies": 89
+   },
+   {
+    "provider": "Anthropic",
+    "first_share": 0.0379,
+    "last_share": 0.0547,
+    "vacancies": 49
+   },
+   {
+    "provider": "Mistral",
+    "first_share": 0.0,
+    "last_share": 0.0249,
+    "vacancies": 8
+   },
+   {
+    "provider": "Microsoft Copilot",
+    "first_share": 0.0221,
+    "last_share": 0.0149,
+    "vacancies": 28
+   },
+   {
+    "provider": "AWS Bedrock",
+    "first_share": 0.0126,
+    "last_share": 0.01,
+    "vacancies": 16
+   },
+   {
+    "provider": "Google AI",
+    "first_share": 0.0315,
+    "last_share": 0.005,
+    "vacancies": 27
+   },
+   {
+    "provider": "Other frontier",
+    "first_share": 0.0,
+    "last_share": 0.005,
+    "vacancies": 1
+   },
+   {
+    "provider": "Meta Llama",
+    "first_share": 0.0032,
+    "last_share": 0.0,
+    "vacancies": 5
+   }
+  ]
+ },
  "weekly": {
   "weeks": [
    "2026-W13",
@@ -5790,7 +5845,7 @@
   },
   {
    "x": 0.0477,
-   "y": 0.4155,
+   "y": 0.4156,
    "c": 2,
    "t": "MLOps Engineer - AI Trainer - Freelance - 8-20hrs/week - Remote",
    "co": "10x.Team",
@@ -8078,7 +8133,7 @@
   },
   {
    "x": -0.6466,
-   "y": -0.3368,
+   "y": -0.3367,
    "c": 4,
    "t": "Data Engineer - Barendrecht",
    "co": "The Greenery B.V.",
@@ -9533,7 +9588,7 @@
    "d": 68
   },
   {
-   "x": -0.0629,
+   "x": -0.0628,
    "y": 0.5984,
    "c": 2,
    "t": "Applied AI Engineer - LLM & NLP",
@@ -9773,7 +9828,7 @@
    "d": 52
   },
   {
-   "x": -0.4795,
+   "x": -0.4794,
    "y": 0.3317,
    "c": 5,
    "t": "Payroll Manager",
@@ -13565,7 +13620,7 @@
    "d": 3
   },
   {
-   "x": 0.3936,
+   "x": 0.3937,
    "y": 0.1596,
    "c": 0,
    "t": "Remote Private Equity Associate ($100/hr) - 75405",
@@ -15957,7 +16012,7 @@
    "d": 10
   },
   {
-   "x": 0.2747,
+   "x": 0.2746,
    "y": -0.5534,
    "c": 3,
    "t": "Machine Learning Engineer",
@@ -17461,7 +17516,7 @@
    "d": 17
   },
   {
-   "x": 0.1809,
+   "x": 0.1808,
    "y": -0.2001,
    "c": 2,
    "t": "AI & Data Science Traineeship",
@@ -20573,7 +20628,7 @@
    "d": 11
   },
   {
-   "x": 0.0231,
+   "x": 0.023,
    "y": 0.3206,
    "c": 2,
    "t": "Internship - AI & Market Signals",
@@ -23304,5 +23359,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 343.0
+ "runtime_seconds": 173.2
 }

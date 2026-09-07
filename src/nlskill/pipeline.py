@@ -18,6 +18,7 @@ from .market import (
     composition,
     cooccurrence,
     filter_ai,
+    provider_shares,
     rank_movement,
     skill_index,
     specificity,
@@ -183,6 +184,7 @@ def run(db_path: Path, out_path: Path, cache_dir: Path, quick: bool = False) -> 
         f: composition(panel, ai_spells, f) for f in ("seniority", "remote", "sector")
     }
     payload["employers"] = top_employers(ai_spells)
+    payload["providers"] = provider_shares(panel, ai_spells)
 
     # --- Composition over time --------------------------------------------
     group_of = {s.key: clusters.names.get(cluster_of.get(s.key, -1), "Other") for s in reps}

@@ -65,7 +65,7 @@ function num(x,d){return Number(x).toFixed(d).replace(".",",");}
 function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
 var M=["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
 function mon(m){return M[parseInt(m.slice(5,7),10)-1];}
-fetch("data.json").then(function(r){return r.json();}).then(function(D){
+fetch("data.json",{cache:"no-store"}).then(function(r){return r.json();}).then(function(D){
   var p=D.panel,idx=D.skill_index.adverts,sp=D.skill_index.specificity;
   var A={};idx.skills.forEach(function(r){A[r.skill]=r;});
   var m0=mon(idx.months[0]),m1=mon(idx.months[idx.months.length-1]);
@@ -73,7 +73,7 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
   var ag=A["AI Agents"],nlp=A["NLP"],ft=A["Fine-tuning"],py=A["Python"];
   var cs=D.survival_by_cluster.slice().sort(function(a,b){return b.rmst_90-a.rmst_90;});
   var comp=D.composition.seniority.series, sen=comp.senior||[], lead=comp.lead||[];
-  var SRC="Bronnen: LinkedIn en Jobbird (NL), dagelijks gescraped";
+  var SRC="Bronnen: LinkedIn en Jobbird (NL), dagelijks verzameld";
   var top=function(){return '<div class="top"><span><b>NL AI Skill Index</b></span><span>'+
     p.n_identities.toLocaleString("nl-NL")+' vacatures · '+p.n_runs+' dagelijkse metingen</span></div>';};
   var foot=function(n,N){return '<div class="foot"><span><b>hoeberigs.github.io/nl-ai-skill-index</b> · '+SRC+'</span><span class="pg">'+n+' / '+N+'</span></div>';};
@@ -114,13 +114,14 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
 
   // 4 — who is being sought
   var pairs=D.cooccurrence.pairs.slice(0,4).map(function(q){return '<div class="row"><div class="nm">'+esc(q.a+' + '+q.b)+'</div><div class="bar"><i class="nt" style="width:'+(100*q.lift/D.cooccurrence.pairs[0].lift)+'%"></i></div><div class="vl">'+num(q.lift,1)+'×</div></div>';}).join("");
-  var prov=["OpenAI","Anthropic","Google AI","Microsoft Copilot"].filter(function(k){return A[k];}).map(function(k){return '<div class="row"><div class="nm">'+k+'</div><div class="bar"><i style="width:'+(100*last(A[k])/last(A["OpenAI"]))+'%"></i></div><div class="vl">'+nl(last(A[k]),1)+'</div></div>';}).join("");
+  var PG=(D.providers&&D.providers.groups)||[]; var pmax=PG.length?PG[0].last_share:1;
+  var prov=PG.slice(0,6).map(function(g){return '<div class="row"><div class="nm">'+esc(g.provider)+'</div><div class="bar"><i style="width:'+(100*g.last_share/pmax)+'%"></i></div><div class="vl">'+nl(g.last_share,1)+'</div></div>';}).join("");
   S.push(top()+'<div class="k">Wie er gezocht wordt</div><h2>Meer senior, minder lead. En vacatures worden vager.</h2>'+
     '<div class="grid2">'+
     '<div class="mv up"><div class="kk">Senior-vacatures</div><div class="nn">'+nl(sen[0],0)+' <small>→</small> '+nl(sen[sen.length-1],0)+'</div><div class="tt">van alle AI-vacatures, '+m0+' → '+m1+'.</div></div>'+
     '<div class="mv down"><div class="kk">Lead-vacatures</div><div class="nn">'+nl(lead[0],0)+' <small>→</small> '+nl(lead[lead.length-1],0)+'</div><div class="tt">Samen vrijwel gelijk: het label schuift, niet de instroom. Junior en mid bleven stabiel.</div></div>'+
     '<div class="mv down"><div class="kk">Genoemde tools per vacature</div><div class="nn">'+num(sp.mean_skills[0],2)+' <small>→</small> '+num(sp.mean_skills[sp.mean_skills.length-1],2)+'</div><div class="tt">Werkgevers noemen minder concrete technologieën. De teksten worden niet korter, wel vager.</div></div>'+
-    '<div class="mv nt"><div class="kk">Eendagsvacatures</div><div class="nn">'+nl(D.calibration.ephemeral_share,0)+'</div><div class="tt">van de vacatures staat één dag online en verdwijnt dan: reposts en aggregators, geen echte openstaande functie.</div></div>'+
+
     '</div>'+
     '<div class="rows"><div class="cap"><span>Welke AI-leverancier wordt genoemd</span><span>aandeel vacatures, '+m1+'</span></div>'+prov+'</div>'+
     '<div class="rows"><div class="cap"><span>Wat samen gevraagd wordt</span><span>× vaker dan toeval</span></div>'+pairs+'</div>'+foot(4,N));

@@ -67,7 +67,7 @@ function nl(x,d){return (100*x).toFixed(d==null?1:d).replace(".",",")+"%";}
 function num(x,d){return Number(x).toFixed(d).replace(".",",");}
 var M=["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
 function mon(m){return M[parseInt(m.slice(5,7),10)-1];}
-fetch("data.json").then(function(r){return r.json();}).then(function(D){
+fetch("data.json",{cache:"no-store"}).then(function(r){return r.json();}).then(function(D){
   var p=D.panel,idx=D.skill_index.adverts,sp=D.skill_index.specificity;
   var m0=mon(idx.months[0]),m1=mon(idx.months[idx.months.length-1]);
   el("meta").textContent=p.n_identities.toLocaleString("nl-NL")+" vacatures · "+p.n_runs+" dagelijkse metingen";
