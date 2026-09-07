@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-07T10:29:30Z",
+ "generated_at": "2026-09-07T11:51:46Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -725,84 +725,83 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.5627,
-  "accuracy": 0.6309,
+  "macro_f1": 0.5536,
+  "accuracy": 0.6202,
   "n_train": 1677,
   "n_other": 480,
-  "n_rescued": 87,
-  "rescue_rate": 0.1812,
+  "n_rescued": 85,
+  "rescue_rate": 0.1771,
   "threshold": 0.6,
   "rescued_breakdown": {
    "data-general": 33,
    "ai-manager": 16,
-   "ai-general": 14,
    "ai-product": 13,
+   "ai-general": 13,
    "ai-researcher": 5,
    "ml-engineer": 3,
    "data-engineer": 1,
-   "data-scientist": 1,
-   "ai-engineer": 1
+   "data-scientist": 1
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.6234,
-    "recall": 0.6234,
-    "f1-score": 0.6234,
-    "support": 316.0
+    "precision": 0.604,
+    "recall": 0.5865,
+    "f1-score": 0.5951,
+    "support": 312.0
    },
    "ai-general": {
     "precision": 0.6695,
-    "recall": 0.6324,
-    "f1-score": 0.6504,
-    "support": 253.0
+    "recall": 0.622,
+    "f1-score": 0.6449,
+    "support": 254.0
    },
    "ai-manager": {
-    "precision": 0.3261,
+    "precision": 0.3125,
     "recall": 0.5,
-    "f1-score": 0.3947,
+    "f1-score": 0.3846,
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.272,
-    "recall": 0.4857,
-    "f1-score": 0.3487,
+    "precision": 0.252,
+    "recall": 0.4571,
+    "f1-score": 0.3249,
     "support": 70.0
    },
    "ai-researcher": {
-    "precision": 0.5137,
+    "precision": 0.5172,
     "recall": 0.6148,
-    "f1-score": 0.5597,
+    "f1-score": 0.5618,
     "support": 122.0
    },
    "cv-engineer": {
-    "precision": 0.5976,
+    "precision": 0.6049,
     "recall": 0.8448,
-    "f1-score": 0.7,
+    "f1-score": 0.705,
     "support": 58.0
    },
    "data-engineer": {
-    "precision": 0.5714,
+    "precision": 0.5625,
     "recall": 0.6923,
-    "f1-score": 0.6261,
+    "f1-score": 0.6207,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.2619,
+    "precision": 0.25,
     "recall": 0.4074,
-    "f1-score": 0.3188,
+    "f1-score": 0.3099,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.7295,
-    "recall": 0.6592,
-    "f1-score": 0.6926,
-    "support": 311.0
+    "precision": 0.7049,
+    "recall": 0.6548,
+    "f1-score": 0.6789,
+    "support": 310.0
    },
    "ml-engineer": {
-    "precision": 0.819,
-    "recall": 0.6301,
-    "f1-score": 0.7123,
-    "support": 438.0
+    "precision": 0.8152,
+    "recall": 0.629,
+    "f1-score": 0.7101,
+    "support": 442.0
    }
   }
  },
@@ -23360,5 +23359,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 480.9
+ "runtime_seconds": 480.4
 }
