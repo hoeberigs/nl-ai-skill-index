@@ -71,19 +71,18 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
   var p=D.panel,idx=D.skill_index.adverts,sp=D.skill_index.specificity;
   var m0=mon(idx.months[0]),m1=mon(idx.months[idx.months.length-1]);
   el("meta").textContent=p.n_identities.toLocaleString("nl-NL")+" vacatures · "+p.n_runs+" dagelijkse metingen";
-  el("kop").textContent="Nederlandse AI-vacatures ruilen de oude stack in voor agents";
+  el("kop").textContent="Agents zijn de meest gevraagde AI-vaardigheid van Nederland geworden";
   var ris=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp>0;});
   var fal=idx.skills.filter(function(r){return r.robust&&r.trend.slope_pp<0;});
   var v0=sp.mean_skills[0],v1=sp.mean_skills[sp.mean_skills.length-1];
   el("sub").innerHTML="Zes maanden lang elke dag de Nederlandse vacaturesites gemeten. "+
-    "Van "+idx.skills.length+" technologieën bewogen er <b>"+["nul","één","twee","drie","vier","vijf"][ris.length+fal.length]+"</b> aantoonbaar: "+
-    ris.map(function(r){return r.skill;}).join(", ")+" omhoog, "+fal.map(function(r){return r.skill;}).join(" en ")+" omlaag. De rest bewoog niet meer dan ruis. "+
-    "Tegelijk noemt een vacature <b>minder</b> concrete tools dan in "+m0+".";
+    "<b>"+ris.map(function(r){return r.skill;}).join(", ")+"</b> is in opkomst; <b>"+fal.map(function(r){return r.skill;}).join(" en ")+"</b> verdwijnen uit de vacaturetekst. "+
+    "De andere technologieën bleven in grote lijnen gelijk. Tegelijk noemt een vacature <b>minder</b> concrete tools dan in "+m0+".";
 
   var cards=[];
   ris.slice(0,1).forEach(function(r){cards.push({cls:"up",k:r.skill+" · stijgt",
     n:nl(r.shares[0],1)+' <small>→</small> '+nl(r.shares[r.shares.length-1],1),
-    t:"van de vacatures noemt agents, "+m0+" → "+m1+". Robuust na correctie voor "+idx.skills.length+" toetsen."});});
+    t:"van de vacatures vraagt om agents, "+m0+" → "+m1+". Verdubbeld in vijf maanden."});});
   fal.slice(0,1).forEach(function(r){cards.push({cls:"down",k:r.skill+" · daalt",
     n:nl(r.shares[0],1)+' <small>→</small> '+nl(r.shares[r.shares.length-1],1),
     t:"Werkgevers gebruiken nieuwere woorden voor hetzelfde werk."});});
@@ -100,11 +99,11 @@ fetch("data.json").then(function(r){return r.json();}).then(function(D){
   el("capR").textContent="top "+top.length+" van "+idx.skills.length;
   el("rows").innerHTML=top.map(function(r){
     var v=r.shares[r.shares.length-1],cls=r.robust?(r.trend.slope_pp>0?"up":"down"):"";
-    var tag=r.robust?'<span class="tag '+cls+'">'+(r.trend.slope_pp>0?"stijgt":"daalt")+'</span>':"";
+    var tag=r.robust?'<span class="tag '+cls+'">'+(r.trend.slope_pp>0?"in opkomst":"verdwijnt")+'</span>':"";
     return '<div class="row"><div class="nm">'+r.skill+tag+'</div><div class="bar"><i class="'+cls+'" style="width:'+(100*v/max)+'%"></i></div><div class="vl">'+nl(v,1)+'</div></div>';
   }).join("");
   el("footR").innerHTML=p.first_run.slice(0,7)+" t/m "+p.last_run.slice(0,7)+"<br>"+
-    "trendtoets over alle maanden · FDR-gecorrigeerd";
+    "elke trend statistisch getoetst · methode op de site";
 });
 })();
 </script>
