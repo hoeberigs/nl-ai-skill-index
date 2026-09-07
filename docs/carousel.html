@@ -64,6 +64,8 @@ function nl(x,d){return (100*x).toFixed(d==null?1:d).replace(".",",")+"%";}
 function num(x,d){return Number(x).toFixed(d).replace(".",",");}
 function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
 var M=["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
+var MF=["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"];
+function mfull(m){return MF[parseInt(m.slice(5,7),10)-1];}
 function mon(m){return M[parseInt(m.slice(5,7),10)-1];}
 fetch("data.json",{cache:"no-store"}).then(function(r){return r.json();}).then(function(D){
   var p=D.panel,idx=D.skill_index.adverts,sp=D.skill_index.specificity;
@@ -88,7 +90,7 @@ fetch("data.json",{cache:"no-store"}).then(function(r){return r.json();}).then(f
   S.push(top()+'<div class="k">De Nederlandse AI-arbeidsmarkt · '+m0+' t/m '+m1+' 2026</div>'+
     '<h1>Agents zijn in vijf maanden de meest gevraagde AI-vaardigheid geworden</h1>'+
     '<p class="sub">Zes maanden lang elke dag de Nederlandse vacaturesites gemeten. Dit is wat werkgevers nu vragen, en wat er verschoof. Swipe →</p>'+
-    '<div class="big"><div class="n up">'+nl(last(ag),0)+'</div><div class="t">van de Nederlandse AI-vacatures vraagt nu om <b>agents</b>. In '+m0+' was dat '+nl(first(ag),0)+'. Meer dan LLM, meer dan Python.</div></div>'+foot(1,N));
+    '<div class="big"><div class="n up">'+nl(last(ag),0)+'</div><div class="t">van de Nederlandse AI-vacatures vraagt nu om <b>agents</b>. In '+mfull(idx.months[0])+' was dat '+nl(first(ag),0)+'. Meer dan LLM, meer dan Python.</div></div>'+foot(1,N));
 
   // 2 — what shifted, in market terms
   var why={"AI Agents":"Verdubbeld in vijf maanden. De grootste verschuiving in de markt.",
@@ -97,7 +99,7 @@ fetch("data.json",{cache:"no-store"}).then(function(r){return r.json();}).then(f
   var card=function(r){var up=r.trend.slope_pp>0;
     return '<div class="mv '+(up?"up":"down")+'"><div class="kk">'+esc(r.skill)+' · '+(up?"in opkomst":"verdwijnt")+'</div><div class="nn">'+nl(first(r),0)+' <small>→</small> '+nl(last(r),0)+
       '</div><div class="tt">'+(why[r.skill]||"")+'</div></div>';};
-  S.push(top()+'<div class="k">Wat er verschoof</div><h2>Agents erin, de oude woorden eruit</h2>'+
+  S.push(top()+'<div class="k">Wat er verschoof</div><h2>NLP en Kubernetes verdwijnen uit de vacatureteksten</h2>'+
     '<p class="sub">Aandeel van de vacatures dat de technologie noemt, '+m0+' → '+m1+'. Van de '+idx.skills.length+' gevolgde technologieën zijn dit de enige die duidelijk bewogen; de rest bleef in grote lijnen gelijk.</p>'+
     '<div class="grid2">'+ris.concat(fal).map(card).join("")+
     '<div class="mv"><div class="kk">Alle andere technologieën</div><div class="nn" style="font-size:28px;color:var(--ink2)">stabiel</div><div class="tt">LLM, Python, Azure, RAG, Fine-tuning, Computer Vision, AWS: geen duidelijke beweging in vijf maanden.</div></div>'+
@@ -106,7 +108,7 @@ fetch("data.json",{cache:"no-store"}).then(function(r){return r.json();}).then(f
   // 3 — how long roles stay open
   var cal=D.calibration;
   var rows3=cs.map(function(c){var strong=c.logrank_vs_rest.p<0.05;var cls=strong?(c.rmst_90>=cs[Math.floor(cs.length/2)].rmst_90?"up":"down"):"";
-    return '<div class="row"><div class="nm">'+esc(c.name)+'</div><div class="bar"><i class="'+cls+'" style="width:'+(100*c.rmst_90/cs[0].rmst_90)+'%"></i></div><div class="vl">'+num(c.rmst_90,0)+' d</div></div>';}).join("");
+    return '<div class="row"><div class="nm">'+esc(c.name.replace("Machine Learning","ML").replace("Ai","AI"))+'</div><div class="bar"><i class="'+cls+'" style="width:'+(100*c.rmst_90/cs[0].rmst_90)+'%"></i></div><div class="vl">'+num(c.rmst_90,0)+' d</div></div>';}).join("");
   S.push(top()+'<div class="k">Hoe moeilijk is het om te vinden</div><h2>Een ML Engineer vind je niet in drie weken. Uitzendwerk is in vijf dagen weg.</h2>'+
     '<p class="sub">Omdat dezelfde sites elke dag zijn vastgelegd, is van elke vacature te volgen hoe lang ze openstond. Hoe langer, hoe moeilijker de rol te vervullen is. De gemiddelde AI-vacature staat <b>'+num(cal.median_true_days,0)+' dagen</b> open.</p>'+
     '<div class="rows"><div class="cap"><span>Gemiddeld aantal dagen open, per soort rol</span><span>binnen 90 dagen</span></div>'+rows3+'</div>'+

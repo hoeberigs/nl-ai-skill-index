@@ -90,7 +90,7 @@ fetch("data.json",{cache:"no-store"}).then(function(r){return r.json();}).then(f
     t:"Vacatures worden vager over tooling, niet korter."});
   var cs=D.survival_by_cluster.slice().sort(function(a,b){return b.rmst_90-a.rmst_90;});
   cards.push({cls:"up",k:"langst open",n:num(cs[0].rmst_90,0)+' <small>dagen</small>',
-    t:cs[0].name+"-vacatures staan het langst open; uitzendwerk sluit in "+num(cs[cs.length-1].rmst_90,0)+"."});
+    t:cs[0].name.replace("Machine Learning","ML")+"-vacatures staan het langst open; uitzendwerk sluit in "+num(cs[cs.length-1].rmst_90,0)+"."});
   el("movers").innerHTML=cards.map(function(c){return '<div class="mv '+c.cls+'"><div class="k">'+c.k+
     '</div><div class="n">'+c.n+'</div><div class="t">'+c.t+'</div></div>';}).join("");
 
