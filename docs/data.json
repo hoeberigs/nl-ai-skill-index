@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-06T18:58:02Z",
+ "generated_at": "2026-09-07T09:39:13Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -636,7 +636,7 @@
    "6": 0.1661,
    "7": 0.1626,
    "8": 0.1622,
-   "9": 0.1556,
+   "9": 0.1469,
    "10": 0.151,
    "11": 0.1439,
    "12": 0.1447,
@@ -679,10 +679,10 @@
     "engineer",
     "data",
     "senior",
-    "intelligence",
     "software",
-    "science",
-    "artificial"
+    "intelligence",
+    "artificial",
+    "science"
    ],
    "3": [
     "learning",
@@ -725,18 +725,18 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.5595,
-  "accuracy": 0.6219,
+  "macro_f1": 0.5631,
+  "accuracy": 0.6315,
   "n_train": 1677,
   "n_other": 480,
-  "n_rescued": 87,
-  "rescue_rate": 0.1812,
+  "n_rescued": 89,
+  "rescue_rate": 0.1854,
   "threshold": 0.6,
   "rescued_breakdown": {
-   "data-general": 34,
+   "data-general": 36,
    "ai-manager": 16,
-   "ai-product": 13,
-   "ai-general": 13,
+   "ai-product": 14,
+   "ai-general": 12,
    "ai-researcher": 5,
    "ml-engineer": 3,
    "data-engineer": 1,
@@ -745,64 +745,64 @@
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.6054,
-    "recall": 0.5801,
-    "f1-score": 0.5925,
-    "support": 312.0
+    "precision": 0.6246,
+    "recall": 0.6266,
+    "f1-score": 0.6256,
+    "support": 316.0
    },
    "ai-general": {
-    "precision": 0.6598,
-    "recall": 0.626,
-    "f1-score": 0.6424,
-    "support": 254.0
+    "precision": 0.6695,
+    "recall": 0.6324,
+    "f1-score": 0.6504,
+    "support": 253.0
    },
    "ai-manager": {
-    "precision": 0.3191,
+    "precision": 0.3261,
     "recall": 0.5,
-    "f1-score": 0.3896,
+    "f1-score": 0.3947,
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.2598,
-    "recall": 0.4714,
-    "f1-score": 0.335,
+    "precision": 0.2742,
+    "recall": 0.4857,
+    "f1-score": 0.3505,
     "support": 70.0
    },
    "ai-researcher": {
-    "precision": 0.5067,
-    "recall": 0.623,
-    "f1-score": 0.5588,
+    "precision": 0.5137,
+    "recall": 0.6148,
+    "f1-score": 0.5597,
     "support": 122.0
    },
    "cv-engineer": {
-    "precision": 0.573,
-    "recall": 0.8947,
-    "f1-score": 0.6986,
-    "support": 57.0
+    "precision": 0.5976,
+    "recall": 0.8448,
+    "f1-score": 0.7,
+    "support": 58.0
    },
    "data-engineer": {
-    "precision": 0.5538,
+    "precision": 0.5714,
     "recall": 0.6923,
-    "f1-score": 0.6154,
+    "f1-score": 0.6261,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.3158,
-    "recall": 0.4444,
-    "f1-score": 0.3692,
+    "precision": 0.2619,
+    "recall": 0.4074,
+    "f1-score": 0.3188,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.7148,
-    "recall": 0.6527,
-    "f1-score": 0.6824,
+    "precision": 0.7295,
+    "recall": 0.6592,
+    "f1-score": 0.6926,
     "support": 311.0
    },
    "ml-engineer": {
-    "precision": 0.822,
-    "recall": 0.6267,
-    "f1-score": 0.7112,
-    "support": 442.0
+    "precision": 0.819,
+    "recall": 0.6301,
+    "f1-score": 0.7123,
+    "support": 438.0
    }
   }
  },
@@ -6454,7 +6454,7 @@
   },
   {
    "x": 0.1,
-   "y": 0.4989,
+   "y": 0.499,
    "c": 2,
    "t": "Meewerkstage AI Prototyping & Business Value",
    "co": "PostNL Hoofdkantoor",
@@ -6598,7 +6598,7 @@
   },
   {
    "x": -0.4867,
-   "y": -0.6929,
+   "y": -0.6928,
    "c": 4,
    "t": "Data Scientist",
    "co": "CroonWolter&Dros",
@@ -8333,7 +8333,7 @@
    "d": 5
   },
   {
-   "x": -0.6702,
+   "x": -0.6701,
    "y": 0.5957,
    "c": 5,
    "t": "Production operator - 5 shifts",
@@ -8606,7 +8606,7 @@
   },
   {
    "x": -0.4496,
-   "y": -0.697,
+   "y": -0.6971,
    "c": 4,
    "t": "Data Engineer Senior Data Scientist Data Management Specialist",
    "co": "Huxley",
@@ -9973,7 +9973,7 @@
    "d": 1
   },
   {
-   "x": -0.5795,
+   "x": -0.5796,
    "y": 0.3602,
    "c": 5,
    "t": "productiemedewerker OR \"medewerker productie\"",
@@ -10718,7 +10718,7 @@
   },
   {
    "x": -0.5207,
-   "y": 0.0331,
+   "y": 0.033,
    "c": 5,
    "t": "Technisch Specialist Militaire Bovenwater Sensoren",
    "co": "Ministerie van Defensie",
@@ -13045,7 +13045,7 @@
    "d": 4
   },
   {
-   "x": 0.1548,
+   "x": 0.1547,
    "y": 0.4201,
    "c": 2,
    "t": "AI & Deep Learning Intern",
@@ -14006,7 +14006,7 @@
   },
   {
    "x": -0.2122,
-   "y": -0.2797,
+   "y": -0.2798,
    "c": 1,
    "t": "Legal Researcher (Remote)",
    "co": "Quik Hire Staffing",
@@ -14437,7 +14437,7 @@
    "d": 32
   },
   {
-   "x": 0.4511,
+   "x": 0.4512,
    "y": -0.1803,
    "c": 0,
    "t": "Data Scientist",
@@ -14845,7 +14845,7 @@
    "d": 1
   },
   {
-   "x": -0.3711,
+   "x": -0.3712,
    "y": -0.1562,
    "c": 1,
    "t": "Consultant | GenAI Engineer | Technology & Innovation",
@@ -15462,7 +15462,7 @@
   },
   {
    "x": 0.0407,
-   "y": -0.2253,
+   "y": -0.2254,
    "c": 1,
    "t": "Finance Data Analyst Internship",
    "co": "Tesla",
@@ -15845,7 +15845,7 @@
    "d": 107
   },
   {
-   "x": 0.2994,
+   "x": 0.2995,
    "y": -0.2154,
    "c": 3,
    "t": "ML Platform Engineer - Inference & Production",
@@ -15949,7 +15949,7 @@
    "d": 105
   },
   {
-   "x": 0.0588,
+   "x": 0.0587,
    "y": -0.2993,
    "c": 3,
    "t": "Machine Learning Engineer",
@@ -17022,7 +17022,7 @@
   },
   {
    "x": 0.3492,
-   "y": 0.6747,
+   "y": 0.6748,
    "c": 2,
    "t": "Architect focus op AI",
    "co": "EIFFEL",
@@ -17502,7 +17502,7 @@
   },
   {
    "x": -0.0694,
-   "y": -0.0815,
+   "y": -0.0816,
    "c": 1,
    "t": "Knowledge and Help Center Manager",
    "co": "WeTravel",
@@ -18982,7 +18982,7 @@
   },
   {
    "x": 0.3911,
-   "y": -0.0928,
+   "y": -0.0929,
    "c": 0,
    "t": "Data Platform Engineer",
    "co": "kaiko.ai",
@@ -21150,7 +21150,7 @@
   },
   {
    "x": 0.4658,
-   "y": 0.6457,
+   "y": 0.6456,
    "c": 2,
    "t": "Microsoft AI Engineer",
    "co": "Arrow Electronics, Inc.",
@@ -21349,7 +21349,7 @@
    "d": 1
   },
   {
-   "x": 0.1458,
+   "x": 0.1457,
    "y": 0.3735,
    "c": 2,
    "t": "AI Research Intern (Neuroscience)",
@@ -23304,5 +23304,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 467.0
+ "runtime_seconds": 343.0
 }
