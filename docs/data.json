@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-07T10:19:22Z",
+ "generated_at": "2026-09-07T10:29:30Z",
  "panel": {
   "placeholder_spells_dropped": 5,
   "key": "vacancy",
@@ -725,8 +725,8 @@
   }
  },
  "classifier": {
-  "macro_f1": 0.567,
-  "accuracy": 0.6351,
+  "macro_f1": 0.5627,
+  "accuracy": 0.6309,
   "n_train": 1677,
   "n_other": 480,
   "n_rescued": 87,
@@ -745,15 +745,15 @@
   },
   "per_class": {
    "ai-engineer": {
-    "precision": 0.627,
-    "recall": 0.6171,
-    "f1-score": 0.622,
+    "precision": 0.6234,
+    "recall": 0.6234,
+    "f1-score": 0.6234,
     "support": 316.0
    },
    "ai-general": {
-    "precision": 0.6639,
+    "precision": 0.6695,
     "recall": 0.6324,
-    "f1-score": 0.6478,
+    "f1-score": 0.6504,
     "support": 253.0
    },
    "ai-manager": {
@@ -763,9 +763,9 @@
     "support": 30.0
    },
    "ai-product": {
-    "precision": 0.2869,
-    "recall": 0.5,
-    "f1-score": 0.3646,
+    "precision": 0.272,
+    "recall": 0.4857,
+    "f1-score": 0.3487,
     "support": 70.0
    },
    "ai-researcher": {
@@ -775,33 +775,33 @@
     "support": 122.0
    },
    "cv-engineer": {
-    "precision": 0.5814,
-    "recall": 0.8772,
-    "f1-score": 0.6993,
-    "support": 57.0
+    "precision": 0.5976,
+    "recall": 0.8448,
+    "f1-score": 0.7,
+    "support": 58.0
    },
    "data-engineer": {
-    "precision": 0.5806,
+    "precision": 0.5714,
     "recall": 0.6923,
-    "f1-score": 0.6316,
+    "f1-score": 0.6261,
     "support": 52.0
    },
    "data-general": {
-    "precision": 0.2821,
+    "precision": 0.2619,
     "recall": 0.4074,
-    "f1-score": 0.3333,
+    "f1-score": 0.3188,
     "support": 27.0
    },
    "data-scientist": {
-    "precision": 0.7247,
-    "recall": 0.6667,
-    "f1-score": 0.6945,
-    "support": 312.0
+    "precision": 0.7295,
+    "recall": 0.6592,
+    "f1-score": 0.6926,
+    "support": 311.0
    },
    "ml-engineer": {
-    "precision": 0.8309,
-    "recall": 0.6393,
-    "f1-score": 0.7226,
+    "precision": 0.819,
+    "recall": 0.6301,
+    "f1-score": 0.7123,
     "support": 438.0
    }
   }
@@ -23360,5 +23360,5 @@
    "urls": 1
   }
  ],
- "runtime_seconds": 481.1
+ "runtime_seconds": 480.9
 }
