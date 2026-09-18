@@ -6,10 +6,14 @@ What Dutch employers actually ask for in AI, ML and data roles, measured from si
 daily job-board snapshots rather than a single scrape.
 
 The headline finding is not a technology winning. It is adverts getting **vaguer**: the average
-Dutch AI advert named 2.41 specific technologies in April and 1.75 by August, a 27% drop, while
-the share naming none at all rose from 30% to 39%. Against that backdrop only **RAG** measurably
-gained share of what employers name, and **NLP** and **Kubernetes** measurably lost it. Everything
-else moved no more than sampling noise.
+Dutch AI advert named 2.87 specific technologies in April and 2.43 by August, a 15% drop. Against
+that backdrop, of 25 technologies tested only **AI Agents** gained share of what employers name and
+only **NLP** lost it once the tests are corrected for multiple comparisons. Kubernetes, SQL and
+fine-tuning move on an uncorrected test and do not survive the correction. Everything else moved no
+more than sampling noise.
+
+Figures in this README come from the 14 September 2026 rebuild. The index rebuilds weekly, so the
+live page is the reference for current values.
 
 ## Why daily snapshots change the answer
 
@@ -30,7 +34,7 @@ with no external ground truth:
 |---|---|
 | 1–6 days | 65% |
 | 7–13 days | 60% |
-| 14–29 days | 53% |
+| 14–29 days | 54% |
 | 30–59 days | 43% |
 
 Detection falls with exactly the variable being measured, so every naive duration statistic is
@@ -68,7 +72,7 @@ splitting the real pipeline applies, and the parameters that reproduce the obser
 estimate (simulated method of moments). The fit is repeated across five seeds and the spread
 reported.
 
-A single log-normal could not reproduce a 33% single-sighting share alongside a 38-day upper decile.
+A single log-normal could not reproduce a 33% single-sighting share alongside a 39-day upper decile.
 A two-component mixture can, and it corresponds to something real: listings that appear once and
 never establish themselves, and genuine vacancies that run for weeks.
 
@@ -88,6 +92,8 @@ in March, ~68% by summer). Two consequences drive the whole design:
 
 Trends use a **Cochran-Armitage test across all five months**, not a comparison of two endpoints, so
 a result cannot be manufactured by choosing convenient months. Each point carries a Wilson interval.
+With 25 technologies tested, p-values are corrected with Benjamini-Hochberg at a 5% false discovery
+rate, and only results that survive the correction are reported as movement.
 
 ## Roles
 
@@ -106,7 +112,7 @@ not evidence of discrete role types, and the score is published so readers can j
 
 Both are applied explicitly and their attrition is reported rather than absorbed silently:
 
-- **Non-AI staffing noise** (16.7% of the panel) is removed from the demand index. A keyword-driven
+- **Non-AI staffing noise** (16.3% of the panel) is removed from the demand index. A keyword-driven
   AI job scraper also catches production and operator adverts sitting near the query terms; the
   largest employers by advert count were temp agencies. They are kept in the survival analysis,
   where the contrast is informative: agency adverts have a median life of 1 day against roughly two
